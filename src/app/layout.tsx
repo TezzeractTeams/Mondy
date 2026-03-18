@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-noah antialiased bg-[#F3F4F1] min-h-screen text-[#1C1A17] tracking-[-0.05em] leading-[1.2]`}
+        className={`${geistSans.variable} ${geistMono.variable} font-noah antialiased bg-[#F5F3F0] min-h-screen text-[#1C1A17] tracking-[-0.05em] leading-[1.2]`}
       >
         <MondyNav />
         {children}

@@ -1,13 +1,30 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { Clock, Lightbulb, SignalLow, VolumeX } from "lucide-react";
 
 export default function ProblemStatement() {
   const problems = [
-    { title: "No time to write", desc: "Between closing deals, running teams, and building products, sitting down to write content never makes the cut." },
-    { title: "Ideas go unshared", desc: "You have insights worth sharing. But without time to write them down, they stay in your head and disappear." },
-    { title: "Your presence suffers", desc: "Inconsistent posting means your brand stays an afterthought, while others with less to say show up every day." },
-    { title: "Your voice goes unheard", desc: "The people who most deserve an audience are often the least visible online. Not from lack of ideas — but lack of time." }
+    {
+      title: "No time to write",
+      desc: "Between closing deals, running teams, and building products, sitting down to write content never makes the cut.",
+      Icon: Clock,
+    },
+    {
+      title: "Ideas go unshared",
+      desc: "You have insights worth sharing. But without time to write them down, they stay in your head and disappear.",
+      Icon: Lightbulb,
+    },
+    {
+      title: "Your presence suffers",
+      desc: "Inconsistent posting means your brand stays an afterthought, while others with less to say show up every day.",
+      Icon: SignalLow,
+    },
+    {
+      title: "Your voice goes unheard",
+      desc: "The people who most deserve an audience are often the least visible online. Not from lack of ideas — but lack of time.",
+      Icon: VolumeX,
+    },
   ];
 
   return (
@@ -41,7 +58,7 @@ export default function ProblemStatement() {
 
         {/* Right Side: Staggered Problem Cards (Flash.co Layout Style) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 order-2 lg:order-2">
-          {problems.map((item, idx) => (
+          {problems.map(({ title, desc, Icon }, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
@@ -51,11 +68,20 @@ export default function ProblemStatement() {
               className={`p-8 rounded-[2rem] bg-white/40 backdrop-blur-xl border border-white/60 shadow-sm
                 ${idx % 2 === 1 ? 'md:translate-y-12' : ''}`}
             >
+              <div
+                className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#1C1A17]/[0.06]"
+                aria-hidden
+              >
+                <Icon
+                  className="h-[18px] w-[18px] text-[#1C1A17]/45"
+                  strokeWidth={1.5}
+                />
+              </div>
               <h4 className="text-[#1C1A17] text-xl font-bold tracking-[-0.05em] mb-4">
-                {item.title}
+                {title}
               </h4>
               <p className="text-[#1C1A17]/70 text-sm leading-[1.4] tracking-tight">
-                {item.desc}
+                {desc}
               </p>
             </motion.div>
           ))}

@@ -1,45 +1,80 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
+
+/**
+ * Headline horizontal tuning (any CSS length: rem, vw, %, px).
+ * Uses translateX so shifts are visible and predictable (margins on full-width blocks + text-align are easy to get wrong).
+ * Line 1: negative = further left, positive = right.
+ * Line 2: negative = left, positive = further right.
+ */
+const HEADLINE_OFFSET = {
+  line1TranslateX: "-80px",
+  line2TranslateX: "80px",
+} as const;
+
+/** Section fill — ripples use the same color so shadows read as layered discs. */
+const HERO_SURFACE = "#F5F3F0";
+
+/** Largest first (painted back); soft shadow bottom-right (light from top-left). */
+const NEOMORPHIC_RIPPLES: { size: string }[] = [
+  { size: "min(130vw, 1240px)" },
+  { size: "min(102vw, 980px)" },
+  { size: "min(78vw, 720px)" },
+  { size: "min(52vw, 460px)" },
+];
+
+const NEOMORPHIC_SHADOW =
+  "10px 14px 56px rgba(255, 223, 223, 0.63), 4px 8px 32px rgba(255, 230, 230, 0.03)";
 
 export default function Hero() {
-  return (
-    <section className="relative min-h-screen w-full bg-[#F5F3F0] overflow-hidden flex items-center justify-center">
+  const reduceMotion = useReducedMotion();
 
-      {/* Voice Ripples */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        {[1, 2, 3, 4, 5].map((index) => (
-          <motion.div
-            key={index}
-            initial={{ scale: 1, opacity: 0 }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.05, 0.15, 0.05],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              delay: index * 1.5,
-              ease: "easeInOut",
-            }}
-            style={{
-              width: `${index * 350}px`,
-              height: `${index * 350}px`,
-            }}
-            className="absolute border-[0.5px] border-[#E17054] rounded-full"
-          />
-        ))}
+  return (
+    <section className="relative min-h-screen min-h-[100dvh] w-full overflow-x-hidden flex flex-col bg-[#F5F3F0]">
+
+      {/* Neomorphic ripples — clip so headline nudges stay contained */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
+        <div className="relative size-0">
+          {NEOMORPHIC_RIPPLES.map(({ size }, index) => (
+            <motion.div
+              key={index}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full will-change-transform"
+              initial={{ scale: 1, opacity: 1 }}
+              animate={
+                reduceMotion
+                  ? { scale: 1, opacity: 1 }
+                  : {
+                      scale: [1, 1.048, 1],
+                      opacity: [1, 0.84, 1],
+                    }
+              }
+              transition={{
+                duration: 2.05 - index * 0.18,
+                repeat: Infinity,
+                repeatType: "loop",
+                times: [0, 0.26, 1],
+                ease: ["circOut", [0.25, 0.8, 0.35, 1]],
+                delay: index * 0.1,
+              }}
+              style={{
+                width: size,
+                height: size,
+                backgroundColor: HERO_SURFACE,
+                boxShadow: NEOMORPHIC_SHADOW,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-[1440px] px-6 md:px-12 py-20">
+      <div className="relative z-10 flex flex-1 flex-col min-h-0 w-full max-w-[1440px] mx-auto px-6 md:px-12 pt-20 pb-6 md:pb-8">
 
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-[#E17054]/5 blur-[150px] rounded-full pointer-events-none -z-10" />
+        <div className="grid flex-1 min-h-0 grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 lg:items-stretch">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 items-center">
-
-          {/* Left */}
-          <div className="lg:col-span-3 flex flex-col items-center lg:items-start order-2 lg:order-1">
+          {/* Left — above center image when it bleeds past the column */}
+          <div className="lg:col-span-3 flex flex-col items-center lg:items-start lg:justify-end order-2 lg:order-1 relative z-20 lg:min-h-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -58,44 +93,50 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Center */}
-          <div className="lg:col-span-6 flex flex-col items-center text-center order-1 lg:order-2">
+          {/* Center — headline behind phone; phone pinned to bottom of hero */}
+          <div className="lg:col-span-6 flex flex-col min-h-[min(72vh,calc(100dvh-10rem))] lg:min-h-0 lg:h-full order-1 lg:order-2">
+            <div className="relative flex flex-1 min-h-0 w-full isolate flex-col items-stretch text-center px-1">
 
-            {/* H1 */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-[88px] font-extrabold text-[#1C1A17] tracking-[-0.05em] leading-[0.95] z-20 relative"
-            >
-              Talk for 10 minutes. <br />
-              A full week of content, done.
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="w-full min-w-0 self-stretch text-5xl md:text-7xl lg:text-[100px] font-extrabold text-[#1C1A17] tracking-[-0.05em] leading-[0.95] relative z-0 pointer-events-none shrink-0 pt-10"
+              >
+                <span
+                  className="block w-full text-left will-change-transform"
+                  style={{ transform: `translateX(${HEADLINE_OFFSET.line1TranslateX})` }}
+                >
+                  Talk for 10 minutes.
+                </span>
+                <span
+                  className="mt-1 block w-full text-right md:mt-2 will-change-transform"
+                  style={{ transform: `translateX(${HEADLINE_OFFSET.line2TranslateX})` }}
+                >
+                  A full week of content, done.
+                </span>
+              </motion.h1>
 
-            {/* Phone */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="relative w-full max-w-[320px] md:max-w-[380px] -mt-12 md:-mt-20 lg:-mt-28 z-10"
-            >
-              <div className="relative bg-[#1C1A17] rounded-[3.5rem] border-[10px] border-[#1C1A17] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.2)] overflow-hidden">
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[100px] h-[28px] bg-black rounded-full z-20" />
-
-                <div className="w-full aspect-[9/19.5] bg-[#F5F3F0] rounded-[2.2rem] p-6 flex flex-col items-center justify-center space-y-8">
-                  <div className="w-full h-1/2 bg-[#1C1A17]/5 rounded-3xl" />
-                  <div className="w-16 h-16 bg-[#708FDB] rounded-full flex items-center justify-center shadow-lg shadow-[#708FDB]/20">
-                    <div className="w-6 h-6 bg-white rounded-sm rotate-45" />
-                  </div>
-                  <div className="w-4/5 h-3 bg-[#1C1A17]/10 rounded-full" />
-                </div>
-              </div>
-            </motion.div>
-
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="relative z-10 -mt-20 w-[150%] max-w-[min(98vw,720px)] sm:max-w-[800px] md:max-w-[920px] lg:max-w-[min(98vw,1040px)] xl:max-w-[min(98vw,1180px)] 2xl:max-w-[1280px] md:-mb-4 self-center"
+              >
+                <Image
+                  src="/handmockphone.png"
+                  alt="Hand holding a smartphone"
+                  width={2000}
+                  height={1288}
+                  className="w-full h-auto object-contain object-bottom drop-shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]"
+                  priority
+                />
+              </motion.div>
+            </div>
           </div>
 
-          {/* Right */}
-          <div className="lg:col-span-3 flex flex-col items-center lg:items-end order-3 mt-10 lg:mt-0">
+          {/* Right — above center image when it bleeds past the column */}
+          <div className="lg:col-span-3 flex flex-col items-center lg:items-end lg:justify-end order-3 mt-10 lg:mt-0 relative z-20 lg:min-h-0">
             <div className="lg:col-span-3 flex flex-col items-end order-3 mt-10 lg:mt-0">
               <div className="flex flex-col items-end text-right max-w-[300px]">
 

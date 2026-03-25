@@ -162,15 +162,26 @@ export default function Waitlist() {
             <div className="relative bg-[#1C1A17] rounded-[4rem] border-[12px] border-[#1C1A17] shadow-[0_100px_100px_-50px_rgba(112,143,219,0.3)] overflow-hidden aspect-[9/19.5]">
               <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[120px] h-[32px] bg-black rounded-full z-20" />
 
-              {/* Phone Content (Generated Image) */}
-              <div className="absolute inset-0 bg-[#F5F3F0]">
-                <Image
-                  src="/Users/theniya/.gemini/antigravity/brain/7196e7ef-59fd-45f2-823d-52ec1d18fe5e/mondy_dashboard_mockup_1773896813633.png"
-                  alt="Mondy Dashboard"
-                  fill
-                  className="object-cover object-top opacity-100"
-                  priority
-                />
+              <div className="absolute inset-0 bg-[#F5F3F0] p-3 pt-10 flex flex-col gap-2 overflow-hidden">
+                <div className="h-2.5 w-20 rounded-full bg-[#1C1A17]/8" />
+                <div className="grid grid-cols-2 gap-2 flex-1 min-h-0">
+                  <div className="rounded-2xl bg-white/90 border border-[#1C1A17]/6 shadow-sm p-2 flex flex-col gap-2">
+                    <div className="h-2 w-10 rounded bg-[#708FDB]/25" />
+                    <div className="h-8 rounded-lg bg-[#1C1A17]/5" />
+                  </div>
+                  <div className="rounded-2xl bg-[#708FDB]/15 border border-[#708FDB]/20 p-2 flex flex-col gap-2">
+                    <div className="h-2 w-12 rounded bg-[#1C1A17]/10" />
+                    <div className="flex-1 rounded-lg bg-white/50" />
+                  </div>
+                  <div className="col-span-2 rounded-2xl bg-white/90 border border-[#1C1A17]/6 p-3 flex flex-col gap-2">
+                    <div className="flex gap-1">
+                      <div className="h-1.5 flex-1 rounded bg-[#1C1A17]/8" />
+                      <div className="h-1.5 flex-1 rounded bg-[#1C1A17]/8" />
+                      <div className="h-1.5 flex-1 rounded bg-[#1C1A17]/8" />
+                    </div>
+                    <div className="h-12 rounded-xl bg-[#1C1A17]/4" />
+                  </div>
+                </div>
               </div>
             </div>
 

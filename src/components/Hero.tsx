@@ -5,13 +5,21 @@ import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * Headline horizontal tuning (any CSS length: rem, vw, %, px).
- * Uses translateX so shifts are visible and predictable (margins on full-width blocks + text-align are easy to get wrong).
  * Line 1: negative = further left, positive = right.
  * Line 2: negative = left, positive = further right.
  */
 const HEADLINE_OFFSET = {
-  line1TranslateX: "-80px",
-  line2TranslateX: "80px",
+  line1TranslateX: "0px",
+  line2TranslateX: "0px",
+} as const;
+
+/**
+ * Hand mockup position inside its column (CSS lengths).
+ * Does not affect the Framer fade/slide-in — only the resting layout.
+ */
+const HERO_PHONE_IMAGE = {
+  translateX: "0px",
+  translateY: "50px",
 } as const;
 
 /** Section fill — ripples use the same color so shadows read as layered discs. */
@@ -32,7 +40,7 @@ export default function Hero() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative min-h-screen min-h-[100dvh] w-full overflow-x-hidden flex flex-col bg-[#F5F3F0]">
+    <section className="relative h-[100vh] w-full overflow-x-hidden flex flex-col bg-[#F5F3F0]">
 
       {/* Neomorphic ripples — clip so headline nudges stay contained */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
@@ -46,17 +54,17 @@ export default function Hero() {
                 reduceMotion
                   ? { scale: 1, opacity: 1 }
                   : {
-                      scale: [1, 1.048, 1],
-                      opacity: [1, 0.84, 1],
+                      scale: [1, 1.1, 1],
+                      opacity: [1, 0.62, 1],
                     }
               }
               transition={{
-                duration: 2.05 - index * 0.18,
+                duration: 1.72 - index * 0.22,
                 repeat: Infinity,
                 repeatType: "loop",
-                times: [0, 0.26, 1],
-                ease: ["circOut", [0.25, 0.8, 0.35, 1]],
-                delay: index * 0.1,
+                times: [0, 0.24, 1],
+                ease: ["circIn", [0.15, 0.55, 0.2, 1]],
+                delay: index * 0.12,
               }}
               style={{
                 width: size,
@@ -94,43 +102,52 @@ export default function Hero() {
           </div>
 
           {/* Center — headline behind phone; phone pinned to bottom of hero */}
-          <div className="lg:col-span-6 flex flex-col min-h-[min(72vh,calc(100dvh-10rem))] lg:min-h-0 lg:h-full order-1 lg:order-2">
+          <div className="lg:col-span-6 flex flex-col min-h-[min(72vh,calc(100vh-10rem))] lg:min-h-0 lg:h-full order-1 lg:order-2">
             <div className="relative flex flex-1 min-h-0 w-full isolate flex-col items-stretch text-center px-1">
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="w-full min-w-0 self-stretch text-5xl md:text-7xl lg:text-[100px] font-extrabold text-[#1C1A17] tracking-[-0.05em] leading-[0.95] relative z-0 pointer-events-none shrink-0 pt-10"
+                className="flex w-full flex-col items-center text-5xl md:text-7xl lg:text-[100px] font-extrabold text-[#1C1A17] tracking-[-0.05em] leading-[0.95] relative z-0 pointer-events-none shrink-0 pt-10"
               >
+                <div className="flex flex-col items-center ">
                 <span
-                  className="block w-full text-left will-change-transform"
+                  className="w-max pt-10 max-w-none shrink-0 whitespace-nowrap text-center will-change-transform"
                   style={{ transform: `translateX(${HEADLINE_OFFSET.line1TranslateX})` }}
                 >
                   Talk for 10 minutes.
                 </span>
                 <span
-                  className="mt-1 block w-full text-right md:mt-2 will-change-transform"
+                  className="mt-1 w-max max-w-none shrink-0 whitespace-nowrap text-center md:mt-2 will-change-transform"
                   style={{ transform: `translateX(${HEADLINE_OFFSET.line2TranslateX})` }}
                 >
                   A full week of content, done.
                 </span>
+                </div>
               </motion.h1>
 
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
-                className="relative z-10 -mt-20 w-[150%] max-w-[min(98vw,720px)] sm:max-w-[800px] md:max-w-[920px] lg:max-w-[min(98vw,1040px)] xl:max-w-[min(98vw,1180px)] 2xl:max-w-[1280px] md:-mb-4 self-center"
+                className="relative z-10 -mt-20 w-[170%] max-w-[min(98vw,720px)] sm:max-w-[800px] md:max-w-[920px] lg:max-w-[min(98vw,1040px)] xl:max-w-[min(98vw,1180px)] 2xl:max-w-[1280px] md:-mb-4 self-center"
               >
-                <Image
-                  src="/handmockphone.png"
-                  alt="Hand holding a smartphone"
-                  width={2000}
-                  height={1288}
-                  className="w-full h-auto object-contain object-bottom drop-shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]"
-                  priority
-                />
+                <div
+                  className="will-change-transform"
+                  style={{
+                    transform: `translate(${HERO_PHONE_IMAGE.translateX}, ${HERO_PHONE_IMAGE.translateY})`,
+                  }}
+                >
+                  <Image
+                    src="/handmockphone.png"
+                    alt="Hand holding a smartphone"
+                    width={2000}
+                    height={1288}
+                    className="w-full h-auto object-contain object-bottom drop-shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]"
+                    priority
+                  />
+                </div>
               </motion.div>
             </div>
           </div>

@@ -117,10 +117,9 @@ export default function HowItWorks() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative bg-white/40 backdrop-blur-2xl rounded-[3rem] border border-white/60 min-h-[600px] flex flex-col overflow-hidden shadow-2xl"
+          className="relative rounded-[3rem] min-h-[600px] flex flex-col overflow-hidden"
         >
-          {/* Black Header Strip */}
-          <div className="w-full bg-[#1C1A17] pt-20 pb-40 flex flex-col items-center text-center px-4 relative overflow-hidden">
+          <div className="w-full bg-[linear-gradient(120deg,#FFBDAA,#88A3E6)] pt-20 pb-36 md:pb-40 flex flex-col items-center text-center px-4 relative z-0 overflow-hidden rounded-b-[2.5rem]">
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
               <RippleStack
                 count={6}
@@ -128,7 +127,7 @@ export default function HowItWorks() {
                 durationBase={0.72}
                 delayPerRing={0.05}
                 intensity="strong"
-                ringClassName="border-[#E17054]/45"
+                ringClassName="border-[#FFEAE5]/45"
               />
             </div>
             <h2 className="text-white text-5xl md:text-6xl font-extrabold tracking-[-0.06em] leading-[0.9] relative z-10">
@@ -137,7 +136,7 @@ export default function HowItWorks() {
           </div>
 
           {/* Content Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-8 -mt-20 pb-20 relative z-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-8 -mt-24 md:-mt-28 pb-20 relative z-20">
             {steps.map((step, idx) => {
               const isSecondCard = idx === 1;
 
@@ -147,8 +146,7 @@ export default function HowItWorks() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.15 }}
-                  className={`relative bg-white rounded-[2.5rem] border border-white shadow-xl overflow-hidden flex flex-col
-                     ${isSecondCard ? 'md:translate-y-12' : 'md:-translate-y-4'}`}
+                  className="relative bg-white rounded-[2.5rem] border border-white shadow-xl overflow-hidden flex flex-col"
                 >
                   {/* Card 2: Image BLEEDS from TOP */}
                   {isSecondCard ? (

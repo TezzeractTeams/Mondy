@@ -8,14 +8,9 @@ type RippleStackProps = {
   durationBase: number;
   delayPerRing: number;
   ringClassName: string;
-  /** Softer vs punchier motion */
   intensity?: "soft" | "medium" | "strong";
-  /** Extra delay so stacked instances do not pulse in lockstep */
   delayShift?: number;
 };
-
-
-
 
 function RippleStack({
   count,
@@ -97,8 +92,8 @@ export default function HowItWorks() {
 
   return (
     <section className="relative w-full bg-[#F5F3F0] py-24 px-6 md:px-12 overflow-hidden font-noah">
-      
-      {/* Dynamic Background Ripples */}
+
+      {/* Background Ripples */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
         <RippleStack
           count={3}
@@ -111,99 +106,98 @@ export default function HowItWorks() {
       </div>
 
       <div className="max-w-[1440px] mx-auto relative z-10">
-
-        {/* Main Device Tray Container */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative rounded-[3rem] min-h-[600px] flex flex-col overflow-hidden"
+          className="relative rounded-[3.5rem] min-h-[800px] flex flex-col overflow-hidden"
         >
-          <div className="w-full bg-[linear-gradient(120deg,#FFBDAA,#88A3E6)] pt-20 pb-36 md:pb-40 flex flex-col items-center text-center px-4 relative z-0 overflow-hidden rounded-b-[2.5rem]">
+          {/* Main Header Area - Increased PB for Taller Cards */}
+          <div className="w-full bg-[linear-gradient(120deg,#FFBDAA,#88A3E6)] pt-24 pb-64 md:pb-72 flex flex-col items-center text-center px-4 relative z-0 overflow-hidden rounded-b-[3rem]">
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
               <RippleStack
                 count={6}
-                sizeStep={200}
+                sizeStep={220}
                 durationBase={0.72}
                 delayPerRing={0.05}
                 intensity="strong"
                 ringClassName="border-[#FFEAE5]/45"
               />
             </div>
-            <h2 className="text-white text-5xl md:text-6xl font-extrabold tracking-[-0.06em] leading-[0.9] relative z-10">
-              HOW IT <span className="text-[#708FDB]">WORKS</span>
+            <h2 className="text-white text-5xl md:text-7xl font-extrabold tracking-[-0.06em] leading-[0.9] relative z-10">
+              How It <span className="text-[#708FDB]">Works</span>
             </h2>
           </div>
 
-          {/* Content Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-8 -mt-24 md:-mt-28 pb-20 relative z-20">
+          {/* Cards Grid - Pulled up with -mt-48 */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 w-full px-4 sm:px-10 -mt-48 md:-mt-56 pb-24 relative z-20">
             {steps.map((step, idx) => {
               const isSecondCard = idx === 1;
 
               return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.15 }}
-                  className="relative bg-white rounded-[2.5rem] border border-white shadow-xl overflow-hidden flex flex-col"
+                  transition={{ delay: idx * 0.15, duration: 0.8 }}
+                  className="relative bg-white rounded-[3rem] border border-white shadow-2xl overflow-hidden flex flex-col"
                 >
-                  {/* Card 2: Image BLEEDS from TOP */}
                   {isSecondCard ? (
                     <>
-                      <div className="px-6 w-full h-[280px]">
-                        <div className="relative w-full h-full bg-[#F5F3F0] rounded-b-2xl border-x border-b border-black/5 flex items-center justify-center">
+                      {/* Placeholder TOP BLEED - Height Increased to 420px */}
+                      <div className="px-6 w-full h-[350px] md:h-[420px]">
+                        <div className="relative w-full h-full bg-[#F5F3F0] rounded-b-[2rem] border-x border-b border-black/5 flex items-center justify-center overflow-hidden">
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <RippleStack
                               count={5}
-                              sizeStep={120}
+                              sizeStep={150}
                               durationBase={0.82}
                               delayPerRing={0.07}
                               intensity="medium"
                               delayShift={idx * 0.09}
-                              ringClassName="border-[#E17054]/50"
+                              ringClassName="border-[#E17054]/30"
                             />
                           </div>
-                          <span className="relative z-10 text-[10px] text-[#1C1A17]/20 font-bold uppercase tracking-widest text-center px-4">
-                            [Screenshot Placeholder]
+                          <span className="relative z-10 text-xs text-[#1C1A17]/25 font-bold uppercase tracking-[0.2em] text-center px-4">
+                            [App Screenshot]
                           </span>
                         </div>
                       </div>
-                      <div className="relative z-10 space-y-4 p-8 flex-grow">
-                        <h4 className="text-[#1C1A17] text-2xl font-extrabold tracking-[-0.05em] leading-[1.1]">
+                      <div className="relative z-10 p-10 flex-grow">
+                        <h4 className="text-[#1C1A17] text-2xl font-extrabold tracking-[-0.05em] leading-[1.1] mb-4">
                           {idx + 1}. {step.title}
                         </h4>
-                        <p className="text-[#1C1A17]/70 text-lg font-medium tracking-[-0.05em] leading-[1.3]">
+                        <p className="text-[#1C1A17]/70 text-lg font-medium tracking-[-0.05em] leading-[1.4]">
                           {step.desc}
                         </p>
                       </div>
                     </>
                   ) : (
-                    /* Cards 1 & 3: Image BLEEDS from BOTTOM */
                     <>
-                      <div className="relative z-10 space-y-4 p-8 flex-grow">
-                        <h4 className="text-[#1C1A17] text-2xl font-extrabold tracking-[-0.05em] leading-[1.1]">
+                      <div className="relative z-10 p-10 flex-grow">
+                        <h4 className="text-[#1C1A17] text-2xl font-extrabold tracking-[-0.05em] leading-[1.1] mb-4">
                           {idx + 1}. {step.title}
                         </h4>
-                        <p className="text-[#1C1A17]/70 text-lg font-medium tracking-[-0.05em] leading-[1.3]">
+                        <p className="text-[#1C1A17]/70 text-lg font-medium tracking-[-0.05em] leading-[1.4]">
                           {step.desc}
                         </p>
                       </div>
-                      <div className="px-6 w-full h-[280px]">
-                        <div className="relative w-full h-full bg-[#F5F3F0] rounded-t-2xl border-x border-t border-black/5 flex items-center justify-center">
+                      {/* Placeholder BOTTOM BLEED - Height Increased to 420px */}
+                      <div className="px-6 w-full h-[350px] md:h-[420px]">
+                        <div className="relative w-full h-full bg-[#F5F3F0] rounded-t-[2rem] border-x border-t border-black/5 flex items-center justify-center overflow-hidden">
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <RippleStack
                               count={5}
-                              sizeStep={120}
+                              sizeStep={150}
                               durationBase={0.82}
                               delayPerRing={0.07}
                               intensity="medium"
                               delayShift={idx * 0.09}
-                              ringClassName="border-[#E17054]/50"
+                              ringClassName="border-[#E17054]/30"
                             />
                           </div>
-                          <span className="relative z-10 text-[10px] text-[#1C1A17]/20 font-bold uppercase tracking-widest text-center px-4">
-                            [Screenshot Placeholder]
+                          <span className="relative z-10 text-xs text-[#1C1A17]/25 font-bold uppercase tracking-[0.2em] text-center px-4">
+                            [App Screenshot]
                           </span>
                         </div>
                       </div>

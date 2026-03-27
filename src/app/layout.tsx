@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MondyNav from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 
 const geistSans = Geist({
@@ -27,10 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-noah antialiased bg-[#F5F3F0] min-h-screen text-[#1C1A17] tracking-[-0.05em] leading-[1.2]`}
+        className={`${geistSans.variable} ${geistMono.variable} font-noah antialiased bg-[#F5F3F0] min-h-screen flex flex-col text-[#1C1A17] tracking-[-0.05em] leading-[1.2]`}
       >
         <MondyNav />
-        {children}
+        <div className="flex-grow flex flex-col min-h-0">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );

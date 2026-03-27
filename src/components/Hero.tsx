@@ -105,67 +105,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Floating post cards — size via HERO_FLOATING_CARD_SIZE */}
-      <motion.div
-        initial={{ opacity: 0, x: -floatCard.enterX }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className={`pointer-events-none absolute left-[max(0.5rem,3vw)] top-[min(26vh,200px)] z-[5] hidden md:block lg:left-[max(1rem,5vw)] lg:top-[15vh] ${floatCard.widthClass}`}
-        aria-hidden
-      >
-        <motion.div
-          className="origin-center -rotate-[6deg]"
-          animate={
-            reduceMotion ? { y: 0 } : { y: [0, -floatCard.floatPx.left, 0] }
-          }
-          transition={{
-            duration: 5.4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <Image
-            src="/Test.png"
-            alt=""
-            width={323}
-            height={377}
-            className="h-auto w-full drop-shadow-[0_24px_50px_-14px_rgba(0,0,0,0.2)]"
-            sizes={floatCard.sizes}
-          />
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, x: floatCard.enterX }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-        className={`pointer-events-none absolute right-[max(0.5rem,3vw)] top-[min(32vh,240px)] z-[5] hidden md:block lg:right-[max(1rem,5vw)] lg:top-[34vh] ${floatCard.widthClass}`}
-        aria-hidden
-      >
-        <motion.div
-          className="origin-center rotate-[6deg]"
-          animate={
-            reduceMotion ? { y: 0 } : { y: [0, -floatCard.floatPx.right, 0] }
-          }
-          transition={{
-            duration: 6.2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.9,
-          }}
-        >
-          <Image
-            src="/Test.png"
-            alt=""
-            width={323}
-            height={377}
-            className="h-auto w-full drop-shadow-[0_24px_50px_-14px_rgba(0,0,0,0.2)]"
-            sizes={floatCard.sizes}
-          />
-        </motion.div>
-      </motion.div>
-
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col w-full max-w-[1440px] mx-auto px-6 md:px-12 pt-20 pb-6 md:pb-8">
+      <div className="relative flex min-h-0 flex-1 flex-col w-full max-w-[1440px] mx-auto px-6 md:px-12 pt-20 pb-6 md:pb-8">
 
         <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 lg:items-stretch lg:justify-items-center">
 
@@ -181,13 +121,13 @@ export default function Hero() {
               >
                 <div className="flex flex-col items-center ">
                 <span
-                  className="w-max pt-10 max-w-none shrink-0 whitespace-nowrap text-center will-change-transform"
+                  className="w-max pt-10 max-w-none shrink-0 whitespace-nowrap text-center"
                   style={{ transform: `translateX(${HEADLINE_OFFSET.line1TranslateX})` }}
                 >
                   Talk for 10 minutes.
                 </span>
                 <span
-                  className="mt-1 w-max max-w-none shrink-0 whitespace-nowrap text-center md:mt-2 will-change-transform"
+                  className="mt-1 w-max max-w-none shrink-0 whitespace-nowrap text-center md:mt-2"
                   style={{ transform: `translateX(${HEADLINE_OFFSET.line2TranslateX})` }}
                 >
                   A full week of content, done.
@@ -223,6 +163,68 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Floating post cards — after main column so they paint above; z-30 + inline zIndex */}
+      <motion.div
+        initial={{ opacity: 0, x: -floatCard.enterX }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        style={{ zIndex: 30 }}
+        className={`pointer-events-none absolute left-[max(0.5rem,3vw)] top-[min(26vh,200px)] z-30 hidden md:block lg:left-[max(1rem,5vw)] lg:top-[15vh] transform-gpu ${floatCard.widthClass}`}
+        aria-hidden
+      >
+        <motion.div
+          className="origin-center -rotate-[6deg]"
+          animate={
+            reduceMotion ? { y: 0 } : { y: [0, -floatCard.floatPx.left, 0] }
+          }
+          transition={{
+            duration: 5.4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <Image
+            src="/Test.png"
+            alt=""
+            width={323}
+            height={377}
+            className="h-auto w-full drop-shadow-[0_24px_50px_-14px_rgba(0,0,0,0.2)]"
+            sizes={floatCard.sizes}
+          />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: floatCard.enterX }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
+        style={{ zIndex: 30 }}
+        className={`pointer-events-none absolute right-[max(0.5rem,3vw)] top-[min(32vh,240px)] z-30 hidden md:block lg:right-[max(1rem,5vw)] lg:top-[34vh] transform-gpu ${floatCard.widthClass}`}
+        aria-hidden
+      >
+        <motion.div
+          className="origin-center rotate-[6deg]"
+          animate={
+            reduceMotion ? { y: 0 } : { y: [0, -floatCard.floatPx.right, 0] }
+          }
+          transition={{
+            duration: 6.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.9,
+          }}
+        >
+          <Image
+            src="/Test.png"
+            alt=""
+            width={323}
+            height={377}
+            className="h-auto w-full drop-shadow-[0_24px_50px_-14px_rgba(0,0,0,0.2)]"
+            sizes={floatCard.sizes}
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

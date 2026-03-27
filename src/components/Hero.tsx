@@ -97,7 +97,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none absolute left-[6vw] top-[30vh] z-[20] hidden lg:block w-[320px]"
+        className="pointer-events-none absolute left-[16vw] top-[30vh] z-[20] hidden lg:block w-[320px]"
         aria-hidden
       >
         <motion.div
@@ -121,7 +121,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none absolute right-[4vw] top-[46vh] z-[20] hidden lg:block w-[320px]"
+        className="pointer-events-none absolute right-[16vw] top-[46vh] z-[20] hidden lg:block w-[320px]"
         aria-hidden
       >
         <motion.div

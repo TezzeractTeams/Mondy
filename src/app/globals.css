@@ -76,3 +76,19 @@ body {
   color: var(--foreground);
   font-family: var(--font-noah);
 }
+
+:root {
+  --ripple-size-0: 130vw;
+  --ripple-size-1: 100vw;
+  --ripple-size-2: 75vw;
+  --ripple-size-3: 50vw;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --ripple-size-0: min(130vw, 1240px);
+    --ripple-size-1: min(102vw, 980px);
+    --ripple-size-2: min(78vw, 720px);
+    --ripple-size-3: min(52vw, 460px);
+  }
+}

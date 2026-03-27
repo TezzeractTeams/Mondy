@@ -31,17 +31,17 @@ export default function FAQ() {
   return (
     <section className="relative w-full bg-[#F5F3F0] py-40 px-6 md:px-12 overflow-hidden font-noah border-t border-black/[0.03]">
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-20 items-start">
-        
+
         {/* Left Column: Sticky Header & Support Card */}
         <div className="md:sticky md:top-40 space-y-12">
           <div className="space-y-6">
-            <h2 className="text-[#1C1A17] text-5xl md:text-7xl font-extrabold tracking-[-0.06em] leading-[0.9] uppercase">
-              Frequently <br /> asked <br /> <span className="text-[#E17054]">questions</span>
+            <h2 className="text-[#1C1A17] text-5xl md:text-7xl font-extrabold tracking-[-0.06em] leading-[0.9] ">
+              Frequently <br /> Asked <br /> <span className="text-[#E17054]">Questions</span>
             </h2>
           </div>
 
           {/* Support Card */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -68,28 +68,25 @@ export default function FAQ() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`bg-white rounded-[2rem] overflow-hidden border transition-all duration-300 ${
-                openIndex === index ? "border-[#E17054]/30 shadow-[0_20px_50px_rgba(225,112,84,0.1)]" : "border-black/[0.03] shadow-sm"
-              }`}
+              className={`bg-white rounded-[2rem] overflow-hidden border transition-all duration-300 ${openIndex === index ? "border-[#E17054]/30 shadow-[0_20px_50px_rgba(225,112,84,0.1)]" : "border-black/[0.03] shadow-sm"
+                }`}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full text-left p-8 md:p-10 flex items-center justify-between gap-6"
               >
-                <span className={`text-xl md:text-2xl font-bold tracking-[-0.05em] transition-colors ${
-                  openIndex === index ? "text-[#E17054]" : "text-[#1C1A17]"
-                }`}>
+                <span className={`text-xl md:text-2xl font-bold tracking-[-0.05em] transition-colors ${openIndex === index ? "text-[#E17054]" : "text-[#1C1A17]"
+                  }`}>
                   {item.question}
                 </span>
-                <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  openIndex === index ? "bg-[#E17054] text-white rotate-180" : "bg-black/[0.03] text-[#1C1A17]"
-                }`}>
+                <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${openIndex === index ? "bg-[#E17054] text-white rotate-180" : "bg-black/[0.03] text-[#1C1A17]"
+                  }`}>
                   <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
                     <path d="M7 10l5 5 5-5H7z" />
                   </svg>
                 </div>
               </button>
-              
+
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div

@@ -28,59 +28,64 @@ export default function ProblemStatement() {
   ];
 
   return (
-    <section className="relative w-full bg-[#F5F3F0] py-24 px-6 md:px-12 overflow-hidden font-noah">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        
-        {/* Left Side: High-End Typography (Mondy.ai Brand Style) */}
-        <div className="flex flex-col space-y-8 order-1 lg:order-1">
-          <div className="space-y-4">
-            <h2 className="text-[#1C1A17] text-5xl md:text-6xl font-extrabold tracking-[-0.06em] leading-[0.9]">
-              You have ideas. <br /> 
-              <span className="text-[#1C1A17]/40">You don't have time.</span>
+    <section id="solution" className="relative w-full bg-[#F5F3F0] pt-32 pb-24 px-6 md:px-10 overflow-hidden font-noah">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+
+        {/* Left Side: High-End Typography */}
+        <div className="flex flex-col space-y-8 order-1 lg:order-1 relative z-10">
+          <div className="space-y-4 relative z-10">
+            <h2 className="text-[#1C1A17] text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-[-0.06em] leading-[0.95] relative z-20">
+              You have ideas. <br />
+              <span className="text-[#E17054] leading-tight block mt-2 sm:inline sm:mt-0 relative z-10">You don't have time.</span>
             </h2>
           </div>
 
-          <div className="max-w-xl space-y-6">
+          <div className="max-w-xl space-y-6 relative z-10">
             <p className="text-xl text-[#1C1A17] font-bold tracking-[-0.05em] leading-[1.2]">
               Founders and executives aren't short on things to say. They're short on time to say it.
             </p>
-            
+
             <p className="text-lg text-[#1C1A17]/70 font-medium tracking-[-0.05em] leading-[1.5]">
               Between running teams, closing deals, and building products, sitting down to write content never makes the cut. So your insights go unshared, and your online presence stays an afterthought.
             </p>
 
-            {/* Brand Action: Periwinkle Accent for the Solution */}
-            <p className="text-xl text-[#1C1A17] font-bold tracking-[-0.05em] leading-[1.2]">
-              Mondy fixes that. <span className="text-[#708FDB]">Speak for 5 minutes,</span> get a week of content in an instant.
+            <p className="text-xl font-bold tracking-[-0.05em] leading-[1.3]">
+              <span className="text-[#1C1A17] block">Mondy fixes that.</span>
+              <span className="text-[#708FDB] block mt-1">Speak for 5 minutes,</span>
+              <span className="text-[#E17054] block mt-1">get a week of content in an instant.</span>
             </p>
           </div>
         </div>
 
-        {/* Right Side: Staggered Problem Cards (Flash.co Layout Style) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 order-2 lg:order-2">
+        {/* Right Side: Aligned 2x2 Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 order-2 lg:order-2 relative z-10">
           {problems.map(({ title, desc, Icon }, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className={`p-8 rounded-[2rem] bg-white/40 backdrop-blur-xl border border-white/60 shadow-sm
-                ${idx % 2 === 1 ? 'md:translate-y-12' : ''}`}
+              transition={{
+                delay: idx * 0.1,
+                duration: 0.5,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+              // REMOVED: lg:translate-y-12 to ensure perfect 2x2 alignment
+              className="p-8 md:p-10 rounded-[2.5rem] bg-[#FAF3F0] border border-white/60 shadow-sm flex flex-col"
             >
               <div
-                className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#1C1A17]/[0.06]"
+                className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#E17054]/[0.05]"
                 aria-hidden
               >
                 <Icon
-                  className="h-[18px] w-[18px] text-[#1C1A17]/45"
+                  className="h-[18px] w-[18px] text-[#E17054]"
                   strokeWidth={1.5}
                 />
               </div>
               <h4 className="text-[#1C1A17] text-xl font-bold tracking-[-0.05em] mb-4">
                 {title}
               </h4>
-              <p className="text-[#1C1A17]/70 text-sm leading-[1.4] tracking-tight">
+              <p className="text-[#1C1A17]/70 text-base font-medium leading-[1.5] tracking-tight">
                 {desc}
               </p>
             </motion.div>

@@ -1,10 +1,19 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Pricing() {
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+
+  // Pricing Data
+  const prices = {
+    free: { monthly: 0, yearly: 0 },
+    pro: { monthly: 49, yearly: 39 }, // Example: $39/mo if billed yearly
+    enterprise: { monthly: 260, yearly: 210 },
+  };
+
   return (
-    <section className="relative w-full bg-[#F5F3F0] py-32 px-6 md:px-12 overflow-hidden font-noah">
+    <section id="pricing" className="relative w-full bg-[#F5F3F0] py-32 px-6 md:px-12 overflow-hidden font-noah">
 
       {/* Background Ripples */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
@@ -32,53 +41,97 @@ export default function Pricing() {
 
         {/* Header */}
         <div className="text-center mb-24 space-y-4">
-          <h2 className="text-[#1C1A17] text-4xl md:text-6xl font-extrabold tracking-[-0.05em] leading-[0.9] uppercase">
-            Simple, transparent <span className="text-[#E17054]">pricing</span>
+          <h2 className="text-[#1C1A17] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.05em] leading-[0.9] px-4">
+            Simple, Transparent <span className="text-[#E17054]">Pricing</span>
           </h2>
-          <div className="flex items-center justify-center pt-8">
-            <div className="bg-white rounded-full p-1.5 flex items-center gap-1 shadow-sm border border-[#1C1A17]/5">
-              <button className="px-6 py-2 bg-[#E17054] text-white rounded-full text-xs font-bold tracking-widest uppercase">Monthly</button>
-              <button className="px-6 py-2 bg-transparent text-[#1C1A17]/30 rounded-full text-xs font-bold tracking-widest uppercase">Yearly</button>
+
+          {/* Toggle Switch */}
+          <div className="flex flex-col items-center justify-center pt-8 gap-4">
+            <div className="bg-white rounded-full p-1.5 flex items-center gap-1 shadow-sm border border-[#1C1A17]/5 relative">
+              <button
+                onClick={() => setBillingCycle("monthly")}
+                className={`relative px-8 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 z-10 ${billingCycle === "monthly" ? "text-white" : "text-[#1C1A17]/30"}`}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setBillingCycle("yearly")}
+                className={`relative px-8 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 z-10 ${billingCycle === "yearly" ? "text-white" : "text-[#1C1A17]/30"}`}
+              >
+                Yearly
+              </button>
+
+              {/* Sliding Background Pill */}
+              <motion.div
+                className="absolute top-1.5 bottom-1.5 bg-[#E17054] rounded-full z-0"
+                initial={false}
+                animate={{
+                  left: billingCycle === "monthly" ? "6px" : "50%",
+                  right: billingCycle === "monthly" ? "50%" : "6px",
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
             </div>
+            {billingCycle === "yearly" && (
+              <motion.span
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-[#E17054] text-[10px] font-bold uppercase tracking-widest"
+              >
+                ✨ Save up to 20% with yearly billing
+              </motion.span>
+            )}
           </div>
         </div>
 
         {/* Pricing Grid Container */}
         <div className="relative max-w-[1100px] mx-auto group/container">
-
-          {/* Shared Base Rectangle */}
           <div className="absolute inset-0 bg-white rounded-[3rem] shadow-sm border border-black/5 z-0 hidden md:block" />
 
-          {/* THE GRADIENT BELOW THE MIDDLE CONTAINER: 
-              This only appears when the middle card (group-hover) is lifted. */}
-          <div className="absolute inset-x-1/3 bottom-0 top-0 bg-gradient-to-t from-[#E17054]/20 via-transparent to-transparent opacity-0 group-hover/container:opacity-100 transition-opacity duration-500 z-[5] pointer-events-none blur-3xl rounded-full scale-x-75" />
-
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-0 items-stretch">
 
             {/* Tier 1 */}
-            <div className="relative p-12 flex flex-col h-full md:bg-transparent bg-white rounded-[3rem] md:rounded-none z-10 border-r border-black/[0.03]">
+            <div className="relative p-8 md:p-12 flex flex-col h-full md:bg-transparent bg-white rounded-[2.5rem] md:rounded-none z-10 md:border-r border-black/[0.03]">
               <div className="space-y-8 flex-grow">
                 <div className="space-y-2">
-                  <p className="text-[#1C1A17] text-5xl font-extrabold tracking-[-0.05em]">$0</p>
-                  <h4 className="text-[#1C1A17] text-3xl font-extrabold tracking-[-0.05em]">Free Trial(7 days)</h4>
+                  <div className="overflow-hidden h-14">
+                    <motion.p
+                      key={billingCycle}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      className="text-[#1C1A17] text-5xl font-extrabold tracking-[-0.05em]"
+                    >
+                      ${prices.free[billingCycle]}
+                    </motion.p>
+                  </div>
+                  <h4 className="text-[#1C1A17] text-3xl font-extrabold tracking-[-0.05em]">Free Trial</h4>
                 </div>
                 <p className="text-[#1C1A17]/50 text-base font-medium tracking-[-0.05em]">No credit card required. One platform. One week of content.</p>
               </div>
               <button className="mt-12 w-full py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.05em] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#708FDB]/20">Try Mondy</button>
             </div>
 
-            {/* Tier 2: Pro (The Lifting One) */}
+            {/* Tier 2: Pro */}
             <motion.div
               whileHover={{ y: -35, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="relative bg-[#E17054] rounded-[3rem] p-12 flex flex-col py-16 z-20 shadow-2xl shadow-[#E17054]/40 border border-[#E17054] -mx-px"
+              className="relative bg-[#E17054] rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col py-12 md:py-16 z-20 shadow-2xl shadow-[#E17054]/40 border border-[#E17054] md:-mx-px col-span-1 md:col-span-2 lg:col-span-1"
             >
               <div className="absolute top-6 right-8">
                 <span className="px-3 py-1 bg-white/20 rounded-full text-[9px] font-bold uppercase tracking-widest text-white/80">MOST POPULAR</span>
               </div>
               <div className="space-y-8 flex-grow text-white">
                 <div className="space-y-3">
-                  <p className="text-6xl font-extrabold tracking-[-0.05em]">$25</p>
+                  <div className="overflow-hidden h-16">
+                    <motion.p
+                      key={billingCycle}
+                      initial={{ y: 30, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      className="text-6xl font-extrabold tracking-[-0.05em]"
+                    >
+                      ${prices.pro[billingCycle]}
+                    </motion.p>
+                  </div>
                   <h4 className="text-4xl font-extrabold tracking-[-0.05em]">Pro</h4>
                 </div>
                 <p className="text-white/80 text-lg font-medium tracking-[-0.05em]">Everything. All platforms. Full weekly Run. Your voice, consistently.</p>
@@ -86,11 +139,20 @@ export default function Pricing() {
               <button className="mt-12 w-full py-5 bg-white text-[#E17054] rounded-full text-lg font-bold shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]">Select Pro</button>
             </motion.div>
 
-            {/* Tier 3 */}
-            <div className="relative p-12 flex flex-col h-full md:bg-transparent bg-white rounded-[3rem] md:rounded-none z-10 border-l border-black/[0.03]">
+            {/* Tier 3: Enterprise */}
+            <div className="relative p-8 md:p-12 flex flex-col h-full md:bg-transparent bg-white rounded-[2.5rem] md:rounded-none z-10 md:border-l border-black/[0.03] col-span-1 md:col-span-2 lg:col-span-1">
               <div className="space-y-8 flex-grow">
                 <div className="space-y-2">
-                  <p className="text-[#1C1A17] text-5xl font-extrabold tracking-[-0.05em]">$260</p>
+                  <div className="overflow-hidden h-14">
+                    <motion.p
+                      key={billingCycle}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      className="text-[#1C1A17] text-5xl font-extrabold tracking-[-0.05em]"
+                    >
+                      ${prices.enterprise[billingCycle]}
+                    </motion.p>
+                  </div>
                   <h4 className="text-[#1C1A17] text-3xl font-extrabold tracking-[-0.05em]">Enterprise</h4>
                 </div>
                 <p className="text-[#1C1A17]/50 text-base font-medium tracking-[-0.05em]">For teams, agencies, or operators running content for more than one founder.</p>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Pricing() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
@@ -45,42 +45,48 @@ export default function Pricing() {
             Simple, Transparent <span className="text-[#E17054]">Pricing</span>
           </h2>
 
-          {/* Toggle Switch */}
+          {/* Toggle Switch — equal-width segments; pill animates x only (fixed width) */}
           <div className="flex flex-col items-center justify-center pt-8 gap-4">
-            <div className="bg-white rounded-full p-1.5 flex items-center gap-1 shadow-sm border border-[#1C1A17]/5 relative">
-              <button
-                onClick={() => setBillingCycle("monthly")}
-                className={`relative px-8 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 z-10 ${billingCycle === "monthly" ? "text-white" : "text-[#1C1A17]/30"}`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setBillingCycle("yearly")}
-                className={`relative px-8 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 z-10 ${billingCycle === "yearly" ? "text-white" : "text-[#1C1A17]/30"}`}
-              >
-                Yearly
-              </button>
-
-              {/* Sliding Background Pill */}
+            <div className="relative inline-block rounded-full bg-white p-1.5 shadow-sm border border-[#1C1A17]/5">
               <motion.div
-                className="absolute top-1.5 bottom-1.5 bg-[#E17054] rounded-full z-0"
+                className="absolute top-1.5 bottom-1.5 left-1.5 z-0 w-[calc(50%-8px)] rounded-full bg-[#E17054]"
                 initial={false}
                 animate={{
-                  left: billingCycle === "monthly" ? "6px" : "50%",
-                  right: billingCycle === "monthly" ? "50%" : "6px",
+                  x: billingCycle === "monthly" ? 0 : "calc(100% + 0.25rem)",
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               />
+              <div className="relative z-10 grid grid-cols-2 gap-1">
+                <button
+                  type="button"
+                  onClick={() => setBillingCycle("monthly")}
+                  className={`px-8 py-2.5 rounded-full text-center text-xs font-bold tracking-widest uppercase transition-colors duration-300 ${billingCycle === "monthly" ? "text-white" : "text-[#1C1A17]/30"}`}
+                >
+                  Monthly
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBillingCycle("yearly")}
+                  className={`px-8 py-2.5 rounded-full text-center text-xs font-bold tracking-widest uppercase transition-colors duration-300 ${billingCycle === "yearly" ? "text-white" : "text-[#1C1A17]/30"}`}
+                >
+                  Yearly
+                </button>
+              </div>
             </div>
-            {billingCycle === "yearly" && (
+            <div className="flex min-h-[1.125rem] items-center justify-center">
               <motion.span
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={false}
+                animate={{
+                  opacity: billingCycle === "yearly" ? 1 : 0,
+                  y: billingCycle === "yearly" ? 0 : -4,
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 35 }}
                 className="text-[#E17054] text-[10px] font-bold uppercase tracking-widest"
+                aria-hidden={billingCycle === "monthly"}
               >
                 ✨ Save up to 20% with yearly billing
               </motion.span>
-            )}
+            </div>
           </div>
         </div>
 

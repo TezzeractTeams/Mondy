@@ -63,9 +63,12 @@ export const FloatingNav = ({
 
         {/* Action Button */}
         <div className="flex items-center pr-1">
-          <button className="text-[13px] font-bold text-white bg-[#708FDB] hover:bg-[#5E7CC7] transition-colors px-5 py-2.5 rounded-full">
+          <Link
+            href="/infopage"
+            className="text-[13px] font-bold text-white bg-[#708FDB] hover:bg-[#5E7CC7] transition-colors px-5 py-2.5 rounded-full"
+          >
             Join Waitlist
-          </button>
+          </Link>
         </div>
       </motion.div>
     </AnimatePresence>

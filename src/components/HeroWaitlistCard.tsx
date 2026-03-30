@@ -12,7 +12,7 @@ type HeroWaitlistCardProps = {
 export default function HeroWaitlistCard({ className }: HeroWaitlistCardProps) {
   return (
     <form
-      action="/join"
+      action="/infopage"
       method="get"
       className={cn(
         "flex w-[130%] flex-col rounded-3xl border border-black/[0.06] bg-white  ",

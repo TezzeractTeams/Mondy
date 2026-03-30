@@ -101,7 +101,7 @@ export default function Waitlist() {
                 className="bg-transparent border-none outline-none text-[#1C1A17] text-lg font-medium tracking-tight w-full placeholder:text-[#1C1A17]/30 px-4 md:px-0 py-4 md:py-0"
               />
             </div>
-            <Link href="/join" className="w-full md:w-auto px-10 py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#708FDB]/20 text-center block">
+            <Link href="/infopage" className="w-full md:w-auto px-10 py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#708FDB]/20 text-center block">
               Join the waitlist
             </Link>
           </div>

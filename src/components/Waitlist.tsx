@@ -5,14 +5,23 @@ import Image from "next/image";
 import { Clock, Star } from "lucide-react";
 import { IconBrandLinkedin, IconBrandFacebook, IconBrandInstagram } from "@tabler/icons-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { mondyBtn, mondyLayout, mondyType } from "@/styles/mondy";
 
 export default function Waitlist() {
+  const [email, setEmail] = useState<string>("");
   const [timeLeft, setTimeLeft] = useState({
     days: 12,
     hours: 4,
     minutes: 56,
     seconds: 4,
   });
+
+  const emailStr = typeof email === "string" ? email : "";
+  const infopageHref =
+    emailStr.trim().length > 0
+      ? `/infopage?email=${encodeURIComponent(emailStr.trim())}`
+      : "/infopage";
 
   // Simple countdown effect
   useEffect(() => {
@@ -27,9 +36,9 @@ export default function Waitlist() {
   }, []);
 
   return (
-    <section className="relative w-full bg-[#F5F3F0] pt-32 pb-32 md:pb-48 px-6 md:px-12 overflow-hidden font-noah">
+    <section className="relative w-full bg-mondy-surface pt-32 pb-32 md:pb-48 px-6 md:px-12 overflow-hidden font-noah">
 
-      {/* Immersive Section-Wide Ripples (Blue #708FDB) */}
+      {/* Immersive Section-Wide Ripples */}
       <div className="absolute left-1/2 bottom-0 -translate-x-1/2 flex items-center justify-center pointer-events-none z-0">
         {[1, 2, 3, 4].map((index) => (
           <motion.div
@@ -45,12 +54,12 @@ export default function Waitlist() {
               ease: "easeInOut",
             }}
             style={{ width: `${index * 600}px`, height: `${index * 600}px` }}
-            className="absolute border-[0.5px] border-[#708FDB] rounded-full"
+            className="absolute border-[0.5px] border-mondy-accent rounded-full"
           />
         ))}
       </div>
 
-      <div className="max-w-[1440px] mx-auto relative z-10 flex flex-col items-center">
+      <div className={cn(mondyLayout.contentMax, "relative z-10 flex flex-col items-center")}>
 
         {/* Header Section */}
         <div className="text-center space-y-6 max-w-2xl">
@@ -59,7 +68,7 @@ export default function Waitlist() {
             whileInView={{ opacity: 1, scale: 1 }}
             className="w-14 h-14 relative mx-auto mb-4"
           >
-            <div className="absolute inset-0 bg-[#708FDB]/20 blur-xl rounded-full" />
+            <div className="absolute inset-0 bg-mondy-accent/20 blur-xl rounded-full" />
             <Image
               src="/icon.png"
               alt="Mondy Logo"
@@ -71,7 +80,7 @@ export default function Waitlist() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-[#1C1A17] text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-[-0.06em] leading-[0.95]"
+            className={mondyType.waitlistTitle}
           >
             Get Early Access
           </motion.h2>
@@ -80,7 +89,7 @@ export default function Waitlist() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-[#1C1A17]/50 text-xl md:text-2xl font-medium tracking-[-0.05em] leading-[1.2]"
+            className={mondyType.waitlistSubtitle}
           >
             We're getting close. Sign up to get early access to <br className="hidden md:block" />
             Mondy and start building your viral presence.
@@ -96,12 +105,12 @@ export default function Waitlist() {
         >
           <div className="flex -space-x-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="w-9 h-9 rounded-full border-2 border-[#F5F3F0] bg-[#708FDB]/10 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#708FDB]/30 to-transparent" />
+              <div key={i} className="w-9 h-9 rounded-full border-2 border-mondy-surface bg-mondy-accent/10 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-mondy-accent/30 to-transparent" />
               </div>
             ))}
           </div>
-          <span className="text-[#1C1A17]/40 text-[11px] font-bold tracking-wider uppercase">Join +1,000 others</span>
+          <span className="text-mondy-ink/40 text-[11px] font-bold tracking-wider uppercase">Join +1,000 others</span>
         </motion.div>
 
         {/* Form Section */}
@@ -111,15 +120,17 @@ export default function Waitlist() {
           transition={{ delay: 0.2 }}
           className="mt-12 w-full max-w-[600px] px-4 md:px-0"
         >
-          <div className="bg-white rounded-3xl md:rounded-full p-2 md:pl-8 flex flex-col md:flex-row items-center gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/60">
+          <div className="bg-white rounded-3xl md:rounded-full p-2 md:pl-8 flex flex-col md:flex-row items-center gap-4 shadow-mondy-form border border-white/60">
             <div className="flex-1 flex items-center w-full">
               <input
                 type="email"
+                value={emailStr}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email address"
-                className="bg-transparent border-none outline-none text-[#1C1A17] text-lg font-medium tracking-tight w-full placeholder:text-[#1C1A17]/30 px-4 md:px-0 py-4 md:py-0"
+                className="bg-transparent border-none outline-none text-mondy-ink text-lg font-medium tracking-tight w-full placeholder:text-mondy-ink/30 px-4 md:px-0 py-4 md:py-0"
               />
             </div>
-            <Link href="/join" className="w-full md:w-auto px-10 py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#708FDB]/20 text-center block">
+            <Link href={infopageHref} className={cn(mondyBtn.primaryLg, "w-full md:w-auto text-center block")}>
               Join the waitlist
             </Link>
           </div>
@@ -136,15 +147,15 @@ export default function Waitlist() {
           {Object.entries(timeLeft).map(([label, value], idx) => (
             <React.Fragment key={label}>
               <div className="flex flex-col items-center gap-2">
-                <span className="text-[9px] font-bold uppercase tracking-widest text-[#1C1A17]/30">{label}</span>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-mondy-ink/30">{label}</span>
                 <div className="w-14 h-18 md:w-18 md:h-22 bg-white rounded-2xl border border-black/5 flex items-center justify-center shadow-sm">
-                  <span className="text-2xl md:text-3xl font-extrabold text-[#1C1A17] tracking-tighter">
+                  <span className="text-2xl md:text-3xl font-extrabold text-mondy-ink tracking-tighter">
                     {String(value).padStart(2, '0')}
                   </span>
                 </div>
 
               </div>
-              {idx < 3 && <span className="text-2xl md:text-3xl font-extrabold text-[#1C1A17]/10 -mt-6">:</span>}
+              {idx < 3 && <span className="text-2xl md:text-3xl font-extrabold text-mondy-ink/10 -mt-6">:</span>}
             </React.Fragment>
           ))}
         </motion.div>
@@ -158,7 +169,7 @@ export default function Waitlist() {
             className="relative w-full max-w-[260px] sm:max-w-[300px] md:max-w-[340px] z-10"
           >
             {/* Blue Glow Behind Phone */}
-            <div className="absolute inset-x-0 top-1/4 h-1/2 bg-[#708FDB]/15 blur-[100px] rounded-full z-0" />
+            <div className="absolute inset-x-0 top-1/4 h-1/2 bg-mondy-accent/15 blur-[100px] rounded-full z-0" />
 
             <div className="relative z-10">
               <Image
@@ -169,7 +180,7 @@ export default function Waitlist() {
                 className="w-full h-auto object-contain"
               />
               {/* Strong bottom fade — covers ~60% of phone height */}
-              <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-[#F5F3F0] via-[#F5F3F0]/80 to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-mondy-surface via-mondy-surface/80 to-transparent pointer-events-none" />
             </div>
 
             {/* Floating Card — Left */}
@@ -178,12 +189,12 @@ export default function Waitlist() {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -left-4 md:-left-16 top-[15%] bg-white/90 backdrop-blur-xl p-3 pr-5 rounded-2xl border border-white shadow-xl flex items-center gap-3 z-30"
             >
-              <div className="w-10 h-10 bg-[#708FDB] rounded-xl flex items-center justify-center text-white shrink-0">
+              <div className="w-10 h-10 bg-mondy-accent rounded-xl flex items-center justify-center text-white shrink-0">
                 <Clock className="w-5 h-5" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[9px] font-bold uppercase tracking-widest text-[#1C1A17]/40">Scheduled</span>
-                <span className="text-base font-extrabold text-[#1C1A17] tracking-tight">12:09:07</span>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-mondy-ink/40">Scheduled</span>
+                <span className="text-base font-extrabold text-mondy-ink tracking-tight">12:09:07</span>
               </div>
             </motion.div>
 
@@ -204,7 +215,7 @@ export default function Waitlist() {
                   </div>
                 ))}
               </div>
-              <div className="w-8 h-8 bg-[#708FDB] rounded-full flex items-center justify-center text-white shrink-0">
+              <div className="w-8 h-8 bg-mondy-accent rounded-full flex items-center justify-center text-white shrink-0">
                 <Star className="w-4 h-4 fill-current" />
               </div>
             </motion.div>

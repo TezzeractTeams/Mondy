@@ -5,36 +5,22 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import HeroWaitlistCard from "@/components/HeroWaitlistCard";
 import { NeomorphicRippleBackground } from "@/components/NeomorphicRippleBackground";
-
-
-const HEADLINE_OFFSET = {
-  line1TranslateX: "10px",
-  line2TranslateX: "0px",
-} as const;
-
-
-const HERO_PHONE_IMAGE = {
-  translateX: "-180px",
-  translateY: "50px",
-} as const;
-
-const HERO_SURFACE = "#F5F3F0";
-
-const HERO_FLOATING_CARD_SIZES = "(min-width: 1024px) 320px, 90vw";
+import { cn } from "@/lib/utils";
+import { mondy, mondyHero, mondyLayout } from "@/styles/mondy";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative box-border h-[100dvh] max-h-[100dvh] w-full shrink-0 overflow-x-hidden overflow-y-clip flex flex-col bg-[#F5F3F0]">
+    <section className="relative box-border h-[100dvh] max-h-[100dvh] min-h-0 w-full shrink-0 overflow-x-hidden overflow-y-clip flex flex-col bg-mondy-surface">
 
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background: `linear-gradient(
             to top,
-            ${HERO_SURFACE} 0%,
-            ${HERO_SURFACE} 12%,
+            ${mondy.surface} 0%,
+            ${mondy.surface} 12%,
             rgba(245, 243, 240, 0.88) 28%,
             rgba(245, 243, 240, 0.35) 48%,
             rgba(245, 243, 240, 0) 72%
@@ -43,9 +29,10 @@ export default function Hero() {
       />
 
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
-        <NeomorphicRippleBackground surfaceColor={HERO_SURFACE} />
+        <NeomorphicRippleBackground surfaceColor={mondy.surface} />
       </div>
 
+      {/* Decorative postcards — hidden below lg so they never crowd small viewports */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -64,7 +51,7 @@ export default function Hero() {
             width={1380}
             height={1596}
             className="h-auto w-full rounded-[32px]"
-            sizes={HERO_FLOATING_CARD_SIZES}
+            sizes={mondyHero.floatingCardSizes}
             quality={92}
           />
         </motion.div>
@@ -88,13 +75,13 @@ export default function Hero() {
             width={323}
             height={377}
             className="h-auto w-full"
-            sizes={HERO_FLOATING_CARD_SIZES}
+            sizes={mondyHero.floatingCardSizes}
             quality={92}
           />
         </motion.div>
       </motion.div>
 
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col w-full max-w-[1440px] mx-auto px-6 md:px-12 pt-20 pb-6 md:pb-8">
+      <div className={cn(mondyLayout.contentMax, "relative z-10 flex min-h-0 flex-1 flex-col px-6 md:px-12 pt-14 sm:pt-16 md:pt-20 pb-6 md:pb-8")}>
         <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 lg:items-stretch lg:justify-items-center">
           <div className="order-1 flex min-h-0 w-full flex-1 flex-col lg:col-span-12 lg:mx-auto lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
             <div className="relative flex min-h-0 w-full flex-1 flex-col items-center isolate px-1 text-center">
@@ -102,7 +89,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex w-full flex-col items-center text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-[#1C1A17] tracking-tight md:tracking-[-0.07em] leading-[1.05] md:leading-[0.9] relative z-0 pointer-events-none shrink-0 pt-4 md:pt-14 px-4 md:px-0"
+                className="flex w-full flex-col items-center text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-mondy-ink tracking-tight md:tracking-[-0.07em] leading-[1.05] md:leading-[0.9] relative z-0 pointer-events-none shrink-0 pt-2 sm:pt-4 md:pt-14 px-4 md:px-0"
               >
                 <div className="flex flex-col items-center ">
                   <span className="w-full lg:w-max pt-6 md:pt-10 max-w-none shrink-0 lg:whitespace-nowrap text-center lg:text-left xl:text-center will-change-transform">
@@ -118,14 +105,11 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
-                className="relative z-10 w-[142%] md:w-[78%] max-w-[min(98vw,940px)] shrink-0 self-center"
+                className="relative z-10 w-full sm:w-[112%] md:w-[78%] max-w-[min(98vw,940px)] shrink-0 self-center"
               >
-                <div className="mt-8 md:mt-0 sm:md:-mt-8 lg:md:-mt-12 xl:md:-mt-20">
+                <div className="mt-6 md:mt-0 md:-mt-8 lg:-mt-12 xl:-mt-20">
                   <div
-                    className="relative will-change-transform"
-                    style={{
-                      transform: `translate(${HERO_PHONE_IMAGE.translateX}, ${HERO_PHONE_IMAGE.translateY})`,
-                    }}
+                    className="relative will-change-transform translate-x-0 translate-y-6 md:-translate-x-[72px] md:translate-y-9 lg:-translate-x-[140px] lg:translate-y-11 xl:-translate-x-[180px] xl:translate-y-[50px]"
                   >
                     <Image
                       src="/Handmock.webp"
@@ -140,8 +124,8 @@ export default function Hero() {
                       style={{
                         background: `linear-gradient(
                           to top,
-                          ${HERO_SURFACE} 0%,
-                          ${HERO_SURFACE} 22%,
+                          ${mondy.surface} 0%,
+                          ${mondy.surface} 22%,
                           rgba(245, 243, 240, 0.55) 44%,
                           rgba(245, 243, 240, 0.12) 62%,
                           rgba(245, 243, 240, 0) 78%
@@ -174,8 +158,8 @@ export default function Hero() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-[10px] font-bold text-[#FF6154] uppercase tracking-widest">Featured on</span>
-              <span className="text-xl font-bold text-[#1C1A17] tracking-tight">Product Hunt</span>
+              <span className="text-[10px] font-bold text-mondy-product-hunt uppercase tracking-widest">Featured on</span>
+              <span className="text-xl font-bold text-mondy-ink tracking-tight">Product Hunt</span>
             </div>
           </motion.div>
         </div>

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { mondyBtn } from "@/styles/mondy";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
@@ -54,7 +55,7 @@ export const FloatingNav = ({
                 key={`link=${idx}`}
                 href={navItem.link}
                 className={cn(
-                  "relative flex items-center gap-1 text-[#1C1A17] hover:text-neutral-500 transition-colors font-sans"
+                  "relative flex items-center gap-1 text-mondy-ink hover:text-neutral-500 transition-colors font-sans"
                 )}
               >
                 <span className="text-[14px] font-medium whitespace-nowrap">{navItem.name}</span>
@@ -63,8 +64,8 @@ export const FloatingNav = ({
           </div>
 
           {/* Action Button (Desktop) */}
-          <div className="hidden lg:flex items-center pr-1 shrink-0">
-            <Link href="/infopage" className="text-[13px] font-bold text-white bg-[#708FDB] px-5 py-2.5 rounded-full whitespace-nowrap transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95">
+          <div className="hidden lg:flex items-center shrink-0">
+            <Link href="/infopage" className={mondyBtn.navDesktop}>
               Join Waitlist
             </Link>
           </div>
@@ -72,7 +73,7 @@ export const FloatingNav = ({
           {/* Hamburger Menu Icon (Mobile) */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-[#1C1A17] hover:text-neutral-500 transition-colors"
+            className="lg:hidden p-2 text-mondy-ink hover:text-neutral-500 transition-colors"
             aria-expanded={isOpen}
             aria-label="Toggle navigation menu"
           >
@@ -95,13 +96,13 @@ export const FloatingNav = ({
                     key={`mobile-link=${idx}`}
                     href={navItem.link}
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center text-[#1C1A17] text-lg font-medium py-2"
+                    className="flex items-center text-mondy-ink text-lg font-medium py-2"
                   >
                     <span>{navItem.name}</span>
                   </Link>
                 ))}
               </div>
-              <Link href="/infopage" onClick={() => setIsOpen(false)} className="w-full text-center text-base font-bold text-white bg-[#708FDB] py-4 rounded-2xl mt-2 block transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95">
+              <Link href="/infopage" onClick={() => setIsOpen(false)} className={mondyBtn.navMobile}>
                 Join Waitlist
               </Link>
             </motion.div>

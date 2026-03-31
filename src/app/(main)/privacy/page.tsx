@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 export default function PrivacyPolicy() {
   return (
     <>
-      <main className="min-h-screen w-full bg-[#F5F3F0] flex flex-col items-center pt-32 pb-24 px-6 md:px-12">
+      <main className="min-h-screen w-full bg-mondy-surface flex flex-col items-center pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-3xl w-full flex flex-col gap-10">
           {/* Header Section */}
           <div className="flex flex-col gap-4 border-b border-black/5 pb-10">
             <div className="inline-block px-3 py-1 rounded-full bg-black/5 text-xs font-semibold tracking-wider uppercase w-max mb-2">
               Legal
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1C1A17]">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-mondy-ink">
               Privacy Policy
             </h1>
             <p className="text-black/60 font-medium">
@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
           </div>
 
           {/* Content Section */}
-          <div className="w-full text-[#1C1A17] flex flex-col gap-10 leading-relaxed text-lg">
+          <div className="w-full text-mondy-ink flex flex-col gap-10 leading-relaxed text-lg">
             <section className="flex flex-col gap-4">
               <h2 className="text-2xl font-bold tracking-tight">
                 1. Introduction

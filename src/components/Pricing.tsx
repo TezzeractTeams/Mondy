@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { mondyBtn, mondyLayout } from "@/styles/mondy";
 
 export default function Pricing() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
@@ -13,7 +15,7 @@ export default function Pricing() {
   };
 
   return (
-    <section id="pricing" className="relative w-full bg-[#F5F3F0] py-32 px-6 md:px-12 overflow-hidden font-noah">
+    <section id="pricing" className="relative w-full bg-mondy-surface py-32 px-6 md:px-12 overflow-hidden font-noah">
 
       {/* Background Ripples */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
@@ -32,25 +34,25 @@ export default function Pricing() {
               ease: "easeInOut",
             }}
             style={{ width: `${index * 800}px`, height: `${index * 800}px` }}
-            className="absolute border-[0.5px] border-[#E17054] rounded-full"
+            className="absolute border-[0.5px] border-mondy-coral rounded-full"
           />
         ))}
       </div>
 
-      <div className="max-w-[1440px] mx-auto relative z-10">
+      <div className={cn(mondyLayout.contentMax, "relative z-10")}>
 
         {/* Header */}
         <div className="text-center mb-24 space-y-4">
-          <h2 className="text-[#1C1A17] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.05em] leading-[0.9] px-4">
-            Simple, Transparent <span className="text-[#E17054]">Pricing</span>
+          <h2 className="text-mondy-ink text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.05em] leading-[0.9] px-4">
+            Simple, Transparent <span className="text-mondy-coral">Pricing</span>
           </h2>
 
           {/* Toggle Switch */}
           <div className="flex flex-col items-center justify-center pt-8 gap-4">
-            <div className="bg-white rounded-full p-1.5 flex gap-1 shadow-sm border border-[#1C1A17]/5 relative">
+            <div className="bg-white rounded-full p-1.5 flex gap-1 shadow-sm border border-mondy-ink/5 relative">
               {/* One segment width = 50% − 8px (half of horizontal padding 12px + gap 4px) */}
               <motion.div
-                className="pointer-events-none absolute top-1.5 bottom-1.5 z-0 rounded-full bg-[#E17054]"
+                className="pointer-events-none absolute top-1.5 bottom-1.5 z-0 rounded-full bg-mondy-coral"
                 style={{ width: "calc(50% - 8px)" }}
                 initial={false}
                 animate={{
@@ -61,14 +63,14 @@ export default function Pricing() {
               <button
                 type="button"
                 onClick={() => setBillingCycle("yearly")}
-                className={`relative z-10 flex min-h-[42px] min-w-0 flex-1 items-center justify-center rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors duration-200 ${billingCycle === "yearly" ? "text-white" : "text-[#1C1A17]/30"}`}
+                className={`relative z-10 flex min-h-[42px] min-w-0 flex-1 items-center justify-center rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors duration-200 ${billingCycle === "yearly" ? "text-white" : "text-mondy-ink/30"}`}
               >
                 Yearly
               </button>
               <button
                 type="button"
                 onClick={() => setBillingCycle("monthly")}
-                className={`relative z-10 flex min-h-[42px] min-w-0 flex-1 items-center justify-center rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors duration-200 ${billingCycle === "monthly" ? "text-white" : "text-[#1C1A17]/30"}`}
+                className={`relative z-10 flex min-h-[42px] min-w-0 flex-1 items-center justify-center rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors duration-200 ${billingCycle === "monthly" ? "text-white" : "text-mondy-ink/30"}`}
               >
                 Monthly
               </button>
@@ -77,7 +79,7 @@ export default function Pricing() {
               <motion.span
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-[#E17054] text-[10px] font-bold uppercase tracking-widest"
+                className="text-mondy-coral text-[10px] font-bold uppercase tracking-widest"
               >
 
               </motion.span>
@@ -87,12 +89,12 @@ export default function Pricing() {
 
         {/* Pricing Grid Container */}
         <div className="relative max-w-[1100px] mx-auto group/container">
-          <div className="absolute inset-0 bg-white rounded-[3rem] shadow-sm border border-black/5 z-0 hidden md:block" />
+          <div className="absolute inset-0 bg-white rounded-mondy-card shadow-sm border border-black/5 z-0 hidden md:block" />
 
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-0 items-stretch">
 
             {/* Tier 1 */}
-            <div className="relative p-8 md:p-12 flex flex-col h-full md:bg-transparent bg-white rounded-[2.5rem] md:rounded-none z-10 md:border-r border-black/[0.03]">
+            <div className="relative p-8 md:p-12 flex flex-col h-full md:bg-transparent bg-white rounded-mondy-inner md:rounded-none z-10 md:border-r border-black/[0.03]">
               <div className="space-y-8 flex-grow">
                 <div className="space-y-2">
                   <div className="overflow-hidden h-14">
@@ -100,23 +102,23 @@ export default function Pricing() {
                       key={billingCycle}
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
-                      className="text-[#1C1A17] text-5xl font-extrabold tracking-[-0.05em]"
+                      className="text-mondy-ink text-5xl font-extrabold tracking-[-0.05em]"
                     >
                       ${prices.free[billingCycle]}
                     </motion.p>
                   </div>
-                  <h4 className="text-[#1C1A17] text-3xl font-extrabold tracking-[-0.05em]">Free Trial</h4>
+                  <h4 className="text-mondy-ink text-3xl font-extrabold tracking-[-0.05em]">Free Trial</h4>
                 </div>
-                <p className="text-[#1C1A17]/50 text-base font-medium tracking-[-0.05em]">No credit card required. One platform. One week of content.</p>
+                <p className="text-mondy-ink/50 text-base font-medium tracking-[-0.05em]">No credit card required. One platform. One week of content.</p>
               </div>
-              <button className="mt-12 w-full py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.05em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-lg shadow-[#708FDB]/20">Try Mondy</button>
+              <button type="button" className={cn(mondyBtn.primaryPricing, "mt-12")}>Try Mondy</button>
             </div>
 
             {/* Tier 2: Pro */}
             <motion.div
               whileHover={{ y: -35, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="relative bg-[#E17054] rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col py-12 md:py-16 z-20 shadow-2xl shadow-[#E17054]/40 border border-[#E17054] md:-mx-px col-span-1 md:col-span-2 lg:col-span-1"
+              className="relative bg-mondy-coral rounded-mondy-inner md:rounded-mondy-card p-8 md:p-12 flex flex-col py-12 md:py-16 z-20 shadow-2xl shadow-mondy-coral/40 border border-mondy-coral md:-mx-px col-span-1 md:col-span-2 lg:col-span-1"
             >
               <div className="absolute top-6 right-8">
                 <span className="px-3 py-1 bg-white/20 rounded-full text-[9px] font-bold uppercase tracking-widest text-white/80">MOST POPULAR</span>
@@ -137,11 +139,11 @@ export default function Pricing() {
                 </div>
                 <p className="text-white/80 text-lg font-medium tracking-[-0.05em]">Everything. All platforms. Full weekly Run. Your voice, consistently.</p>
               </div>
-              <button className="mt-12 w-full py-5 bg-white text-[#E17054] rounded-full text-lg font-bold shadow-xl transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95">Select Pro</button>
+              <button type="button" className="mt-12 w-full py-5 bg-white text-mondy-coral rounded-full text-lg font-bold shadow-xl transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95">Select Pro</button>
             </motion.div>
 
             {/* Tier 3: Enterprise */}
-            <div className="relative p-8 md:p-12 flex flex-col h-full md:bg-transparent bg-white rounded-[2.5rem] md:rounded-none z-10 md:border-l border-black/[0.03] col-span-1 md:col-span-2 lg:col-span-1">
+            <div className="relative p-8 md:p-12 flex flex-col h-full md:bg-transparent bg-white rounded-mondy-inner md:rounded-none z-10 md:border-l border-black/[0.03] col-span-1 md:col-span-2 lg:col-span-1">
               <div className="space-y-8 flex-grow">
                 <div className="space-y-2">
                   <div className="overflow-hidden h-14">
@@ -149,16 +151,16 @@ export default function Pricing() {
                       key={billingCycle}
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
-                      className="text-[#1C1A17] text-5xl font-extrabold tracking-[-0.05em]"
+                      className="text-mondy-ink text-5xl font-extrabold tracking-[-0.05em]"
                     >
                       ${prices.enterprise[billingCycle]}
                     </motion.p>
                   </div>
-                  <h4 className="text-[#1C1A17] text-3xl font-extrabold tracking-[-0.05em]">Enterprise</h4>
+                  <h4 className="text-mondy-ink text-3xl font-extrabold tracking-[-0.05em]">Enterprise</h4>
                 </div>
-                <p className="text-[#1C1A17]/50 text-base font-medium tracking-[-0.05em]">For teams, agencies, or operators running content for more than one founder.</p>
+                <p className="text-mondy-ink/50 text-base font-medium tracking-[-0.05em]">For teams, agencies, or operators running content for more than one founder.</p>
               </div>
-              <button className="mt-12 w-full py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.05em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-lg shadow-[#708FDB]/20">Contact Us</button>
+              <button type="button" className={cn(mondyBtn.primaryPricing, "mt-12")}>Contact Us</button>
             </div>
 
           </div>

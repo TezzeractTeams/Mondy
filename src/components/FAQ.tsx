@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { mondyLayout } from "@/styles/mondy";
 
 const faqData = [
   {
@@ -29,14 +31,14 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative w-full bg-[#F5F3F0] py-20 px-6 md:px-12 overflow-hidden font-noah border-t border-black/[0.03]">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 items-start">
+    <section id="faq" className="relative w-full bg-mondy-surface py-20 px-6 md:px-12 overflow-hidden font-noah border-t border-black/[0.03]">
+      <div className={cn(mondyLayout.contentMax, "grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 items-start")}>
 
         {/* Left Column: Sticky Header & Support Card */}
         <div className="md:sticky md:top-24 space-y-8">
           <div className="space-y-4">
-            <h2 className="text-[#1C1A17] text-4xl md:text-5xl font-extrabold tracking-[-0.06em] leading-[0.9] ">
-              Frequently <br /> Asked <br /> <span className="text-[#E17054]">Questions</span>
+            <h2 className="text-mondy-ink text-4xl md:text-5xl font-extrabold tracking-[-0.06em] leading-[0.9] ">
+              Frequently <br /> Asked <br /> <span className="text-mondy-coral">Questions</span>
             </h2>
           </div>
 
@@ -48,12 +50,12 @@ export default function FAQ() {
             className="bg-white rounded-[2rem] p-6 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] border border-white/60 space-y-6"
           >
             <div className="space-y-3">
-              <h3 className="text-[#1C1A17] text-2xl font-extrabold tracking-[-0.05em]">Still have a questions?</h3>
-              <p className="text-[#1C1A17]/50 text-base font-medium tracking-[-0.05em] leading-[1.3]">
+              <h3 className="text-mondy-ink text-2xl font-extrabold tracking-[-0.05em]">Still have a questions?</h3>
+              <p className="text-mondy-ink/50 text-base font-medium tracking-[-0.05em] leading-[1.3]">
                 Can't find the answer to your question? Send us an email and we'll get back to you as soon as possible!
               </p>
             </div>
-            <button className="px-8 py-4 bg-[#E17054] text-white rounded-full text-base font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#E17054]/20">
+            <button type="button" className="px-8 py-4 bg-mondy-coral text-white rounded-full text-base font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-mondy-coral/20">
               Send email
             </button>
           </motion.div>
@@ -68,18 +70,18 @@ export default function FAQ() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`bg-white rounded-[2rem] overflow-hidden border transition-all duration-300 ${openIndex === index ? "border-[#E17054]/30 shadow-[0_20px_50px_rgba(225,112,84,0.1)]" : "border-black/[0.03] shadow-sm"
+              className={`bg-white rounded-[2rem] overflow-hidden border transition-all duration-300 ${openIndex === index ? "border-mondy-coral/30 shadow-[0_20px_50px_rgba(225,112,84,0.1)]" : "border-black/[0.03] shadow-sm"
                 }`}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full text-left p-6 md:p-8 flex items-center justify-between gap-4"
               >
-                <span className={`text-lg md:text-xl font-bold tracking-[-0.05em] transition-colors ${openIndex === index ? "text-[#E17054]" : "text-[#1C1A17]"
+                <span className={`text-lg md:text-xl font-bold tracking-[-0.05em] transition-colors ${openIndex === index ? "text-mondy-coral" : "text-mondy-ink"
                   }`}>
                   {item.question}
                 </span>
-                <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${openIndex === index ? "bg-[#E17054] text-white rotate-180" : "bg-black/[0.03] text-[#1C1A17]"
+                <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${openIndex === index ? "bg-mondy-coral text-white rotate-180" : "bg-black/[0.03] text-mondy-ink"
                   }`}>
                   <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
                     <path d="M7 10l5 5 5-5H7z" />
@@ -95,7 +97,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <div className="px-6 pb-8 md:px-8 md:pb-10 text-[#1C1A17]/60 text-base md:text-lg font-medium tracking-tight leading-relaxed max-w-[90%]">
+                    <div className="px-6 pb-8 md:px-8 md:pb-10 text-mondy-ink/60 text-base md:text-lg font-medium tracking-tight leading-relaxed max-w-[90%]">
                       {item.answer}
                     </div>
                   </motion.div>

@@ -62,6 +62,27 @@
   --color-neutral-70: var(--neutral-70);
   --color-neutral-60: var(--neutral-60);
   --color-neutral-50: var(--neutral-50);
+
+  /* Mondy landing — shared across marketing sections */
+  --color-mondy-surface: #f5f3f0;
+  --color-mondy-ink: #1c1a17;
+  --color-mondy-accent: #708fdb;
+  --color-mondy-accent-deep: #4e74d3;
+  --color-mondy-card: #fbfbf9;
+  --color-mondy-footer: #1b1a16;
+  --color-mondy-coral: #e17054;
+  --color-mondy-product-hunt: #ff6154;
+
+  --radius-mondy-section: 4rem;
+  --radius-mondy-card: 3rem;
+  --radius-mondy-inner: 2.5rem;
+  --radius-mondy-footer: 3.5rem;
+
+  --shadow-mondy-section: 0 0 50px -12px rgb(78 116 211 / 0.4);
+  --shadow-mondy-card: 0 25px 50px -12px rgb(78 116 211 / 0.4);
+  --shadow-mondy-form: 0 20px 50px rgb(0 0 0 / 0.05);
+  --shadow-mondy-hero-submit: 0 3px 10px rgb(112 143 219 / 0.45),
+    0 6px 20px -4px rgb(112 143 219 / 0.28);
 }
 
 @media (prefers-color-scheme: dark) {

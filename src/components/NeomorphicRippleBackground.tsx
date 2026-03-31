@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { mondy } from "@/styles/mondy";
 
 const RIPPLES: { size: string; mobileSize: string }[] = [
   { size: "min(130vw, 1240px)", mobileSize: "130vw" },
@@ -19,7 +20,7 @@ export type NeomorphicRippleBackgroundProps = {
 };
 
 export function NeomorphicRippleBackground({
-  surfaceColor = "#F5F3F0",
+  surfaceColor = mondy.surface,
   className,
 }: NeomorphicRippleBackgroundProps) {
   const reduceMotion = useReducedMotion();

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { mondyLayout } from "@/styles/mondy";
+import { cn } from "@/lib/utils";
 import {
   IconBrandX,
   IconBrandInstagram,
@@ -16,10 +18,10 @@ export default function Footer() {
   if (pathname === "/join") return null;
 
   return (
-    <div className="w-full max-w-none bg-[#F5F3F0]  pt-0 ">
-      <footer className="w-full max-w-none bg-[#1B1A16] pt-24 px-8 md:px-14 text-white font-sans overflow-hidden flex flex-col rounded-t-[3.5rem]">
+    <div className="w-full max-w-none bg-mondy-surface pt-0 ">
+      <footer className="w-full max-w-none bg-mondy-footer pt-24 px-8 md:px-14 text-white font-sans overflow-hidden flex flex-col rounded-t-mondy-footer">
         {/* 1. TOP CONTENT AREA (Grid and Header) */}
-        <div className="max-w-[1440px] mx-auto w-full mb-0">
+        <div className={cn(mondyLayout.contentMax, "mb-0")}>
           <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-8">
             <h3 className="text-[2.5rem] md:text-[3.5rem] font-medium leading-[1.05] tracking-[-0.04em] text-white">
               The curated sanctuary for<br />your aesthetic journey
@@ -105,6 +107,11 @@ export default function Footer() {
           </div>
         </div>
       </footer>
+      <div className="w-full bg-black py-2.5 px-4 text-center">
+        <p className="text-[11px] md:text-xs font-medium tracking-wide text-white/70">
+          Developed by Tezzeract Teams
+        </p>
+      </div>
     </div>
   );
 }

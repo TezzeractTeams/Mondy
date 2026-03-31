@@ -102,12 +102,15 @@ export default function HowItWorks() {
                 }}
                 className="relative rounded-[3rem] shadow-[0_40px_80px_-20px_rgba(112,143,219,0.12)] border border-white/80 overflow-hidden flex flex-col min-h-[650px]"
               >
-                {/* ... [Card contents remain exactly as they were] ... */}
+                {/* Background Ripple Effect */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+                  <RippleStack count={5} sizeStep={250} durationBase={1.5} delayPerRing={0.2} intensity="strong" ringClassName="border-[#708FDB]/40" />
+                </div>
+
                 {isSecondCard ? (
                   <>
-                    <div className="px-6 pt-0 w-full h-[480px]">
+                    <div className="px-6 pt-0 w-full h-[480px] relative z-10">
                       <div className="relative w-full h-full bg-[#FBFBF9]/90 rounded-b-[2.5rem] flex items-center justify-center overflow-hidden border-x border-b border-black/[0.03]">
-                        <RippleStack count={4} sizeStep={130} durationBase={1} delayPerRing={0.1} intensity="soft" ringClassName="border-[#E17054]/15" />
                         <span className="relative z-10 text-[10px] text-[#1C1A17]/20 font-bold uppercase tracking-widest">[App Screenshot]</span>
                       </div>
                     </div>
@@ -130,9 +133,8 @@ export default function HowItWorks() {
                         {step.desc}
                       </p>
                     </div>
-                    <div className="px-6 pb-0 w-full h-[480px]">
+                    <div className="px-6 pb-0 w-full h-[480px] relative z-10">
                       <div className="relative w-full h-full bg-[#FBFBF9]/90 rounded-t-[2.5rem] flex items-center justify-center overflow-hidden border-x border-t border-black/[0.03]">
-                        <RippleStack count={4} sizeStep={130} durationBase={1} delayPerRing={0.1} intensity="soft" ringClassName="border-[#E17054]/15" />
                         <span className="relative z-10 text-[10px] text-[#1C1A17]/20 font-bold uppercase tracking-widest">[App Screenshot]</span>
                       </div>
                     </div>

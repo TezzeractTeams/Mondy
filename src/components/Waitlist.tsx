@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Clock, Star } from "lucide-react";
+import { IconBrandLinkedin, IconBrandFacebook, IconBrandInstagram } from "@tabler/icons-react";
 import Link from "next/link";
 
 export default function Waitlist() {
@@ -193,8 +194,14 @@ export default function Waitlist() {
               className="absolute -right-4 md:-right-16 top-[30%] bg-white/90 backdrop-blur-xl p-3 pr-5 rounded-full border border-white shadow-xl flex items-center gap-3 z-30"
             >
               <div className="flex -space-x-2.5">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-[#708FDB]/20" />
+                {[
+                  { Icon: IconBrandLinkedin, color: 'bg-[#0A66C2]' },
+                  { Icon: IconBrandFacebook, color: 'bg-[#1877F2]' },
+                  { Icon: IconBrandInstagram, color: 'bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF]' },
+                ].map(({ Icon, color }, i) => (
+                  <div key={i} className={`w-8 h-8 rounded-full border-2 border-white ${color} flex items-center justify-center`}>
+                    <Icon size={14} className="text-white" stroke={1.5} />
+                  </div>
                 ))}
               </div>
               <div className="w-8 h-8 bg-[#708FDB] rounded-full flex items-center justify-center text-white shrink-0">

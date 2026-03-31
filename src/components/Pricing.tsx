@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Pricing() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
 
   // Pricing Data
   const prices = {
@@ -47,30 +47,31 @@ export default function Pricing() {
 
           {/* Toggle Switch */}
           <div className="flex flex-col items-center justify-center pt-8 gap-4">
-            <div className="bg-white rounded-full p-1.5 flex items-center gap-1 shadow-sm border border-[#1C1A17]/5 relative">
+            <div className="bg-white rounded-full p-1.5 flex gap-1 shadow-sm border border-[#1C1A17]/5 relative">
+              {/* One segment width = 50% − 8px (half of horizontal padding 12px + gap 4px) */}
+              <motion.div
+                className="pointer-events-none absolute top-1.5 bottom-1.5 z-0 rounded-full bg-[#E17054]"
+                style={{ width: "calc(50% - 8px)" }}
+                initial={false}
+                animate={{
+                  left: billingCycle === "yearly" ? 6 : "calc(50% + 2px)",
+                }}
+                transition={{ type: "tween", duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
+              />
               <button
+                type="button"
                 onClick={() => setBillingCycle("yearly")}
-                className={`relative px-8 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 z-10 ${billingCycle === "yearly" ? "text-white" : "text-[#1C1A17]/30"}`}
+                className={`relative z-10 flex min-h-[42px] min-w-0 flex-1 items-center justify-center rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors duration-200 ${billingCycle === "yearly" ? "text-white" : "text-[#1C1A17]/30"}`}
               >
                 Yearly
               </button>
               <button
+                type="button"
                 onClick={() => setBillingCycle("monthly")}
-                className={`relative px-8 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 z-10 ${billingCycle === "monthly" ? "text-white" : "text-[#1C1A17]/30"}`}
+                className={`relative z-10 flex min-h-[42px] min-w-0 flex-1 items-center justify-center rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors duration-200 ${billingCycle === "monthly" ? "text-white" : "text-[#1C1A17]/30"}`}
               >
                 Monthly
               </button>
-
-              {/* Sliding Background Pill */}
-              <motion.div
-                className="absolute top-1.5 bottom-1.5 bg-[#E17054] rounded-full z-0"
-                initial={false}
-                animate={{
-                  left: billingCycle === "yearly" ? "6px" : "50%",
-                  right: billingCycle === "yearly" ? "50%" : "6px",
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              />
             </div>
             {billingCycle === "yearly" && (
               <motion.span

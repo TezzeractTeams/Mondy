@@ -16,8 +16,8 @@ export default function Footer() {
   if (pathname === "/join") return null;
 
   return (
-    <div className="w-full">
-      <footer className="w-full bg-black pt-24 px-8 md:px-14 text-white font-sans overflow-hidden flex flex-col rounded-[3.5rem]">
+    <div className="w-full max-w-none bg-[#F5F3F0]  pt-0 ">
+      <footer className="w-full max-w-none bg-[#1B1A16] pt-24 px-8 md:px-14 text-white font-sans overflow-hidden flex flex-col rounded-t-[3.5rem]">
         {/* 1. TOP CONTENT AREA (Grid and Header) */}
         <div className="max-w-[1440px] mx-auto w-full mb-0">
           <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-8">
@@ -26,7 +26,7 @@ export default function Footer() {
             </h3>
             <Link
               href="mailto:hello@mondy.ai"
-              className="px-14 py-6 rounded-full border border-white/20 text-2xl md:text-3xl font-medium transition-all hover:bg-white hover:text-black"
+              className="px-14 py-6 rounded-full border border-white/20 text-2xl md:text-3xl font-medium transition-all hover:bg-white hover:text-black hover:brightness-110 hover:scale-[1.02] active:scale-95"
             >
               Contact
             </Link>
@@ -94,7 +94,7 @@ export default function Footer() {
             style={{ transform: 'translateY(15%)' }}
           >
             <Image
-              src="@public/v3.png"
+              src="/v3.png"
               alt="Mondy AI Logo"
               width={1400}
               height={400}

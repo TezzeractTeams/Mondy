@@ -109,7 +109,7 @@ export default function Pricing() {
                 </div>
                 <p className="text-[#1C1A17]/50 text-base font-medium tracking-[-0.05em]">No credit card required. One platform. One week of content.</p>
               </div>
-              <button className="mt-12 w-full py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.05em] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#708FDB]/20">Try Mondy</button>
+              <button className="mt-12 w-full py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.05em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-lg shadow-[#708FDB]/20">Try Mondy</button>
             </div>
 
             {/* Tier 2: Pro */}
@@ -137,7 +137,7 @@ export default function Pricing() {
                 </div>
                 <p className="text-white/80 text-lg font-medium tracking-[-0.05em]">Everything. All platforms. Full weekly Run. Your voice, consistently.</p>
               </div>
-              <button className="mt-12 w-full py-5 bg-white text-[#E17054] rounded-full text-lg font-bold shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]">Select Pro</button>
+              <button className="mt-12 w-full py-5 bg-white text-[#E17054] rounded-full text-lg font-bold shadow-xl transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95">Select Pro</button>
             </motion.div>
 
             {/* Tier 3: Enterprise */}
@@ -158,7 +158,7 @@ export default function Pricing() {
                 </div>
                 <p className="text-[#1C1A17]/50 text-base font-medium tracking-[-0.05em]">For teams, agencies, or operators running content for more than one founder.</p>
               </div>
-              <button className="mt-12 w-full py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.05em] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#708FDB]/20">Contact Us</button>
+              <button className="mt-12 w-full py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.05em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-lg shadow-[#708FDB]/20">Contact Us</button>
             </div>
 
           </div>

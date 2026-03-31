@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export const FloatingNav = ({
   navItems,
@@ -14,7 +14,6 @@ export const FloatingNav = ({
     name: string;
     link: string;
     icon?: React.ReactNode;
-    hasChevron?: boolean;
   }[];
   className?: string;
 }) => {
@@ -59,16 +58,13 @@ export const FloatingNav = ({
                 )}
               >
                 <span className="text-[14px] font-medium whitespace-nowrap">{navItem.name}</span>
-                {navItem.hasChevron && (
-                  <ChevronDown className="w-3.5 h-3.5 text-gray-400 mt-0.5" />
-                )}
               </Link>
             ))}
           </div>
 
           {/* Action Button (Desktop) */}
           <div className="hidden lg:flex items-center pr-1 shrink-0">
-            <Link href="/join" className="text-[13px] font-bold text-white bg-[#708FDB] hover:bg-[#5E7CC7] transition-colors px-5 py-2.5 rounded-full whitespace-nowrap">
+            <Link href="/infopage" className="text-[13px] font-bold text-white bg-[#708FDB] px-5 py-2.5 rounded-full whitespace-nowrap transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95">
               Join Waitlist
             </Link>
           </div>
@@ -99,14 +95,13 @@ export const FloatingNav = ({
                     key={`mobile-link=${idx}`}
                     href={navItem.link}
                     onClick={() => setIsOpen(false)}
-                    className="flex justify-between items-center text-[#1C1A17] text-lg font-medium py-2"
+                    className="flex items-center text-[#1C1A17] text-lg font-medium py-2"
                   >
                     <span>{navItem.name}</span>
-                    {navItem.hasChevron && <ChevronDown size={20} className="text-gray-400" />}
                   </Link>
                 ))}
               </div>
-              <Link href="/join" onClick={() => setIsOpen(false)} className="w-full text-center text-base font-bold text-white bg-[#708FDB] hover:bg-[#5E7CC7] transition-colors py-4 rounded-2xl mt-2 block">
+              <Link href="/infopage" onClick={() => setIsOpen(false)} className="w-full text-center text-base font-bold text-white bg-[#708FDB] py-4 rounded-2xl mt-2 block transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95">
                 Join Waitlist
               </Link>
             </motion.div>

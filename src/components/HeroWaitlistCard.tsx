@@ -32,7 +32,7 @@ export default function HeroWaitlistCard({ className }: HeroWaitlistCardProps) {
       />
       <button
         type="submit"
-        className="w-full cursor-pointer rounded-2xl border-0 bg-[#708FDB] py-3.5 text-center text-[15px] font-bold  text-white shadow-[0_3px_10px_rgba(112,143,219,0.45),0_6px_20px_-4px_rgba(112,143,219,0.28)]  outline-none transition-[filter] hover:brightness-110 focus-visible:ring-2 focus-visible:ring-[#708FDB] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:brightness-95"
+        className="w-full cursor-pointer rounded-2xl border-0 bg-[#708FDB] py-3.5 text-center text-[15px] font-bold  text-white shadow-[0_3px_10px_rgba(112,143,219,0.45),0_6px_20px_-4px_rgba(112,143,219,0.28)]  outline-none transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 focus-visible:ring-2 focus-visible:ring-[#708FDB] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
       >
         Join the waitlist
       </button>

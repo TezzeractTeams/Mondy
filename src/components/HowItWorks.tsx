@@ -147,7 +147,7 @@ export default function HowItWorks() {
 
         {/* CTA Button */}
         <div className="mt-20 flex justify-center relative z-20">
-          <button className="bg-[#708FDB] hover:bg-[#5f7bc9] text-white px-10 py-4 rounded-full font-bold text-sm tracking-tight transition-all shadow-xl shadow-[#708FDB]/20">
+          <button className="bg-[#708FDB] text-white px-10 py-4 rounded-full font-bold text-sm tracking-tight transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#708FDB]/20">
             Submit a Feature Request
           </button>
         </div>

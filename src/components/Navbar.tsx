@@ -12,12 +12,10 @@ export default function MondyNav() {
     {
       name: "Solution",
       link: "#solution",
-      hasChevron: true,
     },
     {
       name: "How it works",
       link: "#howitworks",
-      hasChevron: true,
     },
     {
       name: "Pricing",

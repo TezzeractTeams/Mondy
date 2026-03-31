@@ -1,12 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
-export default function JoinWaitlist() {
+function JoinWaitlistForm() {
+  const searchParams = useSearchParams();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const prefill = searchParams.get("email");
+    if (prefill) setEmail(decodeURIComponent(prefill.trim()));
+  }, [searchParams]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,9 +22,9 @@ export default function JoinWaitlist() {
   };
 
   return (
-    <div className="flex-grow flex flex-col md:flex-row w-full bg-white">
+    <div className="flex min-h-dvh w-full flex-1 flex-col bg-white md:flex-row">
       {/* Left Column: Form Section */}
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 relative">
+      <div className="relative flex w-full flex-1 items-center justify-center p-8 md:w-1/2 md:p-16 lg:p-24">
         <div className="max-w-md w-full flex flex-col gap-8">
           
           {/* Header area with Logo and Badge */}
@@ -62,7 +69,7 @@ export default function JoinWaitlist() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="First name"
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#708FDB] focus:ring-1 focus:ring-[#708FDB] outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 text-[#1C1A17] focus:border-[#708FDB] focus:ring-1 focus:ring-[#708FDB] outline-none transition-all"
                   required
                 />
               </div>
@@ -76,7 +83,7 @@ export default function JoinWaitlist() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Last name"
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#708FDB] focus:ring-1 focus:ring-[#708FDB] outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 text-[#1C1A17] focus:border-[#708FDB] focus:ring-1 focus:ring-[#708FDB] outline-none transition-all"
                   required
                 />
               </div>
@@ -93,7 +100,7 @@ export default function JoinWaitlist() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full px-4 py-3 rounded-xl border border-black/10 focus:border-[#708FDB] focus:ring-1 focus:ring-[#708FDB] outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-black/10 text-[#1C1A17] focus:border-[#708FDB] focus:ring-1 focus:ring-[#708FDB] outline-none transition-all"
                 required
               />
             </div>
@@ -111,7 +118,7 @@ export default function JoinWaitlist() {
       </div>
 
       {/* Right Column: Image Placeholder */}
-      <div className="w-full md:w-1/2 bg-[#F5F3F0] border-l border-black/5 flex items-center justify-center p-8 md:p-12 hidden md:flex min-h-[500px]">
+      <div className="hidden min-h-dvh w-full flex-1 flex-col items-center justify-center border-l border-black/5 bg-[#F5F3F0] p-8 md:flex md:w-1/2 md:p-12">
         {/* The Placeholder Container */}
         <div className="w-full max-w-lg aspect-[4/5] bg-white rounded-3xl shadow-xl overflow-hidden relative border border-black/5 flex items-center justify-center">
           
@@ -128,5 +135,19 @@ export default function JoinWaitlist() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function JoinWaitlist() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-dvh w-full flex-1 items-center justify-center bg-white text-[#1C1A17]/40">
+          Loading…
+        </div>
+      }
+    >
+      <JoinWaitlistForm />
+    </Suspense>
   );
 }

@@ -86,27 +86,6 @@ export default function Waitlist() {
           </motion.p>
         </div>
 
-        {/* Form Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mt-12 w-full max-w-[600px] px-4 md:px-0"
-        >
-          <div className="bg-white rounded-3xl md:rounded-full p-2 md:pl-8 flex flex-col md:flex-row items-center gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/60">
-            <div className="flex-1 flex items-center w-full">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="bg-transparent border-none outline-none text-[#1C1A17] text-lg font-medium tracking-tight w-full placeholder:text-[#1C1A17]/30 px-4 md:px-0 py-4 md:py-0"
-              />
-            </div>
-            <Link href="/infopage" className="w-full md:w-auto px-10 py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#708FDB]/20 text-center block">
-              Join the waitlist
-            </Link>
-          </div>
-        </motion.div>
-
         {/* Social Proof */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -124,6 +103,28 @@ export default function Waitlist() {
           <span className="text-[#1C1A17]/40 text-[11px] font-bold tracking-wider uppercase">Join +1,000 others</span>
         </motion.div>
 
+        {/* Form Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mt-12 w-full max-w-[600px] px-4 md:px-0"
+        >
+          <div className="bg-white rounded-3xl md:rounded-full p-2 md:pl-8 flex flex-col md:flex-row items-center gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/60">
+            <div className="flex-1 flex items-center w-full">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="bg-transparent border-none outline-none text-[#1C1A17] text-lg font-medium tracking-tight w-full placeholder:text-[#1C1A17]/30 px-4 md:px-0 py-4 md:py-0"
+              />
+            </div>
+            <Link href="/join" className="w-full md:w-auto px-10 py-5 bg-[#708FDB] text-white rounded-full text-lg font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-[#708FDB]/20 text-center block">
+              Join the waitlist
+            </Link>
+          </div>
+        </motion.div>
+
+
         {/* Countdown Timer */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -134,12 +135,13 @@ export default function Waitlist() {
           {Object.entries(timeLeft).map(([label, value], idx) => (
             <React.Fragment key={label}>
               <div className="flex flex-col items-center gap-2">
+                <span className="text-[9px] font-bold uppercase tracking-widest text-[#1C1A17]/30">{label}</span>
                 <div className="w-14 h-18 md:w-18 md:h-22 bg-white rounded-2xl border border-black/5 flex items-center justify-center shadow-sm">
                   <span className="text-2xl md:text-3xl font-extrabold text-[#1C1A17] tracking-tighter">
                     {String(value).padStart(2, '0')}
                   </span>
                 </div>
-                <span className="text-[9px] font-bold uppercase tracking-widest text-[#1C1A17]/30">{label}</span>
+
               </div>
               {idx < 3 && <span className="text-2xl md:text-3xl font-extrabold text-[#1C1A17]/10 -mt-6">:</span>}
             </React.Fragment>

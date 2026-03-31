@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import HeroWaitlistCard from "@/components/HeroWaitlistCard";
-import { DotLottiePlayer } from "@/components/DotLottiePlayer";
+import { NeomorphicRippleBackground } from "@/components/NeomorphicRippleBackground";
 
 
 const HEADLINE_OFFSET = {
@@ -43,13 +43,7 @@ export default function Hero() {
       />
 
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
-        <div className="relative flex h-[min(95vh,1000px)] w-[min(150vw,1500px)] max-w-none shrink-0 origin-center scale-110 items-center justify-center">
-          <DotLottiePlayer
-            autoplay={!reduceMotion}
-            className="h-full w-full"
-            layout={{ fit: "contain", align: [0.5, 0.5] }}
-          />
-        </div>
+        <NeomorphicRippleBackground surfaceColor={HERO_SURFACE} />
       </div>
 
       <motion.div

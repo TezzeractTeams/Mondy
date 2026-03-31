@@ -2,26 +2,30 @@
 import React from "react";
 import { FloatingNav } from "./ui/floating-navbar";
 import { IconHome, IconInfoCircle, IconMessage, IconBuilding } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
 
 export default function MondyNav() {
+  const pathname = usePathname();
+  if (pathname === "/join") return null;
+
   const navItems = [
     {
-      name: "Product",
-      link: "/product",
+      name: "Solution",
+      link: "#solution",
       hasChevron: true,
     },
     {
-      name: "Solution",
-      link: "/solution",
-    },
-    {
-      name: "Resources",
-      link: "/resources",
+      name: "How it works",
+      link: "#howitworks",
       hasChevron: true,
     },
     {
       name: "Pricing",
-      link: "/pricing",
+      link: "#pricing",
+    },
+    {
+      name: "FAQ",
+      link: "#faq",
     },
   ];
 

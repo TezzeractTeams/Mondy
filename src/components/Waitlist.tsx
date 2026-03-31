@@ -38,27 +38,6 @@ export default function Waitlist() {
   return (
     <section className="relative w-full bg-mondy-surface pt-32 pb-32 md:pb-48 px-6 md:px-12 overflow-hidden font-noah">
 
-      {/* Immersive Section-Wide Ripples */}
-      <div className="absolute left-1/2 bottom-0 -translate-x-1/2 flex items-center justify-center pointer-events-none z-0">
-        {[1, 2, 3, 4].map((index) => (
-          <motion.div
-            key={index}
-            animate={{
-              scale: [1, 1.15, 1],
-              opacity: [0.03, 0.06, 0.03],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              delay: index * 2,
-              ease: "easeInOut",
-            }}
-            style={{ width: `${index * 600}px`, height: `${index * 600}px` }}
-            className="absolute border-[0.5px] border-mondy-accent rounded-full"
-          />
-        ))}
-      </div>
-
       <div className={cn(mondyLayout.contentMax, "relative z-10 flex flex-col items-center")}>
 
         {/* Header Section */}
@@ -118,7 +97,7 @@ export default function Waitlist() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mt-12 w-full max-w-[600px] px-4 md:px-0"
+          className="mt-8 w-full max-w-[600px] px-4 md:px-0"
         >
           <div className="bg-white rounded-3xl md:rounded-full p-2 md:pl-8 flex flex-col md:flex-row items-center gap-4 shadow-mondy-form border border-white/60">
             <div className="flex-1 flex items-center w-full">

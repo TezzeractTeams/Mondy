@@ -21,7 +21,7 @@ export const mondyGradients = {
 } as const;
 
 export const mondyLayout = {
-  contentMax: "max-w-[1440px] mx-auto w-full",
+  contentMax: " mx-auto w-full",
 } as const;
 
 const btnPrimaryCore = cn(
@@ -47,7 +47,7 @@ export const mondyBtn = {
 
 export const mondyType = {
   sectionHeading: cn(
-    "text-mondy-ink text-5xl font-extrabold tracking-[-0.06em] leading-[0.9]",
+    "text-mondy-ink text-7xl font-extrabold tracking-[-0.06em] leading-[0.9]",
   ),
   sectionLead: cn(
     "text-mondy-ink/60 text-lg md:text-xl font-medium tracking-tight leading-relaxed",

@@ -81,7 +81,7 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      <div className={cn(mondyLayout.contentMax, "relative z-10 flex min-h-0 flex-1 flex-col px-6 md:px-12 pt-14 sm:pt-16 md:pt-20 pb-6 md:pb-8")}>
+      <div className={cn(mondyLayout.contentMax, "relative z-10 flex min-h-0 flex-1 flex-col px-6 md:px-12 pt-14 sm:pt-12 md:pt-8 pb-6 md:pb-8")}>
         <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 lg:items-stretch lg:justify-items-center">
           <div className="order-1 flex min-h-0 w-full flex-1 flex-col lg:col-span-12 lg:mx-auto lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
             <div className="relative flex min-h-0 w-full flex-1 flex-col items-center isolate px-1 text-center">
@@ -89,7 +89,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex w-full flex-col items-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-mondy-ink tracking-tight md:tracking-[-0.07em] leading-[1.05] md:leading-[0.9] relative z-0 pointer-events-none shrink-0 pt-2 sm:pt-4 md:pt-14 px-4 md:px-0"
+                className="flex w-full flex-col items-center text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-mondy-ink tracking-tight md:tracking-[-0.07em] leading-[1.05] md:leading-[0.9] relative z-0 pointer-events-none shrink-0 pt-2 sm:pt-4 md:pt-14 px-4 md:px-0"
               >
                 <div className="flex flex-col items-center">
                   {/* Mobile: 3 lines (“Talk for” / “10 minutes.” / tagline); md+: first phrase on one line */}
@@ -167,14 +167,14 @@ export default function Hero() {
         */}
 
         {/* Mobile / tablet: centered in viewport; lg+: bottom-centered strip */}
-        <div className="pointer-events-auto absolute left-1/2 top-9/10 sm:top-[58%] z-20 w-full max-w-[min(98vw,360px)] -translate-x-1/2 -translate-y-1/2 px-4 lg:top-auto lg:bottom-6 lg:translate-y-0">
+        <div className="pointer-events-auto absolute left-1/2 top-9/10 sm:top-[58%] z-20 w-full max-w-[min(98vw,360px)] -translate-x-1/2 -translate-y-1/2 px-4 lg:top-[85%] lg:bottom-6 lg:translate-y-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
             className="mx-auto w-full max-w-sm shadow-lg shadow-black/10 rounded-3xl lg:shadow-none"
           >
-            <HeroWaitlistCard className="w-full max-w-sm" />
+            <HeroWaitlistCard className="w-full" />
           </motion.div>
         </div>
       </div>

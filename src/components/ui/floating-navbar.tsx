@@ -35,7 +35,7 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "relative overflow-hidden flex flex-col max-w-[98vw] lg:max-w-[80vw] fixed top-6 md:top-10 inset-x-0 mx-auto z-[5000] transition-all duration-300",
+          "relative overflow-hidden flex flex-col max-w-[98vw] lg:max-w-[60vw] fixed top-6 md:top-10 inset-x-0 mx-auto z-[5000] transition-all duration-300",
           "rounded-[2rem] md:rounded-full",
           "border border-white/50 ring-1 ring-black/[0.06]",
           "bg-gradient-to-b from-white/80 via-white/50 to-white/35 backdrop-blur-xl backdrop-saturate-150",

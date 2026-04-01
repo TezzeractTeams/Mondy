@@ -30,7 +30,7 @@ export default function ProblemStatement() {
   ];
 
   return (
-    <section id="solution" className="relative w-full bg-mondy-surface pt-32 pb-24 px-6 md:px-10 overflow-hidden font-noah">
+    <section id="solution" className="relative sm:w-[80%] bg-mondy-surface pt-32 pb-24 px-6 md:px-10 overflow-hidden font-noah">
       <div className={cn(mondyLayout.contentMax, "grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10")}>
 
         {/* Left Side: High-End Typography */}

@@ -31,7 +31,10 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative w-full bg-mondy-surface py-20 px-6 md:px-12 overflow-hidden font-noah border-t border-black/[0.03]">
+    <section
+      id="faq"
+      className="relative sm:w-[80%] max-w-full shrink-0 mx-auto bg-mondy-surface py-20 px-6 md:px-12 overflow-hidden font-noah border-t border-black/[0.03]"
+    >
       <div className={cn(mondyLayout.contentMax, "grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 items-start")}>
 
         {/* Left Column: Sticky Header & Support Card */}

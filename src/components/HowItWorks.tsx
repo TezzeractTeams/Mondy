@@ -23,7 +23,7 @@ export default function HowItWorks() {
     <section id="howitworks" className="relative w-full bg-mondy-surface py-24">
 
       {/* Outer Section Border/Container */}
-      <div className="w-full bg-mondy-accent-deep/5 border border-black/[0.03] rounded-mondy-section py-24 px-6 md:px-16 relative overflow-hidden shadow-mondy-section">
+      <div className="w-80% bg-mondy-accent-deep/5 border border-black/[0.03] rounded-mondy-section py-24 px-6 md:px-16 relative overflow-hidden shadow-mondy-section">
 
         {/* Header */}
         <div className="text-center mb-20 space-y-4 max-w-3xl mx-auto relative z-10">
@@ -37,7 +37,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 w-full relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 sm:w-[80%] max-w-full mx-auto relative z-20">
           {steps.map((step, idx) => {
             const isSecondCard = idx === 1;
 

@@ -29,7 +29,7 @@ export default function Footer() {
             </h3>
             <Link
               href="mailto:hello@mondy.ai"
-              className="px-14 py-6 rounded-full border border-white/20 text-2xl md:text-3xl font-medium transition-all hover:bg-white hover:text-black hover:brightness-110 hover:scale-[1.02] active:scale-95"
+              className="px-10 py-4 rounded-full border border-white/20 text-lg font-medium transition-all hover:bg-white hover:text-black hover:brightness-110 hover:scale-[1.02] active:scale-95"
             >
               Contact
             </Link>

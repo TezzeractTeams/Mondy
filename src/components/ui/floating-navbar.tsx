@@ -35,13 +35,13 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "relative overflow-hidden flex flex-col max-w-[95vw] lg:max-w-fit fixed top-6 md:top-10 inset-x-0 mx-auto z-[5000] transition-all duration-300",
+          "relative overflow-hidden flex flex-col max-w-[98vw] lg:max-w-[80vw] fixed top-6 md:top-10 inset-x-0 mx-auto z-[5000] transition-all duration-300",
           "rounded-[2rem] md:rounded-full",
           "border border-white/50 ring-1 ring-black/[0.06]",
           "bg-gradient-to-b from-white/80 via-white/50 to-white/35 backdrop-blur-xl backdrop-saturate-150",
           "shadow-[0_8px_40px_-8px_rgb(0_0_0/0.08),0_4px_24px_-4px_rgb(112_143_219/0.14),inset_0_1px_0_0_rgb(255_255_255/0.7)]",
           "before:pointer-events-none before:absolute before:inset-0 before:z-0 before:rounded-[inherit] before:bg-[linear-gradient(180deg,rgba(255,255,255,0.42)_0%,transparent_40%)]",
-          isOpen ? "px-6 py-6" : "px-3 md:px-4 py-2",
+          isOpen ? "px-6 py-6" : "px-3 md:px-3 py-2",
           className
         )}
       >

@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} font-noah antialiased bg-mondy-surface min-h-screen text-mondy-ink tracking-[-0.05em] leading-[1.2]`}
+        className={`${geistSans.variable} ${geistMono.variable} font-noah antialiased !bg-[#f5f3f0] min-h-screen text-mondy-ink tracking-[-0.05em] leading-[1.2]`}
       >
         {children}
       </body>

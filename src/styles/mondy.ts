@@ -73,17 +73,17 @@ export const mondyHero = {
    * Hand mock (`Handmock.webp`) — tweak layout here instead of hunting classes in Hero.tsx.
    *
    * - **frame**: column width (`w-*`, `max-w-*`). Wider = larger image.
-   * - **stack**: margin between headline and image. More negative = pulled up toward title.
-   * - **nudge**: `translate-x` / `translate-y` per breakpoint. Negative x = left, positive y = down.
+   * - **stack**: margin between headline and image (e.g. `-mt-[4vh]` to pull up with viewport height).
+   * - **nudge**: Horizontal shift stays in `px`; vertical shift uses **`vh`** — positive `translate-y-[Nvh]` = down, negative = up.
    * - **img**: `object-*` and shadow; try `object-center` or `object-[50%_40%]` to reframe the asset.
    */
   handImage: {
     frame: cn(
-      "relative z-10 w-full sm:w-[112%] md:w-[63%] max-w-[min(98vw,940px)] shrink-0 self-center",
+      "relative z-10 w-[160%] sm:w-[112%] md:w-[60%]  shrink-0 self-center",
     ),
-    stack: "mt-6 md:mt-0 md:-mt-10 lg:-mt-14 xl:-mt-20",
+    stack: "",
     nudge:
-      "relative will-change-transform translate-x-0 translate-y-3 md:-translate-x-[72px] md:translate-y-6 lg:-translate-x-[140px] lg:translate-y-8 xl:-translate-x-[180px] xl:translate-y-10",
+      "relative will-change-transform translate-x-[-16vh] translate-y-[-1vh] md:-translate-x-[72px] md:translate-y-[-2.5vh] lg:-translate-x-[140px]  xl:-translate-x-[20vh] ",
     img: "relative z-0 w-full h-auto object-contain object-bottom drop-shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]",
   },
 } as const;

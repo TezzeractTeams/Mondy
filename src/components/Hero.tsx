@@ -91,11 +91,13 @@ export default function Hero() {
                 transition={{ duration: 0.8 }}
                 className="flex w-full flex-col items-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-mondy-ink tracking-tight md:tracking-[-0.07em] leading-[1.05] md:leading-[0.9] relative z-0 pointer-events-none shrink-0 pt-2 sm:pt-4 md:pt-14 px-4 md:px-0"
               >
-                <div className="flex flex-col items-center ">
-                  <span className="w-full lg:w-max pt-6 md:pt-10 max-w-none shrink-0 lg:whitespace-nowrap text-center lg:text-left xl:text-center will-change-transform">
-                    Talk for 10 minutes.
+                <div className="flex flex-col items-center">
+                  {/* Mobile: 3 lines (“Talk for” / “10 minutes.” / tagline); md+: first phrase on one line */}
+                  <span className="flex w-full max-w-none shrink-0 flex-col items-center pt-15  text-center will-change-transform md:inline-flex md:flex-row md:items-baseline md:gap-x-1.5 md:pt-10 md:whitespace-nowrap lg:w-max lg:text-left xl:text-center">
+                    <span className="block md:inline">Talk for</span>
+                    <span className="block md:inline">10 minutes.</span>
                   </span>
-                  <span className="mt-2 md:mt-4 lg:mt-0 w-full lg:w-max max-w-none shrink-0 lg:whitespace-nowrap text-center lg:text-left xl:text-center will-change-transform">
+                  <span className="mt-2 w-full max-w-none shrink-0 text-center will-change-transform md:mt-4 lg:mt-0 lg:w-max lg:whitespace-nowrap lg:text-left xl:text-center">
                     A full week of content, done.
                   </span>
                 </div>
@@ -164,12 +166,13 @@ export default function Hero() {
         </div>
         */}
 
-        <div className="absolute bottom-10 left-1/2 z-20 w-full max-w-[min(98vw,360px)] -translate-x-1/2 px-4 hidden lg:block">
+        {/* Mobile / tablet: centered in viewport; lg+: bottom-centered strip */}
+        <div className="pointer-events-auto absolute left-1/2 top-7/8 sm:top-[58%] z-20 w-full max-w-[min(98vw,360px)] -translate-x-1/2 -translate-y-1/2 px-4 lg:top-auto lg:bottom-6 lg:translate-y-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="mx-auto w-full max-w-sm"
+            className="mx-auto w-full max-w-sm shadow-lg shadow-black/10 rounded-3xl lg:shadow-none"
           >
             <HeroWaitlistCard className="w-full max-w-sm" />
           </motion.div>

@@ -55,7 +55,7 @@ export default function FAQ() {
                 Can't find the answer to your question? Send us an email and we'll get back to you as soon as possible!
               </p>
             </div>
-            <button type="button" className="px-8 py-4 bg-mondy-coral text-white rounded-full text-base font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-mondy-coral/20">
+            <button type="button" className="px-6 py-3 bg-mondy-coral text-white rounded-full text-base font-bold tracking-[-0.03em] transition-all hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-xl shadow-mondy-coral/20">
               Send email
             </button>
           </motion.div>

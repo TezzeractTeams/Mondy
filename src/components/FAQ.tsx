@@ -35,7 +35,7 @@ export default function FAQ() {
       <div className={cn(mondyLayout.contentMax, "grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 items-start")}>
 
         {/* Left Column: Sticky Header & Support Card */}
-        <div className="md:sticky md:top-24 space-y-8">
+        <div className="md:sticky  space-y-8">
           <div className="space-y-4">
             <h2 className={mondyType.sectionHeading}>
               Frequently <br /> Asked <br /> <span className="text-mondy-coral">Questions</span>

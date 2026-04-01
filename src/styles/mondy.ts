@@ -36,7 +36,7 @@ export const mondyBtn = {
     btnPrimaryCore,
     "w-full py-5 rounded-full text-lg tracking-[-0.05em] shadow-lg shadow-mondy-accent/20",
   ),
-  navDesktop: cn(btnPrimaryCore, "text-[13px] px-5 py-2.5 rounded-full whitespace-nowrap"),
+  navDesktop: cn(btnPrimaryCore, "text-[16px] px-5 py-2.5 rounded-full whitespace-nowrap"),
   navMobile: cn(btnPrimaryCore, "w-full text-center text-base py-4 rounded-2xl mt-2 block"),
   primaryHeroSubmit: cn(
     btnPrimaryCore,
@@ -47,13 +47,10 @@ export const mondyBtn = {
 
 export const mondyType = {
   sectionHeading: cn(
-    "text-mondy-ink text-5xl md:text-7xl font-extrabold tracking-[-0.06em] leading-[0.9]",
+    "text-mondy-ink text-5xl font-extrabold tracking-[-0.06em] leading-[0.9]",
   ),
   sectionLead: cn(
     "text-mondy-ink/60 text-lg md:text-xl font-medium tracking-tight leading-relaxed",
-  ),
-  waitlistTitle: cn(
-    "text-mondy-ink text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-[-0.06em] leading-[0.95]",
   ),
   waitlistSubtitle: cn(
     "text-mondy-ink/50 text-xl md:text-2xl font-medium tracking-[-0.05em] leading-[1.2]",
@@ -71,4 +68,22 @@ export const mondyType = {
 
 export const mondyHero = {
   floatingCardSizes: "(min-width: 1024px) 320px, 90vw",
+
+  /**
+   * Hand mock (`Handmock.webp`) — tweak layout here instead of hunting classes in Hero.tsx.
+   *
+   * - **frame**: column width (`w-*`, `max-w-*`). Wider = larger image.
+   * - **stack**: margin between headline and image. More negative = pulled up toward title.
+   * - **nudge**: `translate-x` / `translate-y` per breakpoint. Negative x = left, positive y = down.
+   * - **img**: `object-*` and shadow; try `object-center` or `object-[50%_40%]` to reframe the asset.
+   */
+  handImage: {
+    frame: cn(
+      "relative z-10 w-full sm:w-[112%] md:w-[63%] max-w-[min(98vw,940px)] shrink-0 self-center",
+    ),
+    stack: "mt-6 md:mt-0 md:-mt-10 lg:-mt-14 xl:-mt-20",
+    nudge:
+      "relative will-change-transform translate-x-0 translate-y-3 md:-translate-x-[72px] md:translate-y-6 lg:-translate-x-[140px] lg:translate-y-8 xl:-translate-x-[180px] xl:translate-y-10",
+    img: "relative z-0 w-full h-auto object-contain object-bottom drop-shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]",
+  },
 } as const;

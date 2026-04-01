@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { mondyBtn, mondyLayout } from "@/styles/mondy";
+import { mondyBtn, mondyLayout, mondyType } from "@/styles/mondy";
 
 export default function Pricing() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
@@ -43,7 +43,7 @@ export default function Pricing() {
 
         {/* Header */}
         <div className="text-center mb-24 space-y-4">
-          <h2 className="text-mondy-ink text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.05em] leading-[0.9] px-4">
+          <h2 className={cn(mondyType.sectionHeading, "px-4")}>
             Simple, Transparent <span className="text-mondy-coral">Pricing</span>
           </h2>
 

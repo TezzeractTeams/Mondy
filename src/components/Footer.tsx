@@ -19,7 +19,7 @@ export default function Footer() {
 
   return (
     <div className="w-full max-w-none bg-mondy-surface pt-0 ">
-      <footer className="w-full max-w-none bg-mondy-footer pt-24 px-8 md:px-14 text-white font-sans overflow-hidden flex flex-col rounded-t-mondy-footer">
+      <footer className="w-full max-w-none bg-mondy-footer py-24 px-8 md:px-14 text-white font-sans overflow-hidden flex flex-col rounded-t-mondy-footer">
         {/* 1. TOP CONTENT AREA (Grid and Header) */}
         <div className={cn(mondyLayout.contentMax, "mb-0")}>
           <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-8">
@@ -90,22 +90,7 @@ export default function Footer() {
         </div>
  
         {/* 2. BOTTOM BRANDING AREA (Large Logo) */}
-        <div className="w-full flex justify-center pointer-events-none select-none -mt-16">
-          <div
-            className="w-full max-w-[1400px] opacity-100 flex justify-center items-center"
-            style={{ transform: 'translateY(15%)' }}
-          >
-            <Image
-              src="/v3.png"
-              alt="Mondy AI Logo"
-              width={1400}
-              height={400}
-              className="w-full object-contain"
-              style={{ height: '30vw' }}
-              priority
-            />
-          </div>
-        </div>
+        
       </footer>
       <div className="w-full bg-black py-2.5 px-4 text-center">
         <p className="text-[11px] md:text-xs font-medium tracking-wide text-white/70">

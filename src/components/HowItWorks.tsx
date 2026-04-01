@@ -93,12 +93,12 @@ export default function HowItWorks() {
           })}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button
         <div className="mt-20 flex justify-center relative z-20">
           <button className={mondyBtn.primaryMd} type="button">
             Submit a Feature Request
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

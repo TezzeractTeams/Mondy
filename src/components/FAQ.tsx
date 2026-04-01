@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { mondyLayout } from "@/styles/mondy";
+import { mondyLayout, mondyType } from "@/styles/mondy";
 
 const faqData = [
   {
@@ -37,7 +37,7 @@ export default function FAQ() {
         {/* Left Column: Sticky Header & Support Card */}
         <div className="md:sticky md:top-24 space-y-8">
           <div className="space-y-4">
-            <h2 className="text-mondy-ink text-4xl md:text-5xl font-extrabold tracking-[-0.06em] leading-[0.9] ">
+            <h2 className={mondyType.sectionHeading}>
               Frequently <br /> Asked <br /> <span className="text-mondy-coral">Questions</span>
             </h2>
           </div>

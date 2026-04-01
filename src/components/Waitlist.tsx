@@ -59,7 +59,7 @@ export default function Waitlist() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className={mondyType.waitlistTitle}
+            className={mondyType.sectionHeading}
           >
             Get Early Access
           </motion.h2>
@@ -116,7 +116,7 @@ export default function Waitlist() {
         </motion.div>
 
 
-        {/* Countdown Timer */}
+        {/* Countdown Timer
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -137,7 +137,7 @@ export default function Waitlist() {
               {idx < 3 && <span className="text-2xl md:text-3xl font-extrabold text-mondy-ink/10 -mt-6">:</span>}
             </React.Fragment>
           ))}
-        </motion.div>
+        </motion.div> */}
 
         {/* Visual Asset: Phone Image */}
         <div className="mt-16 relative w-full flex justify-center overflow-visible">

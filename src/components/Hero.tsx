@@ -37,7 +37,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none absolute left-[18vw] top-[34vh] z-[20] hidden lg:block w-[320px]"
+        className="pointer-events-none absolute left-[12vw] top-[40vh] z-[20] hidden lg:block w-[320px]"
         aria-hidden
       >
         <motion.div
@@ -70,10 +70,10 @@ export default function Hero() {
           transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
         >
           <Image
-            src="/Test.png"
+            src="/PostCard.png"
             alt="Social post preview"
-            width={323}
-            height={377}
+            width={1380}
+            height={1596}
             className="h-auto w-full"
             sizes={mondyHero.floatingCardSizes}
             quality={92}
@@ -105,18 +105,16 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
-                className="relative z-10 w-full sm:w-[112%] md:w-[78%] max-w-[min(98vw,940px)] shrink-0 self-center"
+                className={mondyHero.handImage.frame}
               >
-                <div className="mt-6 md:mt-0 md:-mt-8 lg:-mt-12 xl:-mt-20">
-                  <div
-                    className="relative will-change-transform translate-x-0 translate-y-6 md:-translate-x-[72px] md:translate-y-9 lg:-translate-x-[140px] lg:translate-y-11 xl:-translate-x-[180px] xl:translate-y-[50px]"
-                  >
+                <div className={mondyHero.handImage.stack}>
+                  <div className={mondyHero.handImage.nudge}>
                     <Image
                       src="/Handmock.webp"
                       alt="Hand holding a smartphone"
                       width={1177}
                       height={1094}
-                      className="relative z-0 w-full h-auto object-contain object-bottom drop-shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]"
+                      className={mondyHero.handImage.img}
                       priority
                     />
                     <div
@@ -140,6 +138,7 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* Product Hunt badge — re-enable when live on PH
         <div className="absolute bottom-10 left-12 z-20 hidden lg:block">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -163,14 +162,16 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
+        */}
 
-        <div className="absolute bottom-10 right-12 z-20 hidden lg:block">
+        <div className="absolute bottom-10 left-1/2 z-20 w-full max-w-[min(98vw,360px)] -translate-x-1/2 px-4 hidden lg:block">
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
+            className="mx-auto w-full max-w-sm"
           >
-            <HeroWaitlistCard />
+            <HeroWaitlistCard className="w-full max-w-sm" />
           </motion.div>
         </div>
       </div>

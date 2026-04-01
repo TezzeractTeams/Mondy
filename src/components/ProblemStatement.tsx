@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { mondyLayout } from "@/styles/mondy";
+import { mondyLayout, mondyType } from "@/styles/mondy";
 import { Clock, Lightbulb, SignalLow, VolumeX } from "lucide-react";
 
 export default function ProblemStatement() {
@@ -36,7 +36,7 @@ export default function ProblemStatement() {
         {/* Left Side: High-End Typography */}
         <div className="flex flex-col space-y-8 order-1 lg:order-1 relative z-10">
           <div className="space-y-4 relative z-10">
-            <h2 className="text-mondy-ink text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-[-0.06em] leading-[0.95] relative z-20">
+            <h2 className={cn(mondyType.sectionHeading, "relative z-20")}>
               You have ideas. <br />
               <span className="text-mondy-coral leading-tight block mt-2 sm:inline sm:mt-0 relative z-10">You don't have time.</span>
             </h2>

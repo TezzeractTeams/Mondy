@@ -35,12 +35,17 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "flex flex-col max-w-[95vw] lg:max-w-fit fixed top-6 md:top-10 inset-x-0 mx-auto border border-neutral-200/50 rounded-[2rem] md:rounded-full bg-white/80 backdrop-blur-md shadow-md z-[5000] transition-all duration-300",
+          "relative overflow-hidden flex flex-col max-w-[95vw] lg:max-w-fit fixed top-6 md:top-10 inset-x-0 mx-auto z-[5000] transition-all duration-300",
+          "rounded-[2rem] md:rounded-full",
+          "border border-white/50 ring-1 ring-black/[0.06]",
+          "bg-gradient-to-b from-white/80 via-white/50 to-white/35 backdrop-blur-xl backdrop-saturate-150",
+          "shadow-[0_8px_40px_-8px_rgb(0_0_0/0.08),0_4px_24px_-4px_rgb(112_143_219/0.14),inset_0_1px_0_0_rgb(255_255_255/0.7)]",
+          "before:pointer-events-none before:absolute before:inset-0 before:z-0 before:rounded-[inherit] before:bg-[linear-gradient(180deg,rgba(255,255,255,0.42)_0%,transparent_40%)]",
           isOpen ? "px-6 py-6" : "px-3 md:px-4 py-2",
           className
         )}
       >
-        <div className="flex items-center justify-between gap-2 lg:gap-10 w-full">
+        <div className="relative z-10 flex items-center justify-between gap-2 lg:gap-10 w-full">
           {/* Logo Slot */}
           <div className="flex items-center pl-1 md:pl-2 shrink-0">
             <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
@@ -49,7 +54,7 @@ export const FloatingNav = ({
           </div>
 
           {/* Navigation Items (Desktop) */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-12">
             {navItems.map((navItem: any, idx: number) => (
               <Link
                 key={`link=${idx}`}
@@ -58,7 +63,7 @@ export const FloatingNav = ({
                   "relative flex items-center gap-1 text-mondy-ink hover:text-neutral-500 transition-colors font-sans"
                 )}
               >
-                <span className="text-[14px] font-medium whitespace-nowrap">{navItem.name}</span>
+                <span className="text-[18px] font-medium whitespace-nowrap">{navItem.name}</span>
               </Link>
             ))}
           </div>
@@ -88,7 +93,7 @@ export const FloatingNav = ({
               initial={{ opacity: 0, height: 0, marginTop: 0 }}
               animate={{ opacity: 1, height: "auto", marginTop: 24 }}
               exit={{ opacity: 0, height: 0, marginTop: 0 }}
-              className="lg:hidden flex flex-col gap-6 w-full overflow-hidden"
+              className="relative z-10 lg:hidden flex flex-col gap-6 w-full overflow-hidden"
             >
               <div className="flex flex-col gap-4 pl-1">
                 {navItems.map((navItem: any, idx: number) => (

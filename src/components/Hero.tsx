@@ -89,7 +89,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex w-full flex-col items-center text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-mondy-ink tracking-tight md:tracking-[-0.07em] leading-[1.05] md:leading-[0.9] relative z-0 pointer-events-none shrink-0 pt-2 sm:pt-4 md:pt-14 px-4 md:px-0"
+                className="flex w-full flex-col items-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-mondy-ink tracking-tight md:tracking-[-0.07em] leading-[1.05] md:leading-[0.9] relative z-0 pointer-events-none shrink-0 pt-2 sm:pt-4 md:pt-14 px-4 md:px-0"
               >
                 <div className="flex flex-col items-center ">
                   <span className="w-full lg:w-max pt-6 md:pt-10 max-w-none shrink-0 lg:whitespace-nowrap text-center lg:text-left xl:text-center will-change-transform">

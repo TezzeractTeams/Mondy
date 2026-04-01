@@ -10,7 +10,8 @@ import {
   IconBrandInstagram,
   IconBrandYoutube,
   IconBrandBehance,
-  IconBrandDribbble
+  IconBrandDribbble,
+  IconBrandLinkedin
 } from "@tabler/icons-react";
 
 export default function Footer() {
@@ -64,6 +65,12 @@ export default function Footer() {
               >
                 Privacy Policy
               </Link>
+              <Link 
+                href="/privacy"
+                className="text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight"
+              >
+Terms & Conditions
+              </Link>
             </div>
  
             {/* Say hello! */}
@@ -73,9 +80,7 @@ export default function Footer() {
                 {[
                   { handle: '@mondy', icon: <IconBrandX size={14} className="text-white" /> },
                   { handle: '@mondy', icon: <IconBrandInstagram size={14} className="text-pink-500" /> },
-                  { handle: '@mondy', icon: <IconBrandBehance size={14} className="text-blue-400" /> },
-                  { handle: '@mondy', icon: <IconBrandYoutube size={14} className="text-red-500" /> },
-                  { handle: '@mondy', icon: <IconBrandDribbble size={14} className="text-pink-400" /> },
+                  { handle: '@mondy', icon: <IconBrandLinkedin size={14} className="text-blue-400" /> },
                 ].map((social, i) => (
                   <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 text-[12px] font-bold hover:bg-white/10 transition-all border border-white/10 cursor-pointer text-white">
                     {social.icon}

@@ -167,7 +167,7 @@ export default function Hero() {
         */}
 
         {/* Mobile / tablet: centered in viewport; lg+: bottom-centered strip */}
-        <div className="pointer-events-auto absolute left-1/2 top-7/8 sm:top-[58%] z-20 w-full max-w-[min(98vw,360px)] -translate-x-1/2 -translate-y-1/2 px-4 lg:top-auto lg:bottom-6 lg:translate-y-0">
+        <div className="pointer-events-auto absolute left-1/2 top-9/10 sm:top-[58%] z-20 w-full max-w-[min(98vw,360px)] -translate-x-1/2 -translate-y-1/2 px-4 lg:top-auto lg:bottom-6 lg:translate-y-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

@@ -1,27 +1,50 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { cn } from "@/lib/utils";
 import { mondyBtn } from "@/styles/mondy";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
-function JoinWaitlistForm() {
-  const searchParams = useSearchParams();
+function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(initialEmail);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    const prefill = searchParams.get("email");
-    if (prefill) setEmail(decodeURIComponent(prefill.trim()));
-  }, [searchParams]);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Waitlist submission:", { firstName, lastName, email });
-    // Handle form submission logic here
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
+      if (!res.ok) {
+        setStatus("error");
+        setMessage(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setStatus("success");
+      setMessage("You're on the list. We'll be in touch soon.");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+    } catch {
+      setStatus("error");
+      setMessage("Network error. Check your connection and try again.");
+    }
   };
+
+  const submitting = status === "loading";
+  const done = status === "success";
 
   return (
     <div className="flex min-h-dvh w-full flex-1 flex-col bg-white md:flex-row">
@@ -71,7 +94,8 @@ function JoinWaitlistForm() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="First name"
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all"
+                  disabled={submitting || done}
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
                   required
                 />
               </div>
@@ -85,7 +109,8 @@ function JoinWaitlistForm() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Last name"
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all"
+                  disabled={submitting || done}
+                  className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
                   required
                 />
               </div>
@@ -102,17 +127,34 @@ function JoinWaitlistForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all"
+                disabled={submitting || done}
+                className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
                 required
               />
             </div>
 
+            {message ? (
+              <p
+                role="status"
+                className={cn(
+                  "text-sm font-medium",
+                  status === "error" ? "text-red-600" : "text-mondy-accent",
+                )}
+              >
+                {message}
+              </p>
+            ) : null}
+
             {/* Submit Button */}
             <button
               type="submit"
-              className={cn(mondyBtn.primaryLg, "w-full mt-2 flex justify-center items-center")}
+              disabled={submitting || done}
+              className={cn(
+                mondyBtn.primaryLg,
+                "w-full mt-2 flex justify-center items-center disabled:opacity-50 disabled:pointer-events-none",
+              )}
             >
-              Join waitlist
+              {submitting ? "Joining…" : done ? "You're in" : "Join waitlist"}
             </button>
           </form>
 
@@ -140,6 +182,14 @@ function JoinWaitlistForm() {
   );
 }
 
+function JoinWaitlistFormWithParams() {
+  const searchParams = useSearchParams();
+  const raw = searchParams.get("email");
+  const initialEmail =
+    raw && raw.trim().length > 0 ? decodeURIComponent(raw.trim()) : "";
+  return <JoinWaitlistForm initialEmail={initialEmail} />;
+}
+
 export default function JoinWaitlist() {
   return (
     <Suspense
@@ -149,7 +199,7 @@ export default function JoinWaitlist() {
         </div>
       }
     >
-      <JoinWaitlistForm />
+      <JoinWaitlistFormWithParams />
     </Suspense>
   );
 }

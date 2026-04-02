@@ -9,7 +9,7 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
-      className="relative h-[100vh] w-full overflow-visible bg-mondy-surface px-6 py-28 font-noah md:px-12 md:py-32"
+      className="relative min-h-screen w-full overflow-visible bg-mondy-surface px-4 font-noah sm:px-6  md:px-12 "
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
@@ -32,7 +32,7 @@ export default function PricingSection() {
           "relative z-10 mx-auto w-[80%] overflow-visible",
         )}
       >
-        <header className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
+        <header className="mx-auto mb-10 max-w-3xl text-center sm:mb-12 md:mb-16 lg:mb-20">
           <h2
             className={cn(
               mondyType.sectionHeading,
@@ -47,7 +47,7 @@ export default function PricingSection() {
           </p>
         </header>
 
-        <div className="mx-auto grid grid-cols-1 items-stretch gap-8 overflow-visible md:grid-cols-3 md:gap-6 lg:gap-10">
+        <div className="mx-auto grid grid-cols-1 items-stretch gap-6 overflow-visible sm:gap-8 md:grid-cols-3 md:gap-6 lg:gap-10">
           <PricingFreeCard />
           <PricingProCard />
           <PricingEnterpriseCard />

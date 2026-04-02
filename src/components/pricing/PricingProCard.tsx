@@ -22,8 +22,8 @@ export function PricingProCard() {
   return (
     <div
       className={cn(
-        "relative z-10 flex h-[65vh]  min-h-0 justify-center overflow-visible",
-        "md:-mt-10",
+        "relative z-10 flex h-auto min-h-0 justify-center overflow-visible",
+        "md:-mt-10 md:h-[min(65vh,720px)] lg:h-[65vh]",
       )}
     >
       <div
@@ -88,36 +88,36 @@ export function PricingProCard() {
               </div>
             </div>
 
-            <ul className="min-h-[200px] flex-1 space-y-3  px-5 pt-1 sm:px-6">
-              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+            <ul className="min-h-[200px] flex-1 space-y-3  px-5 pt-1 text-mondy-ink/55 sm:px-6 ">
+              <li className="flex gap-3 text-sm font-medium leading-snug ">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}
                 />
                 <span>Everything in Free trial</span>
               </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+              <li className="flex gap-3 text-sm font-medium leading-snug ">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}
                 />
                 <span>Unlimited regenerations</span>
               </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+              <li className="flex gap-3 text-sm font-medium leading-snug ">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}
                 />
                 <span>Scheduling</span>
               </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+              <li className="flex gap-3 text-sm font-medium leading-snug ">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}
                 />
                 <span>Multiple PRO seats</span>
               </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+              <li className="flex gap-3 text-sm font-medium leading-snug ">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}

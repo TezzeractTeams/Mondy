@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 
+const LAST_UPDATED =
+  process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "April 2, 2026";
+
 export const metadata: Metadata = {
   title: "Privacy Policy | Mondy",
   description:
@@ -21,7 +24,7 @@ export default function PrivacyPolicy() {
               Privacy Policy
             </h1>
             <p className="text-black/60 font-medium">
-              Last updated: {new Date().toLocaleDateString()}
+              Last updated: {LAST_UPDATED}
             </p>
           </div>
 
@@ -84,7 +87,22 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="flex flex-col gap-4">
-              <h2 className="text-2xl font-bold tracking-tight">4. Contact Us</h2>
+              <h2 className="text-2xl font-bold tracking-tight">4. Cookies</h2>
+              <p className="opacity-80">
+                We use a small first-party cookie (
+                <code className="text-sm bg-black/5 px-1.5 py-0.5 rounded">
+                  mondy_cookie_consent
+                </code>
+                ) to remember your cookie choices (for example, essential-only
+                versus accepting optional cookies). This cookie does not track
+                you across other sites. You can change your mind by clearing
+                site data for this domain; the cookie banner will appear again
+                on your next visit.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">5. Contact Us</h2>
               <p className="opacity-80">
                 If you have questions or comments about this notice, you may
                 email us at{" "}

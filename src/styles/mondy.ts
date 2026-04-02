@@ -9,7 +9,7 @@ export const mondy = {
   ink: "#1C1A17",
   accent: "#708FDB",
   accentDeep: "#4E74D3",
-  card: "#FBFBF9",
+  card: "#EBF2FF",
   footer: "#1B1A16",
   coral: "#E17054",
   productHunt: "#FF6154",

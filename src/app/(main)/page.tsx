@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import ProblemStatement from "@/components/ProblemStatement";
 import HowItWorks from "@/components/HowItWorks";
-import Pricing from "@/components/Pricing";
+import PricingSection from "@/components/PricingSection";
 import Waitlist from "@/components/Waitlist";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -13,7 +13,7 @@ export default function Home() {
         <Hero />
         <ProblemStatement />
         <HowItWorks />
-        <Pricing />
+        <PricingSection />
         <Waitlist />
         <FAQ />
       </main>

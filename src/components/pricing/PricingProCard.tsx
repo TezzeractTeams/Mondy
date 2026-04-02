@@ -23,7 +23,7 @@ export function PricingProCard() {
     <div
       className={cn(
         "relative z-10 flex h-auto min-h-0 justify-center overflow-visible",
-        "md:-mt-10 md:h-[min(65vh,720px)] lg:h-[65vh]",
+        "md:-mt-10 lg:h-[70vh]",
       )}
     >
       <div

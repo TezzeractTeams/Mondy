@@ -6,14 +6,17 @@ import { mondyLayout, mondyType } from "@/styles/mondy";
 
 const faqData = [
   {
-    question: "How does Mondy learn my specific rhythm and phrasing?",
-    answer: "Mondy uses advanced Voice-Matching technology to analyze your past high-performing content. By identifying your unique syntax, recurring metaphors, and emotional cadence, it builds a dynamic profile that evolves with your writing style, ensuring every post feels like it came directly from you."
+    question: "Will it actually sound like me, or will it sound like AI?",
+    answer: "That' s the right question to ask. Most AI content tools sound like AI because they start from a blank prompt. Mondy starts from YOUR voice. Your phrasing, your specific examples, your actual reasoning. We ' re not generating ideas for you. We ' re translating what you already said into a format your audience can read. Here ’ s a suggestion- Try Mondy for yourself. Send the draft Mondy generates to someone who knows how you write and see if they can tell we wrote it. Because that' s the only benchmark that matters."
   },
   {
-    question: "Does it write differently for LinkedIn, X, and Threads?",
-    answer: "Absolutely. Mondy understands the native 'DNA' of each platform. It won't just cross-post; it adapts your core message into professional, authority-building long-form for LinkedIn, punchy engagement-driven threads for X, and conversational storytelling for Threads—all while maintaining your consistent voice."
+    question: "I've tried tools like this before. Why is this different?",
+    answer: "You probably tried something that required you to write first, then helped you write better. Mondy removes the writing entirely. You talk (the way you 'd explain something to a friend) and we handle the rest. And we ’ ve pre-trained Mondy to remember the best writing styles that works for each platform. So all you need to do is just speak."
   },
   {
+    question: "Does Mondy learn my tone/voice overtime?",
+    answer: "Yes. The first set of posts will be good. By the fourth or fifth, it' s noticeably more calibrated. Mondy will remember your cadence, your recurring themes, the way you tend to open a thought. It will even pays attention to the exact way a post looks when you approve it."
+  },{
     question: "How does this replace a traditional ghostwriter workflow?",
     answer: "Traditional ghostwriting requires hours of interviews and constant back-and-forth. Mondy removes the friction. You provide the 'seed'—a voice memo, a rough note, or a link—and Mondy generates a full weekly run of content in seconds, ready for your final 1% polish. It's your voice, without the wait."
   },

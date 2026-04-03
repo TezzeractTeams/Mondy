@@ -7,15 +7,15 @@ export default function HowItWorks() {
   const steps = [
     {
       title: "Hit record",
-      desc: "Open the app and speak your mind. A thought, a story, an opinion, whatever's on your mind.",
+      desc: "Open Mondy and talk to it like a friend. Tell it about your day, an incident, or anything that you’d like the posts to be about.",
     },
     {
       title: "Review your transcript",
-      desc: "Mondy instantly transcribes your recording. Clean, accurate, and ready to work with.",
+      desc: "Mondy transcribes your recording live, sallowing you to edit it on the spot",
     },
     {
-      title: "Publish your content",
-      desc: "Select how many posts you want to create and where you want to publish. Mondy does the rest.",
+      title: "Edit & Publish",
+      desc: "Once your posts are generated, make any weaks and schedule/publish your posts",
     },
   ];
 
@@ -31,7 +31,7 @@ export default function HowItWorks() {
             How It <span className="text-mondy-accent">Works</span>
           </h2>
           <p className={mondyType.sectionLead}>
-            Between running teams, closing deals, and building products, sitting down to
+            Between running teams, closing deals, and building your business,<br /> sitting down to
             write content never makes the cut.
           </p>
         </div>

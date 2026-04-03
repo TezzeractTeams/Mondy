@@ -72,8 +72,7 @@ export default function Waitlist() {
             whileInView={{ opacity: 1, y: 0 }}
             className={mondyType.sectionHeading}
           >
-            Get Early Access
-          </motion.h2>
+Be the first to use Mondy.          </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -81,8 +80,9 @@ export default function Waitlist() {
             transition={{ delay: 0.1 }}
             className={mondyType.waitlistSubtitle}
           >
-            We're getting close. Sign up to get early access to <br className="hidden md:block" />
-            Mondy and start building your viral presence.
+           We
+'
+re getting close! Join the waitlist today <br /> and get early access when we go live.
           </motion.p>
         </div>
 

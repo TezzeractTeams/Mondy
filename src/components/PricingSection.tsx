@@ -39,11 +39,11 @@ export default function PricingSection() {
               "text-balance text-4xl sm:text-5xl md:text-6xl",
             )}
           >
-            Transparent pricing, with a top-tier content partner
+            Simple, transparent pricing.
           </h2>
           <p className={cn(mondyType.sectionLead, "mx-auto mt-5 max-w-2xl text-balance")}>
-            Simple plans tailored to how you publish—so you get consistency
-            without the grind.
+          It now costs less than your monthly coffee
+          budget to be active on social media.
           </p>
         </header>
 

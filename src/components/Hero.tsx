@@ -174,12 +174,12 @@ export default function Hero() {
         */}
 
         {/* Mobile / tablet: centered in viewport; lg+: bottom-centered strip */}
-        <div className="pointer-events-auto absolute left-1/2 top-9/10 sm:top-[58%] z-20 w-full max-w-[min(98vw,360px)] -translate-x-1/2 -translate-y-1/2 px-4 lg:top-[85%] lg:bottom-6 lg:translate-y-0">
+        <div className="pointer-events-auto absolute left-1/2 top-9/10 sm:top-[58%] z-20 w-full max-w-[min(98vw,600px)] -translate-x-1/2 -translate-y-1/2 px-4 lg:top-[85%] lg:bottom-6 lg:translate-y-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="mx-auto w-full max-w-sm shadow-lg shadow-black/10 rounded-3xl lg:shadow-none"
+            className="mx-auto w-full max-w-[600px] shadow-lg shadow-black/10 rounded-3xl lg:shadow-none"
           >
             <HeroWaitlistCard className="w-full" />
           </motion.div>

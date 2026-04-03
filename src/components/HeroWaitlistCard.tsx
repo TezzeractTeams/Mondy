@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { mondyBtn } from "@/styles/mondy";
 
@@ -8,38 +10,38 @@ type HeroWaitlistCardProps = {
 };
 
 /**
- * Compact waitlist card: white elevated shell, centered email field, inset pill CTA.
+ * Compact waitlist row matching the main Waitlist section form shell.
  */
 export default function HeroWaitlistCard({ className }: HeroWaitlistCardProps) {
+  const [email, setEmail] = useState("");
+  const emailStr = email.trim();
+  const infopageHref =
+    emailStr.length > 0 ? `/infopage?email=${encodeURIComponent(emailStr)}` : "/infopage";
+
   return (
-    <form
-      action="/infopage"
-      method="get"
-      className={cn(
-        "flex w-[130%] flex-col rounded-3xl border border-black/[0.06] bg-white  ",
-        className,
-      )}
-    >
-      <label htmlFor="hero-waitlist-email" className="sr-only">
-        Your email address
-      </label>
-      <input
-        id="hero-waitlist-email"
-        type="email"
-        name="email"
-        placeholder="Your email address"
-        autoComplete="email"
-        className="w-full appearance-none rounded-none border-0 bg-transparent px-2 py-3 text-center text-[15px] font-medium tracking-[-0.02em] text-mondy-ink placeholder:text-center placeholder:text-mondy-ink/35 outline-none "
-      />
-      <button
-        type="submit"
-        className={cn(
-          "w-full cursor-pointer border-0 text-center text-[15px] outline-none",
-          mondyBtn.primaryHeroSubmit,
-        )}
-      >
-        Join the waitlist
-      </button>
-    </form>
+    <div className={cn("w-full  px-4 md:px-0", className)}>
+      <div className="flex flex-col items-center gap-4 rounded-3xl border border-white/60 bg-white p-2 shadow-mondy-form md:flex-row md:rounded-full md:pl-8">
+        <label htmlFor="hero-waitlist-email" className="sr-only">
+          Your email address
+        </label>
+        <div className="flex w-full flex-1 items-center">
+          <input
+            id="hero-waitlist-email"
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Your email address"
+            className="w-full border-none bg-transparent px-4 py-4 text-lg font-medium tracking-tight text-mondy-ink outline-none placeholder:text-mondy-ink/30 md:px-0 md:py-0"
+          />
+        </div>
+        <Link
+          href={infopageHref}
+          className={cn(mondyBtn.primaryLg, "block w-full text-center md:w-auto")}
+        >
+          Join the waitlist
+        </Link>
+      </div>
+    </div>
   );
 }

@@ -21,8 +21,3 @@ export const INNER_RADIUS_TB_CLASS =
 
 export const FEATURED_SHELL_GRADIENT =
   "bg-gradient-to-r from-[#FFBDAA] to-[#88A3E6]";
-
-export const FEATURED_CTA_CLASS = cn(
-  "bg-[#88A3E6]  text-white",
-  "",
-);

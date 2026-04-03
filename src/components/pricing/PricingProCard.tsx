@@ -1,12 +1,8 @@
 import React from "react";
 import { Check, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  CARD_RADIUS,
-  CARD_SHADOW,
-  FEATURED_CTA_CLASS,
-  FEATURED_SHELL_GRADIENT,
-} from "./pricing-styles";
+import { CARD_RADIUS, CARD_SHADOW, FEATURED_SHELL_GRADIENT } from "./pricing-styles";
+import { mondyBtn } from "@/styles/mondy";
 
 /**
  * Pro — gradient frame is wider from `md` only.
@@ -67,14 +63,7 @@ export function PricingProCard() {
               </p>
 
               <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
-                <button
-                  type="button"
-                  className={cn(
-                    "shrink-0 rounded-full px-6 py-3 text-sm font-bold transition-all",
-                    FEATURED_CTA_CLASS,
-                    "hover:scale-[1.02] active:scale-95",
-                  )}
-                >
+                <button type="button" className={cn(mondyBtn.primaryLg, "shrink-0")}>
                   Get Started
                 </button>
                 <div className="text-left sm:text-right">

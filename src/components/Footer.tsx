@@ -23,17 +23,12 @@ export default function Footer() {
       <footer className="w-full max-w-none bg-mondy-footer py-24 px-8 md:px-14 text-white font-sans overflow-hidden flex flex-col rounded-t-mondy-footer">
         {/* 1. TOP CONTENT AREA (Grid and Header) */}
         <div className={cn(mondyLayout.contentMax, "mb-0")}>
-          <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-8">
+          {/* <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-8">
             <h3 className="text-[2.5rem] md:text-[3.5rem] font-medium leading-[1.05] tracking-[-0.04em] text-white">
               The curated sanctuary for<br />your aesthetic journey
             </h3>
-            <Link
-              href="mailto:hello@mondy.ai"
-              className="px-10 py-4 rounded-full border border-white/20 text-lg font-medium transition-all hover:bg-white hover:text-black hover:brightness-110 hover:scale-[1.02] active:scale-95"
-            >
-              Contact
-            </Link>
-          </div>
+            
+          </div> */}
  
           {/* Links Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
@@ -71,6 +66,12 @@ export default function Footer() {
               >
 Terms & Conditions
               </Link>
+              <Link
+              href="mailto:hello@mondy.ai"
+              className="text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight"
+            >
+              Contact Us
+            </Link>
             </div>
  
             {/* Say hello! */}

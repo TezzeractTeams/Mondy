@@ -36,7 +36,18 @@ export default function Waitlist() {
   }, []);
 
   return (
-    <section className="relative w-full bg-mondy-surface pt-32 pb-32 md:pb-48 px-6 md:px-12 overflow-hidden font-noah">
+    <section className="relative w-full overflow-hidden bg-mondy-surface px-6 pt-32 pb-32 font-noah md:px-12 md:pb-48">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute -left-[10%] top-[8%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-primary-70/45 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="absolute right-[-5%] top-[35%] h-[min(380px,50vw)] w-[min(380px,50vw)] rounded-full bg-secondary-70/40 blur-3xl"
+          aria-hidden
+        />
+        
+      </div>
 
       <div className={cn(mondyLayout.contentMax, "relative z-10 flex flex-col items-center")}>
 

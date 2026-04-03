@@ -21,7 +21,7 @@ export default function PricingSection() {
           aria-hidden
         />
         <div
-          className="absolute bottom-[5%] left-[30%] h-[min(360px,45vw)] w-[min(360px,45vw)] rounded-full bg-mondy-coral/20 blur-3xl"
+          className="absolute top-[30%] left-[30%] h-[min(360px,45vw)] w-[min(360px,45vw)] rounded-full bg-mondy-coral/20 blur-3xl"
           aria-hidden
         />
       </div>

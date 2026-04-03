@@ -28,8 +28,15 @@ export default function Hero() {
         }}
       />
 
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center">
-        <NeomorphicRippleBackground surfaceColor={mondy.surface} />
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden" aria-hidden>
+          <div className="absolute -left-[10%] top-[8%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-primary-70/45 blur-3xl" />
+          <div className="absolute right-[-5%] top-[35%] h-[min(380px,50vw)] w-[min(380px,50vw)] rounded-full bg-secondary-70/40 blur-3xl" />
+          <div className="absolute bottom-[5%] left-[30%] h-[min(360px,45vw)] w-[min(360px,45vw)] rounded-full bg-mondy-coral/20 blur-3xl" />
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <NeomorphicRippleBackground surfaceColor={mondy.surface} />
+        </div>
       </div>
 
       {/* Decorative postcards — hidden below lg so they never crowd small viewports */}

@@ -47,22 +47,22 @@ export const mondyBtn = {
 
 export const mondyType = {
   sectionHeading: cn(
-    "text-mondy-ink text-6xl font-extrabold tracking-[-0.06em] leading-[0.9]",
+    "font-noah text-mondy-ink text-6xl font-extrabold tracking-[-0.06em] leading-[0.9]",
   ),
   sectionLead: cn(
-    "text-mondy-ink/60 text-lg md:text-xl font-medium tracking-tight leading-relaxed",
+    "font-noah text-mondy-ink/60 text-lg md:text-xl font-medium tracking-tight leading-relaxed",
   ),
   waitlistSubtitle: cn(
-    "text-mondy-ink/50 text-xl md:text-2xl font-medium tracking-[-0.05em] leading-[1.2]",
+    "font-noah text-mondy-ink/50 text-xl md:text-2xl font-medium tracking-[-0.05em] leading-[1.2]",
   ),
   stepTitle: cn(
-    "text-mondy-ink text-2xl font-extrabold tracking-[-0.05em] leading-[1.1] mb-4",
+    "font-noah text-mondy-ink text-2xl font-extrabold tracking-[-0.05em] leading-[1.1] mb-4",
   ),
   stepBody: cn(
-    "text-mondy-ink/60 text-lg font-medium tracking-[-0.03em] leading-relaxed",
+    "font-noah text-mondy-ink/60 text-lg font-medium tracking-[-0.03em] leading-relaxed",
   ),
   screenshotPlaceholder: cn(
-    "relative z-10 text-[10px] text-mondy-ink/20 font-bold uppercase tracking-widest",
+    "font-noah relative z-10 text-[10px] text-mondy-ink/20 font-bold uppercase tracking-widest",
   ),
 } as const;
 

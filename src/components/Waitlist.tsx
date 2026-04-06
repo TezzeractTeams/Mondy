@@ -222,3 +222,4 @@ export default function Waitlist() {
       </div>
     </section>
   );
+}

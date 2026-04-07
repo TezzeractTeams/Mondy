@@ -67,7 +67,8 @@ export const mondyType = {
 } as const;
 
 export const mondyHero = {
-  floatingCardSizes: "(min-width: 1024px) 320px, 90vw",
+  /** `sizes` slot widths as % of viewport (≈320px at 1280px for lg+). */
+  floatingCardSizes: "(min-width: 720px) 25%, 90%",
 
   /**
    * Hand mock (`Handmock.webp`) — tweak layout here instead of hunting classes in Hero.tsx.

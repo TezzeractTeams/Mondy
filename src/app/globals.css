@@ -4,6 +4,7 @@
   --font-noah: "Noah", system-ui, sans-serif;
   --font-waffle: "Waffle Soft", system-ui, sans-serif;
   --font-sans: var(--font-noah); /* Make Noah the default sans font */
+  --blur-card: blur(30px);
 }
 
 :root {

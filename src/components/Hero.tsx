@@ -7,6 +7,7 @@ import HeroWaitlistCard from "@/components/HeroWaitlistCard";
 import { NeomorphicRippleBackground } from "@/components/NeomorphicRippleBackground";
 import { cn } from "@/lib/utils";
 import { mondy, mondyHero, mondyLayout } from "@/styles/mondy";
+import PostCard from "@/components/PostCard";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
@@ -48,21 +49,32 @@ export default function Hero() {
         aria-hidden
       >
         <motion.div
-          className="origin-center -rotate-[6deg]"
+          className="origin-center -rotate-[6deg] relative w-full overflow-visible"
           animate={reduceMotion ? { y: 0 } : { y: [0, -15, 0] }}
           transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Image
-            src="/PostCard.png"
-            alt="Social post preview"
-            width={1380}
-            height={1596}
-            className="h-auto w-full rounded-[32px]"
-            sizes={mondyHero.floatingCardSizes}
-            quality={92}
-          />
+          <div className="relative isolate w-full rounded-[32px] shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)]">
+            <div className="relative isolate flex aspect-[1380/1596] w-full items-center justify-center overflow-hidden rounded-[32px]">
+              <div
+                className="pointer-events-none absolute inset-0 z-0 border-2 border-white/60 bg-white/10"
+                style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
+                aria-hidden
+              />
+              <Image
+                src="/micheal2.png"
+                alt="Social post preview"
+                width={1380}
+                height={1596}
+                className="relative z-10 h-[95%] w-[95%] object-contain"
+                sizes={mondyHero.floatingCardSizes}
+                quality={92}
+              />
+            </div>
+          </div>
         </motion.div>
+        
       </motion.div>
+      
 
       <motion.div
         initial={{ opacity: 0, x: 50 }}
@@ -76,15 +88,24 @@ export default function Hero() {
           animate={reduceMotion ? { y: 0 } : { y: [0, -20, 0] }}
           transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
         >
-          <Image
-            src="/PostCard.png"
-            alt="Social post preview"
-            width={1380}
-            height={1596}
-            className="h-auto w-full"
-            sizes={mondyHero.floatingCardSizes}
-            quality={92}
-          />
+          <div className="relative isolate w-full rounded-[32px] shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)]">
+            <div className="relative isolate flex aspect-[1380/1596] w-full items-center justify-center overflow-hidden rounded-[32px]">
+              <div
+                className="pointer-events-none absolute inset-0 z-0 border-2 border-white/60 bg-white/10"
+                style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
+                aria-hidden
+              />
+              <Image
+                src="/bruce2.png"
+                alt="Social post preview"
+                width={1380}
+                height={1596}
+                className="relative z-10 h-[95%] w-[95%] object-contain"
+                sizes={mondyHero.floatingCardSizes}
+                quality={92}
+              />
+            </div>
+          </div>
         </motion.div>
       </motion.div>
 

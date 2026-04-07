@@ -26,7 +26,7 @@ export default function PricingSection() {
       <div
         className={cn(
           mondyLayout.contentMax,
-          "relative z-10 mx-auto w-[80%] overflow-visible",
+          "relative z-10 mx-auto w-[90%] overflow-visible",
         )}
       >
         <header className="mx-auto mb-10 max-w-3xl text-center sm:mb-12 md:mb-16 lg:mb-20">

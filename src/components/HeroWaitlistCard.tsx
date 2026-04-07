@@ -20,7 +20,7 @@ export default function HeroWaitlistCard({ className }: HeroWaitlistCardProps) {
 
   return (
     <div className={cn("w-full  px-4 md:px-0", className)}>
-      <div className="flex flex-col items-center sm:gap-4 rounded-3xl border border-white/60 bg-white p-2 shadow-mondy-form md:flex-row md:rounded-full md:pl-8">
+      <div className="flex flex-col items-center sm:gap-4 rounded-3xl border border-white/60 bg-white p-2 shadow-sm md:flex-row md:rounded-full md:pl-8">
         <label htmlFor="hero-waitlist-email" className="sr-only">
           Your email address
         </label>

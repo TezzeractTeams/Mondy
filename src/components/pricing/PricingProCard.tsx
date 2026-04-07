@@ -11,7 +11,7 @@ import { mondyBtn } from "@/styles/mondy";
  */
 export function PricingProCard() {
   const topPanelClass = cn(
-    "w-full shrink-0 border-b border-mondy-ink/[0.07] bg-white px-5 pb-5 pt-6 sm:px-6 sm:pb-6 sm:pt-7",
+    "w-full border-b border-mondy-ink/[0.07] bg-white px-5 pb-5 pt-6 sm:px-6 sm:pb-6 sm:pt-7",
     "rounded-t-[calc(2.5rem-5px)] rounded-b-[calc(2.5rem-5px)] md:rounded-t-[calc(2.5rem-10px)] md:rounded-b-[calc(2.5rem-10px)]",
   );
 
@@ -63,7 +63,7 @@ export function PricingProCard() {
               </p>
 
               <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
-                <button type="button" className={cn(mondyBtn.primaryLg, "shrink-0")}>
+                <button type="button" className={cn(mondyBtn.primaryLg, "whitespace-nowrap")}>
                   Get Started
                 </button>
                 <div className="text-left sm:text-right">

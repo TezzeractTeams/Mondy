@@ -31,7 +31,7 @@ const btnPrimaryCore = cn(
 
 export const mondyBtn = {
   primaryMd: cn(btnPrimaryCore, "rounded-full px-10 py-4 text-sm tracking-tight shadow-xl shadow-mondy-accent/20"),
-  primaryLg: cn(btnPrimaryCore, "rounded-full px-6 py-3 text-lg tracking-[-0.03em] shadow-xl shadow-mondy-accent/20"),
+  primaryLg: cn(btnPrimaryCore, "rounded-full px-6 py-3 text-sm tracking-[-0.03em] shadow-xl shadow-mondy-accent/20"),
   primaryPricing: cn(
     btnPrimaryCore,
     "w-full py-5 rounded-full text-lg tracking-[-0.05em] shadow-lg shadow-mondy-accent/20",

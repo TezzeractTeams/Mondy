@@ -50,7 +50,7 @@ export const mondyType = {
     "font-noah text-mondy-ink  text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.06em] leading-[0.9]",
   ),
   sectionHeading: cn(
-    "font-noah text-mondy-ink  text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.06em] leading-[0.9]",
+    "font-noah text-mondy-ink  text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.06em] leading-[1]",
   ),
   sectionLead: cn(
     "font-noah text-mondy-ink/60 text-lg md:text-xl font-medium tracking-tight leading-relaxed",

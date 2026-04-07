@@ -9,7 +9,7 @@ const founderPainLines = [
   "have no time to write.",
   "don't have the capacity for social media.",
   "can't show up consistently.",
-  "are invisible online",
+  "are invisible online.",
 ] as const;
 
 export default function ProblemStatement() {

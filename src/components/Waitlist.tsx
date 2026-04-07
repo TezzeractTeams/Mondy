@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Clock, Star } from "lucide-react";
-import { IconBrandLinkedin, IconBrandFacebook, IconBrandInstagram } from "@tabler/icons-react";
+import { IconBrandLinkedin, IconBrandFacebook, IconBrandInstagram, IconBrandX } from "@tabler/icons-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { mondyBtn, mondyLayout, mondyType } from "@/styles/mondy";
@@ -198,7 +198,7 @@ re getting close! Join the waitlist today <br /> and get early access when we go
                 {[
                   { Icon: IconBrandLinkedin, color: 'bg-[#0A66C2]' },
                   { Icon: IconBrandFacebook, color: 'bg-[#1877F2]' },
-                  { Icon: IconBrandInstagram, color: 'bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF]' },
+                  { Icon: IconBrandX, color: 'bg-black' },
                 ].map(({ Icon, color }, i) => (
                   <div key={i} className={`w-8 h-8 rounded-full border-2 border-white ${color} flex items-center justify-center`}>
                     <Icon size={14} className="text-white" stroke={1.5} />

@@ -43,7 +43,7 @@ export default function FAQ() {
 
         {/* Left Column: Sticky Header & Support Card */}
         <div className="md:sticky  space-y-8">
-          <div className="space-y-4">
+          <div className="space-y-4  w-[90%] mx-auto text-center">
             <h2 className={mondyType.sectionHeading}>
               Frequently  Asked <span className="text-mondy-coral">Questions</span>
             </h2>

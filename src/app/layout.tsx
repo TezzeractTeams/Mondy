@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
 import "./globals.css";
+
+const noah = localFont({
+  src: [
+    { path: "../fonts/noah-regular.otf", weight: "400", style: "normal" },
+    { path: "../fonts/noah-bold.otf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-noah-stack",
+  display: "swap",
+  fallback: ["system-ui", "sans-serif"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,10 +40,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${noah.variable} ${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} font-noah antialiased !bg-[#f5f3f0] min-h-screen text-mondy-ink tracking-[-0.05em] leading-[1.2]`}
+        className="font-noah antialiased !bg-[#f5f3f0] min-h-screen text-mondy-ink tracking-[-0.05em] leading-[1.2]"
       >
         {children}
         <CookieConsentBanner />

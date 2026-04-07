@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-noah: "Noah", system-ui, sans-serif;
+  /* --font-noah-stack is set by next/font/local on <html> (src/app/layout.tsx) */
+  --font-noah: var(--font-noah-stack), system-ui, sans-serif;
   --font-waffle: "Waffle Soft", system-ui, sans-serif;
   --font-sans: var(--font-noah); /* Make Noah the default sans font */
   --blur-card: blur(30px);
@@ -40,7 +41,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-noah);
-  --font-waffle: var(--font-waffle);
+  --font-waffle: "Waffle Soft", system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 
   --color-primary-100: var(--primary-100);

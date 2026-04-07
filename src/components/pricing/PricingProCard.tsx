@@ -11,7 +11,7 @@ import { mondyBtn } from "@/styles/mondy";
  */
 export function PricingProCard() {
   const topPanelClass = cn(
-    "w-full border-b border-mondy-ink/[0.07] bg-white px-5 pb-5 pt-6 sm:px-6 sm:pb-6 sm:pt-7",
+    "w-full shrink-0 border-b border-mondy-ink/[0.07] bg-white px-5 pb-5 pt-6 sm:px-6 sm:pb-6 sm:pt-7",
     "rounded-t-[calc(2.5rem-5px)] rounded-b-[calc(2.5rem-5px)] md:rounded-t-[calc(2.5rem-10px)] md:rounded-b-[calc(2.5rem-10px)]",
   );
 
@@ -19,7 +19,7 @@ export function PricingProCard() {
     <div
       className={cn(
         "relative z-10 flex h-auto min-h-0 justify-center overflow-visible",
-        "md:-mt-10 lg:h-[70 vh]",
+        "md:-mt-10",
       )}
     >
       <div

@@ -26,12 +26,12 @@ export default function HowItWorks() {
       <div className="w-80% bg-mondy-accent-deep/5 border border-black/[0.03] rounded-mondy-section py-24 px-6 md:px-16 relative overflow-hidden shadow-mondy-section">
 
         {/* Header */}
-        <div className="text-center mb-20 space-y-4 max-w-3xl mx-auto relative z-10">
+        <div className="text-center mb-20 space-y-4 max-w-xl mx-auto relative z-10">
           <h2 className={mondyType.sectionHeading}>
             How It <span className="text-mondy-accent">Works</span>
           </h2>
           <p className={mondyType.sectionLead}>
-            Between running teams, closing deals, and building your business,<br /> sitting down to
+            Between running teams, closing deals, and building your business, sitting down to
             write content never makes the cut.
           </p>
         </div>

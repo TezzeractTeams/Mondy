@@ -37,15 +37,15 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative sm:w-[80%] max-w-full shrink-0 mx-auto bg-mondy-surface py-20 px-6 md:px-12 overflow-hidden font-noah"
+      className="relative sm:w-[80%] max-w-full shrink-0 mx-auto bg-mondy-surface pb-20 px-6 md:px-12 overflow-hidden font-noah"
     >
-      <div className={cn(mondyLayout.contentMax, "grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 items-center")}>
+      <div className={cn(mondyLayout.contentMax, "grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 items-start")}>
 
         {/* Left Column: Sticky Header & Support Card */}
         <div className="md:sticky  space-y-8">
           <div className="space-y-4">
             <h2 className={mondyType.sectionHeading}>
-              Frequently <br /> Asked <br /> <span className="text-mondy-coral">Questions</span>
+              Frequently  Asked <span className="text-mondy-coral">Questions</span>
             </h2>
           </div>
 

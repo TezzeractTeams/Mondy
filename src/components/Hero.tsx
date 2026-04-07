@@ -7,10 +7,12 @@ import HeroWaitlistCard from "@/components/HeroWaitlistCard";
 import { NeomorphicRippleBackground } from "@/components/NeomorphicRippleBackground";
 import { cn } from "@/lib/utils";
 import { mondy, mondyHero, mondyLayout } from "@/styles/mondy";
-import PostCard from "@/components/PostCard";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
+  const { activePreset, presetWidths, presetSizes } = mondyHero.floatingCards;
+  const floatingCardWidthClass = presetWidths[activePreset];
+  const floatingCardSizes = presetSizes[activePreset];
 
   return (
     <section className="relative box-border h-[100dvh] max-h-[100dvh] min-h-0 w-full shrink-0 overflow-x-hidden overflow-y-clip flex flex-col bg-mondy-surface">
@@ -40,12 +42,15 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Decorative postcards — hidden below lg so they never crowd small viewports */}
+      {/* Decorative postcards — smaller on sm/md; peeks from edges so copy stays readable */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none absolute left-[12vw] top-[40vh] z-[20] hidden lg:block w-[320px]"
+        className={cn(
+          "pointer-events-none absolute z-[30] hidden sm:block -left-[8%] sm:left-[max(-1rem,calc(50vw-22rem))] md:left-[max(0.5rem,calc(50vw-26rem))] lg:left-[12vw] top-[32vh] sm:top-[36vh] md:top-[38vh] lg:top-[40vh] opacity-80 sm:opacity-90 lg:opacity-100",
+          floatingCardWidthClass,
+        )}
         aria-hidden
       >
         <motion.div
@@ -53,8 +58,8 @@ export default function Hero() {
           animate={reduceMotion ? { y: 0 } : { y: [0, -15, 0] }}
           transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="relative isolate w-full rounded-[32px] shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)]">
-            <div className="relative isolate flex aspect-[1380/1596] w-full items-center justify-center overflow-hidden rounded-[32px]">
+          <div className="relative isolate w-full rounded-2xl shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)] sm:rounded-[28px] lg:rounded-[32px]">
+            <div className="relative isolate flex aspect-[1132/1520] w-full items-center justify-center overflow-hidden rounded-2xl sm:rounded-[28px] lg:rounded-[32px]">
               <div
                 className="pointer-events-none absolute inset-0 z-0 border-2 border-white/60 bg-white/10"
                 style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
@@ -63,10 +68,9 @@ export default function Hero() {
               <Image
                 src="/micheal2.png"
                 alt="Social post preview"
-                width={1380}
-                height={1596}
-                className="relative z-10 h-[95%] w-[95%] object-contain"
-                sizes={mondyHero.floatingCardSizes}
+                fill
+                className="z-10 object-contain"
+                sizes={floatingCardSizes}
                 quality={92}
               />
             </div>
@@ -80,16 +84,19 @@ export default function Hero() {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none absolute right-[16vw] top-[46vh] z-[20] hidden lg:block w-[320px]"
+        className={cn(
+          "pointer-events-none absolute z-[30] hidden sm:block -right-[8%] sm:right-[max(-1rem,calc(50vw-22rem))] md:right-[max(0.5rem,calc(50vw-26rem))] lg:right-[16vw] top-[38vh] sm:top-[42vh] md:top-[44vh] lg:top-[46vh] opacity-80 sm:opacity-90 lg:opacity-100",
+          floatingCardWidthClass,
+        )}
         aria-hidden
       >
         <motion.div
-          className="origin-center rotate-[6deg]"
+          className="origin-center rotate-[6deg] relative w-full overflow-visible"
           animate={reduceMotion ? { y: 0 } : { y: [0, -20, 0] }}
           transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
         >
-          <div className="relative isolate w-full rounded-[32px] shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)]">
-            <div className="relative isolate flex aspect-[1380/1596] w-full items-center justify-center overflow-hidden rounded-[32px]">
+          <div className="relative isolate w-full rounded-2xl shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)] sm:rounded-[28px] lg:rounded-[32px]">
+            <div className="relative isolate flex aspect-[566/568] w-full items-center justify-center overflow-hidden rounded-2xl sm:rounded-[28px] lg:rounded-[32px]">
               <div
                 className="pointer-events-none absolute inset-0 z-0 border-2 border-white/60 bg-white/10"
                 style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
@@ -98,10 +105,9 @@ export default function Hero() {
               <Image
                 src="/bruce2.png"
                 alt="Social post preview"
-                width={1380}
-                height={1596}
-                className="relative z-10 h-[95%] w-[95%] object-contain"
-                sizes={mondyHero.floatingCardSizes}
+                fill
+                className="z-10 object-contain"
+                sizes={floatingCardSizes}
                 quality={92}
               />
             </div>
@@ -195,7 +201,7 @@ export default function Hero() {
         */}
 
         {/* Mobile / tablet: centered in viewport; lg+: bottom-centered strip */}
-        <div className="pointer-events-auto absolute left-1/2 top-9/10 sm:top-[58%] z-20 w-full max-w-[min(98vw,600px)] -translate-x-1/2 -translate-y-1/2 px-4 lg:top-[85%] lg:bottom-6 lg:translate-y-0">
+        <div className="pointer-events-auto absolute left-1/2 top-9/10 sm:top-[58%] z-20 w-full max-w-[min(98vw,600px)] -translate-x-1/2 -translate-y-1/2 px-4 md:top-[85%] md:bottom-6 lg:translate-y-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

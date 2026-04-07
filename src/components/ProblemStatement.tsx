@@ -14,7 +14,7 @@ const founderPainLines = [
 
 export default function ProblemStatement() {
   return (
-    <div className="relative w-full min-h-[80vh] bg-mondy-surface font-noah">
+    <div className="relative w-full min-h-[calc(100dvh/3)] bg-mondy-surface font-noah">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
           className="absolute -left-[10%] top-[8%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-secondary-70/40 blur-3xl"
@@ -28,13 +28,13 @@ export default function ProblemStatement() {
       </div>
       <section
         id="solution"
-        className="relative z-10 flex min-h-[80vh] flex-col justify-center px-6 py-20 md:py-28"
+        className="relative z-10 flex min-h-[50vh] flex-col justify-center px-6 py-10 md:py-14"
       >
         <div className={cn(mondyLayout.contentMax, "text-center")}>
           <h2 className={cn(mondyType.sectionHeading, "leading-[1.05]")}>
             <span className="block text-mondy-ink">Most Founders</span>
             <TypingAnimation
-              className="block text-[#7D8FE8] mt-1"
+              className="block text-[#7D8FE8] leading-[1.05] tracking-[-0.05em] mt-1"
               words={[...founderPainLines]}
               loop
             />

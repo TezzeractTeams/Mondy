@@ -17,11 +17,11 @@ export default function ProblemStatement() {
     <div className="relative w-full min-h-[calc(100dvh/3)] bg-mondy-surface font-noah">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
-          className="absolute -left-[10%] top-[8%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-secondary-70/40 blur-3xl"
+          className="absolute -left-[10%] top-[8%] h-[min(260px,36vw)] w-[min(260px,36vw)] rounded-full bg-secondary-70/40 blur-3xl"
           aria-hidden
         />
         <div
-          className="absolute right-[-5%] top-[35%] h-[min(380px,50vw)] w-[min(380px,50vw)] rounded-full bg-primary-70/40 blur-3xl"
+          className="absolute right-[-5%] top-[15%] h-[min(240px,32vw)] w-[min(240px,32vw)] rounded-full bg-primary-70/40 blur-3xl"
           aria-hidden
         />
        

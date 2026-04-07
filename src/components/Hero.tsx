@@ -206,7 +206,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="mx-auto w-full max-w-[600px] shadow-lg shadow-black/10 rounded-3xl lg:shadow-none"
+            className="mx-auto "
           >
             <HeroWaitlistCard className="w-full" />
           </motion.div>

@@ -58,7 +58,7 @@ export default function Hero() {
           animate={reduceMotion ? { y: 0 } : { y: [0, -15, 0] }}
           transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="relative isolate w-full rounded-2xl shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)] sm:rounded-[28px] lg:rounded-[32px]">
+          <div className="relative isolate w-full rounded-2xl shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)] sm:rounded-[24px]">
             <div className="relative isolate flex aspect-[1132/1520] w-full items-center justify-center overflow-hidden rounded-2xl sm:rounded-[28px] lg:rounded-[32px]">
               <div
                 className="pointer-events-none absolute inset-0 z-0 border-2 border-white/60 bg-white/10"
@@ -95,7 +95,7 @@ export default function Hero() {
           animate={reduceMotion ? { y: 0 } : { y: [0, -20, 0] }}
           transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
         >
-          <div className="relative isolate w-full rounded-2xl shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)] sm:rounded-[28px] lg:rounded-[32px]">
+          <div className="relative isolate w-full rounded-2xl shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)] sm:rounded-[24px]">
             <div className="relative isolate flex aspect-[566/568] w-full items-center justify-center overflow-hidden rounded-2xl sm:rounded-[28px] lg:rounded-[32px]">
               <div
                 className="pointer-events-none absolute inset-0 z-0 border-2 border-white/60 bg-white/10"

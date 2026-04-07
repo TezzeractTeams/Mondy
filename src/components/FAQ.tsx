@@ -16,18 +16,19 @@ const faqData = [
   {
     question: "Does Mondy learn my tone/voice overtime?",
     answer: "Yes. The first set of posts will be good. By the fourth or fifth, it' s noticeably more calibrated. Mondy will remember your cadence, your recurring themes, the way you tend to open a thought. It will even pays attention to the exact way a post looks when you approve it."
-  },{
-    question: "How does this replace a traditional ghostwriter workflow?",
-    answer: "Traditional ghostwriting requires hours of interviews and constant back-and-forth. Mondy removes the friction. You provide the 'seed'—a voice memo, a rough note, or a link—and Mondy generates a full weekly run of content in seconds, ready for your final 1% polish. It's your voice, without the wait."
   },
-  {
-    question: "Is my data and voice profile secure?",
-    answer: "Security is built into our core. Your voice profile and training data are encrypted and isolated to your account. We never use your unique content to train models for other users, ensuring your intellectual property and personal brand remain exclusively yours."
-  },
-  {
-    question: "Can I manage multiple founder voices?",
-    answer: "Yes. Our Enterprise plan is designed specifically for agencies and operators. You can maintain distinct, high-fidelity voice profiles for multiple founders, allowing you to run content for an entire roster with consistent quality and native platform expertise."
-  }
+  // {
+  //   question: "How does this replace a traditional ghostwriter workflow?",
+  //   answer: "Traditional ghostwriting requires hours of interviews and constant back-and-forth. Mondy removes the friction. You provide the 'seed'—a voice memo, a rough note, or a link—and Mondy generates a full weekly run of content in seconds, ready for your final 1% polish. It's your voice, without the wait."
+  // },
+  // {
+  //   question: "Is my data and voice profile secure?",
+  //   answer: "Security is built into our core. Your voice profile and training data are encrypted and isolated to your account. We never use your unique content to train models for other users, ensuring your intellectual property and personal brand remain exclusively yours."
+  // },
+  // {
+  //   question: "Can I manage multiple founder voices?",
+  //   answer: "Yes. Our Enterprise plan is designed specifically for agencies and operators. You can maintain distinct, high-fidelity voice profiles for multiple founders, allowing you to run content for an entire roster with consistent quality and native platform expertise."
+  // }aa
 ];
 
 export default function FAQ() {
@@ -36,9 +37,9 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative sm:w-[80%] max-w-full shrink-0 mx-auto bg-mondy-surface py-20 px-6 md:px-12 overflow-hidden font-noah border-t border-black/[0.03]"
+      className="relative sm:w-[80%] max-w-full shrink-0 mx-auto bg-mondy-surface py-20 px-6 md:px-12 overflow-hidden font-noah"
     >
-      <div className={cn(mondyLayout.contentMax, "grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 items-start")}>
+      <div className={cn(mondyLayout.contentMax, "grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 items-center")}>
 
         {/* Left Column: Sticky Header & Support Card */}
         <div className="md:sticky  space-y-8">

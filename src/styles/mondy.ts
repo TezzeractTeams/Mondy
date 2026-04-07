@@ -47,7 +47,7 @@ export const mondyBtn = {
 
 export const mondyType = {
   sectionHeading: cn(
-    "font-noah text-mondy-ink text-6xl font-extrabold tracking-[-0.06em] leading-[0.9]",
+    "font-noah text-mondy-ink  text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.06em] leading-[0.9]",
   ),
   sectionLead: cn(
     "font-noah text-mondy-ink/60 text-lg md:text-xl font-medium tracking-tight leading-relaxed",

@@ -11,12 +11,12 @@ export default function HowItWorks() {
       desc: "Open Mondy and talk to it like a friend. Tell it about your day, an incident, or anything that you’d like the posts to be about.",
     },
     {
-      title: "Review your transcript",
-      desc: "Mondy transcribes your recording live, sallowing you to edit it on the spot",
+      title: "Generate your posts",
+      desc: "Mondy will identify the key talking points, and generate individual posts for all the platforms you’ve chosen.",
     },
     {
       title: "Edit & Publish",
-      desc: "Once your posts are generated, make any weaks and schedule/publish your posts",
+      desc: "Once your posts are generated, make any tweaks you’d like and schedule/publish your posts.",
     },
   ];
 

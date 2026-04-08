@@ -1,5 +1,8 @@
 export const COOKIE_CONSENT_NAME = "mondy_cookie_consent" as const;
 
+/** Dispatched on `document` after consent cookie is written (same-tab updates). */
+export const COOKIE_CONSENT_CHANGED_EVENT = "mondy-cookie-consent-changed" as const;
+
 /** ~180 days */
 export const COOKIE_CONSENT_MAX_AGE = 180 * 24 * 60 * 60;
 

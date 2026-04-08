@@ -30,7 +30,7 @@ export function PricingEnterpriseCard() {
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 text-xs font-semibold tracking-tight text-mondy-ink/70">
                 <Briefcase className="size-4 text-mondy-ink/50" strokeWidth={1.75} />
-                <span>Teams & agencies</span>
+                <span>For your whole team</span>
               </div>
             </div>
 
@@ -38,7 +38,7 @@ export function PricingEnterpriseCard() {
               Enterprise
             </h3>
             <p className="mt-2 text-sm font-medium leading-relaxed text-mondy-ink/50 sm:text-[15px]">
-              For teams, agencies, or operators running content for more than one founder.
+            Everything in Pro, for everyone on your team who needs to show up online.
             </p>
 
             <div className="mt-8 flex flex-col gap-5 sm:mt-10  sm:flex-row sm:items-end sm:justify-between">
@@ -58,8 +58,8 @@ export function PricingEnterpriseCard() {
                 <p className="text-2xl font-extrabold tracking-tight text-mondy-ink sm:text-3xl">
                   Custom
                 </p>
-                <p className="mt-1 max-w-[220px] text-[11px] font-medium leading-snug text-mondy-ink/45 sm:ml-auto sm:text-right">
-                  Billed yearly. Custom seats and scope available.
+                <p className="mt-1 max-w-[220px] text-[11px] font-medium  text-mondy-ink/45 sm:ml-auto sm:text-right">
+                Reach out and we'll sort it
                 </p>
               </div>
             </div>
@@ -72,28 +72,32 @@ export function PricingEnterpriseCard() {
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}
                 />
-                <span>Multiple founders or brands</span>
+                <span>Multiple Pro seats
+                </span>
               </li>
               <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}
                 />
-                <span>Dedicated onboarding</span>
+                <span>Each person gets their own voice
+                </span>
               </li>
               <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}
                 />
-                <span>Custom scope and SLAs</span>
+                <span>One place to manage everyone
+                </span>
               </li>
               <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                   strokeWidth={2}
                 />
-                <span>Pause or cancel anytime</span>
+                <span>One place to manage everyone
+                </span>
               </li>
               <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
                 <Check

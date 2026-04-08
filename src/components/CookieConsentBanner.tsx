@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
+  COOKIE_CONSENT_CHANGED_EVENT,
   COOKIE_CONSENT_NAME,
   getClientCookie,
   parseConsentCookie,
@@ -29,6 +30,7 @@ export default function CookieConsentBanner() {
   function choose(level: CookieConsentLevel) {
     setConsentCookie(level);
     setVisible(false);
+    document.dispatchEvent(new Event(COOKIE_CONSENT_CHANGED_EVENT));
   }
 
   if (!visible) return null;

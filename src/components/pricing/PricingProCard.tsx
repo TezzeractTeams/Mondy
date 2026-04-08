@@ -50,7 +50,7 @@ export function PricingProCard() {
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-xs font-semibold tracking-tight text-mondy-ink/70">
                   <Zap className="size-4 text-mondy-accent" strokeWidth={1.75} />
-                  <span>Full weekly run</span>
+                  <span>The full thing</span>
                 </div>
               </div>
 
@@ -58,8 +58,7 @@ export function PricingProCard() {
                 Pro
               </h3>
               <p className="mt-2 text-sm font-medium leading-relaxed text-mondy-ink/50 sm:text-[15px]">
-                Everything. All platforms. Full weekly run. Your voice, consistently.
-              </p>
+              Experience all of Mondy. Record whenever something's worth saying, and publish your posts all in one app.              </p>
 
               <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
                 <button type="button" className={cn(mondyBtn.primaryLg, "whitespace-nowrap")}>
@@ -69,8 +68,8 @@ export function PricingProCard() {
                   <p className="text-2xl font-extrabold tracking-tight text-mondy-ink sm:text-3xl">
                     $49/mo
                   </p>
-                  <p className="mt-1 max-w-[220px] text-[11px] font-medium leading-snug text-mondy-ink/45 sm:ml-auto sm:text-right">
-                    Billed yearly ($468/yr). $49/mo if billed monthly.
+                  <p className="mt-1 max-w-[320px] text-[11px] font-medium  text-mondy-ink/45 sm:ml-auto sm:text-right">
+                  $350/year when billed annually (29% off)
                   </p>
                 </div>
               </div>
@@ -83,7 +82,23 @@ export function PricingProCard() {
                     className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                     strokeWidth={2}
                   />
-                  <span>Everything in Free trial</span>
+                  <span>~150 posts/month worth of credits
+                  </span>
+                </li>
+                <li className="flex gap-3 text-sm font-medium leading-snug ">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                    strokeWidth={2}
+                  />
+                  <span>All platform styles
+</span>
+                </li>
+                <li className="flex gap-3 text-sm font-medium leading-snug ">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                    strokeWidth={2}
+                  />
+                  <span>Unlimited sessions</span>
                 </li>
                 <li className="flex gap-3 text-sm font-medium leading-snug ">
                   <Check
@@ -97,21 +112,15 @@ export function PricingProCard() {
                     className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                     strokeWidth={2}
                   />
-                  <span>Scheduling</span>
+                  <span>Schedule or auto-publish</span>
                 </li>
+                
                 <li className="flex gap-3 text-sm font-medium leading-snug ">
                   <Check
                     className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                     strokeWidth={2}
                   />
-                  <span>Multiple PRO seats</span>
-                </li>
-                <li className="flex gap-3 text-sm font-medium leading-snug ">
-                  <Check
-                    className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                    strokeWidth={2}
-                  />
-                  <span>Priority support</span>
+                  <span>Top-up credits available</span>
                 </li>
               </ul>
             </div>

@@ -3,6 +3,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
+import GoogleAnalyticsConsent from "@/components/GoogleAnalyticsConsent";
 import "./globals.css";
 
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
@@ -53,6 +54,7 @@ export default function RootLayout({
         className="font-noah antialiased !bg-[#f5f3f0] min-h-screen text-mondy-ink tracking-[-0.05em] leading-[1.2]"
       >
         {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
+        <GoogleAnalyticsConsent />
         {children}
         <CookieConsentBanner />
       </body>

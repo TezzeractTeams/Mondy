@@ -30,7 +30,7 @@ export function PricingFreeCard() {
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 text-xs font-semibold tracking-tight text-mondy-ink/70">
                 <Sparkles className="size-4 text-mondy-ink/50" strokeWidth={1.75} />
-                <span>Get started</span>
+                <span>Try it out</span>
               </div>
             </div>
 
@@ -38,8 +38,7 @@ export function PricingFreeCard() {
               Free
             </h3>
             <p className="mt-2 text-sm font-medium leading-relaxed text-mondy-ink/50 sm:text-[15px]">
-              No credit card required. One platform. One week of content.
-            </p>
+            Record a voice note, pick your platforms, and walk away with a few awesome non-AI slop posts.            </p>
 
             <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
               <button
@@ -53,11 +52,10 @@ export function PricingFreeCard() {
               </button>
               <div className="text-left sm:text-right">
                 <p className="text-2xl font-extrabold tracking-tight text-mondy-ink sm:text-3xl">
-                  $0
+                $0
                 </p>
                 <p className="mt-1 max-w-[220px] text-[11px] font-medium leading-snug text-mondy-ink/45 sm:ml-auto sm:text-right">
-                  Try the full workflow on us
-                </p>
+                Your first few posts are on us                </p>
               </div>
             </div>
           </div>
@@ -68,14 +66,23 @@ export function PricingFreeCard() {
                 className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                 strokeWidth={2}
               />
-              <span>100 Free Credits</span>
+              <span>100 credits (enough for ~7 to 10 posts)
+              </span>
             </li>
             <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
               <Check
                 className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
                 strokeWidth={2}
               />
-              <span>Generate 5 full posts across a platform of your choice.</span>
+              <span>All platform styles.</span>
+            </li>
+            <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+              <Check
+                className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                strokeWidth={2}
+              />
+              <span>Unlimited regenerations.
+              </span>
             </li>
           </ul>
           <div className="min-h-0 flex-1" aria-hidden />

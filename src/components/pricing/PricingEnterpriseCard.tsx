@@ -83,14 +83,7 @@ export function PricingEnterpriseCard() {
                 <span>Each person gets their own voice
                 </span>
               </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
-                <Check
-                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                  strokeWidth={2}
-                />
-                <span>One place to manage everyone
-                </span>
-              </li>
+              
               <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
                 <Check
                   className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"

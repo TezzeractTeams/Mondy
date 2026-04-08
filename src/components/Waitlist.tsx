@@ -100,7 +100,7 @@ re getting close! Join the waitlist today <br /> and get early access when we go
               </div>
             ))}
           </div>
-          <span className="text-mondy-ink/40 text-[11px] font-bold tracking-wider uppercase">Join +1,000 others</span>
+          <span className="text-mondy-ink/40 text-[11px] font-bold tracking-wider uppercase">Join 3 others</span>
         </motion.div>
 
         {/* Form Section */}

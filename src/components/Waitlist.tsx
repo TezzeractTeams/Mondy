@@ -36,7 +36,7 @@ export default function Waitlist() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-mondy-surface px-6 pt-32 pb-32 font-noah md:px-12 md:pb-48">
+    <section className="relative w-full overflow-hidden px-6 pt-32 pb-32 font-noah md:px-12 md:pb-48">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
           className="absolute -left-[10%] top-[8%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-primary-70/45 blur-3xl"

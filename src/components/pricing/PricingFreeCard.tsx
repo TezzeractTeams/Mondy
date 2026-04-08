@@ -24,8 +24,8 @@ export function PricingFreeCard() {
         CARD_RADIUS,
       )}
     >
-      <div className="flex h-full min-h-0 flex-col bg-[#F6F8FF]  pb-6 sm:pb-7">
-        <div className="flex min-h-0 flex-1 flex-col  gap-6">
+      <div className="flex h-full min-h-0 flex-col bg-[#F6F8FF] pb-6 sm:pb-7">
+        <div className="flex min-h-0 flex-1 flex-col">
           <div className={topPanelClass}>
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 text-xs font-semibold tracking-tight text-mondy-ink/70">
@@ -62,7 +62,7 @@ export function PricingFreeCard() {
             </div>
           </div>
 
-          <ul className="min-h-[200px] flex-1 space-y-3  px-5 pt-1 sm:px-6">
+          <ul className="mb-6 mt-6 shrink-0 space-y-3 px-5 sm:mb-7 sm:mt-7 sm:px-6">
             <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
               <Check
                 className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
@@ -78,6 +78,7 @@ export function PricingFreeCard() {
               <span>Generate 5 full posts across a platform of your choice.</span>
             </li>
           </ul>
+          <div className="min-h-0 flex-1" aria-hidden />
         </div>
       </div>
     </div>

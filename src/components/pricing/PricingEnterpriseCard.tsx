@@ -25,7 +25,7 @@ export function PricingEnterpriseCard() {
       )}
     >
       <div className="flex h-full min-h-0 flex-col bg-[#F6F8FF]">
-        <div className="flex min-h-0 flex-1 flex-col gap-6">
+        <div className="flex min-h-0 flex-1 flex-col">
           <div className={topPanelClass}>
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 text-xs font-semibold tracking-tight text-mondy-ink/70">
@@ -41,7 +41,7 @@ export function PricingEnterpriseCard() {
               For teams, agencies, or operators running content for more than one founder.
             </p>
 
-            <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
+            <div className="mt-8 flex flex-col gap-5 sm:mt-10  sm:flex-row sm:items-end sm:justify-between">
               <button
                 type="button"
                 className={cn(
@@ -65,43 +65,46 @@ export function PricingEnterpriseCard() {
             </div>
           </div>
 
-          <ul className="min-h-[200px] flex-1 space-y-3  px-5 pt-1 sm:px-6">
-            <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
-              <Check
-                className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                strokeWidth={2}
-              />
-              <span>Multiple founders or brands</span>
-            </li>
-            <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
-              <Check
-                className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                strokeWidth={2}
-              />
-              <span>Dedicated onboarding</span>
-            </li>
-            <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
-              <Check
-                className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                strokeWidth={2}
-              />
-              <span>Custom scope and SLAs</span>
-            </li>
-            <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
-              <Check
-                className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                strokeWidth={2}
-              />
-              <span>Pause or cancel anytime</span>
-            </li>
-            <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
-              <Check
-                className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                strokeWidth={2}
-              />
-              <span>Immediate start after checkout</span>
-            </li>
-          </ul>
+          <div className="shrink-0 px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
+            <ul className="space-y-3">
+              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+                <Check
+                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                  strokeWidth={2}
+                />
+                <span>Multiple founders or brands</span>
+              </li>
+              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+                <Check
+                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                  strokeWidth={2}
+                />
+                <span>Dedicated onboarding</span>
+              </li>
+              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+                <Check
+                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                  strokeWidth={2}
+                />
+                <span>Custom scope and SLAs</span>
+              </li>
+              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+                <Check
+                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                  strokeWidth={2}
+                />
+                <span>Pause or cancel anytime</span>
+              </li>
+              <li className="flex gap-3 text-sm font-medium leading-snug text-mondy-ink/55">
+                <Check
+                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                  strokeWidth={2}
+                />
+                <span>Immediate start after checkout</span>
+              </li>
+            </ul>
+          </div>
+          <div className="min-h-0 flex-1" aria-hidden />
         </div>
       </div>
     </div>

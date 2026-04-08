@@ -11,7 +11,7 @@ import { mondyBtn } from "@/styles/mondy";
  */
 export function PricingProCard() {
   const topPanelClass = cn(
-    "w-full border-b border-mondy-ink/[0.07] bg-white px-5 pb-5 pt-6 sm:px-6 sm:pb-6 sm:pt-7",
+    "w-full shrink-0 border-b border-mondy-ink/[0.07] bg-white px-5 pb-5 pt-6 sm:px-6 sm:pb-6 sm:pt-7",
     "rounded-t-[calc(2.5rem-5px)] rounded-b-[calc(2.5rem-5px)] md:rounded-t-[calc(2.5rem-10px)] md:rounded-b-[calc(2.5rem-10px)]",
   );
 
@@ -43,10 +43,9 @@ export function PricingProCard() {
         <div
           className={cn(
             "flex min-h-0 flex-1 flex-col overflow-hidden rounded-[calc(2.5rem-5px)] bg-[#F6F8FF] md:rounded-[calc(2.5rem-10px)]",
-            "pb-6 sm:pb-7",
           )}
         >
-          <div className="flex min-h-0  flex-1 flex-col gap-6">
+          <div className="flex min-h-0 flex-1 flex-col">
             <div className={topPanelClass}>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-xs font-semibold tracking-tight text-mondy-ink/70">
@@ -77,43 +76,46 @@ export function PricingProCard() {
               </div>
             </div>
 
-            <ul className="min-h-[200px] flex-1 space-y-3  px-5 pt-1 text-mondy-ink/55 sm:px-6 ">
-              <li className="flex gap-3 text-sm font-medium leading-snug ">
-                <Check
-                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                  strokeWidth={2}
-                />
-                <span>Everything in Free trial</span>
-              </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug ">
-                <Check
-                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                  strokeWidth={2}
-                />
-                <span>Unlimited regenerations</span>
-              </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug ">
-                <Check
-                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                  strokeWidth={2}
-                />
-                <span>Scheduling</span>
-              </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug ">
-                <Check
-                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                  strokeWidth={2}
-                />
-                <span>Multiple PRO seats</span>
-              </li>
-              <li className="flex gap-3 text-sm font-medium leading-snug ">
-                <Check
-                  className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
-                  strokeWidth={2}
-                />
-                <span>Priority support</span>
-              </li>
-            </ul>
+            <div className="shrink-0 px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
+              <ul className="space-y-3 text-mondy-ink/55">
+                <li className="flex gap-3 text-sm font-medium leading-snug ">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                    strokeWidth={2}
+                  />
+                  <span>Everything in Free trial</span>
+                </li>
+                <li className="flex gap-3 text-sm font-medium leading-snug ">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                    strokeWidth={2}
+                  />
+                  <span>Unlimited regenerations</span>
+                </li>
+                <li className="flex gap-3 text-sm font-medium leading-snug ">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                    strokeWidth={2}
+                  />
+                  <span>Scheduling</span>
+                </li>
+                <li className="flex gap-3 text-sm font-medium leading-snug ">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                    strokeWidth={2}
+                  />
+                  <span>Multiple PRO seats</span>
+                </li>
+                <li className="flex gap-3 text-sm font-medium leading-snug ">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-mondy-ink/35"
+                    strokeWidth={2}
+                  />
+                  <span>Priority support</span>
+                </li>
+              </ul>
+            </div>
+            <div className="min-h-0 flex-1" aria-hidden />
           </div>
         </div>
       </div>

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
 import "./globals.css";
+
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
 const noah = localFont({
   src: [
@@ -49,6 +52,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className="font-noah antialiased !bg-[#f5f3f0] min-h-screen text-mondy-ink tracking-[-0.05em] leading-[1.2]"
       >
+        {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
         {children}
         <CookieConsentBanner />
       </body>

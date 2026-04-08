@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { mondyBtn, mondyGradients, mondyType } from "@/styles/mondy";
 
@@ -37,7 +38,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 sm:w-[80%] max-w-full mx-auto relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 sm:w-[90%] max-w-full mx-auto relative z-20">
           {steps.map((step, idx) => {
             const isSecondCard = idx === 1;
 
@@ -53,16 +54,22 @@ export default function HowItWorks() {
                   backgroundSize: "300% 100%",
                   backgroundPosition: `${idx * 50}% 0%`,
                 }}
-                className="relative rounded-mondy-card shadow-mondy-card border border-white/80 overflow-hidden flex flex-col min-h-[650px]"
+                className="relative rounded-mondy-card shadow-mondy-card border border-white/80 overflow-hidden flex flex-col min-h-[620px]"
               >
                 {isSecondCard ? (
                   <>
-                    <div className="px-6 pt-0 w-full h-[480px] relative z-10">
-                      <div className="relative w-full h-full bg-mondy-card/90 rounded-b-mondy-inner flex items-center justify-center overflow-hidden border-x border-b border-black/[0.03]">
-                        <span className={mondyType.screenshotPlaceholder}>[App Screenshot]</span>
+                    <div className="  w-full h-full relative z-10">
+                      <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                        <Image
+                          src="/Step-2-V1.png"
+                          alt="Mondy: review your transcript and generated posts"
+                          fill
+                          className="object-contain min-h-[103%] object-top -mt-10"
+                          sizes="(max-width: 1024px) 100vw, 33vw"
+                        />
                       </div>
                     </div>
-                    <div className="relative z-10 p-10 pt-8 flex-grow">
+                    <div className="relative z-10 p-10 pt-0 flex-grow">
                       <h4 className={mondyType.stepTitle}>
                         {idx + 1}. {step.title}
                       </h4>
@@ -73,7 +80,7 @@ export default function HowItWorks() {
                   </>
                 ) : (
                   <>
-                    <div className="relative z-10 p-10 pb-8 flex-grow">
+                    <div className="relative z-10 p-10 pb-0 flex-grow">
                       <h4 className={mondyType.stepTitle}>
                         {idx + 1}. {step.title}
                       </h4>
@@ -81,9 +88,27 @@ export default function HowItWorks() {
                         {step.desc}
                       </p>
                     </div>
-                    <div className="px-6 pb-0 w-full h-[480px] relative z-10">
-                      <div className="relative w-full h-full bg-mondy-card/90 rounded-t-mondy-inner flex items-center justify-center overflow-hidden border-x border-t border-black/[0.03]">
-                        <span className={mondyType.screenshotPlaceholder}>[App Screenshot]</span>
+                    <div className=" pb-0 w-full h-full relative z-10">
+                      <div className="relative w-full h-full mt-5 flex items-center justify-center overflow-hidden ">
+                        {idx === 0 ? (
+                          <Image
+                            src="/Step.png"
+                            alt="Mondy: record and see your transcript as you speak"
+                            fill
+                            className="object-contain min-h-[103%] object-bottom"
+                            sizes="(max-width: 1024px) 100vw, 33vw"
+                          />
+                        ) : idx === 2 ? (
+                          <Image
+                            src="/Step-3.png"
+                            alt="Mondy: schedule posts across platforms with calendar and time"
+                            fill
+                            className="object-contain min-h-[103%] object-bottom "
+                            sizes="(max-width: 1024px) 100vw, 33vw"
+                          />
+                        ) : (
+                          <span className={mondyType.screenshotPlaceholder}>[App Screenshot]</span>
+                        )}
                       </div>
                     </div>
                   </>

@@ -128,14 +128,24 @@ export default function Hero() {
                 <div className="flex flex-col items-center">
                   {/* Mobile: 3 lines (“Talk for” / “10 minutes.” / tagline); md+: first phrase on one line */}
                   <span className="flex w-full max-w-none shrink-0 flex-col items-center pt-15  text-center will-change-transform md:inline-flex md:flex-row md:items-baseline md:gap-x-1.5 md:pt-10 md:whitespace-nowrap lg:w-max lg:text-left xl:text-center  tracking-[-0.06em]">
-                    <span className="block md:inline">Talk for 10 minutes</span>
+                    <span className="block md:inline">Talk for 2 minutes</span>
                     {/* <span className="block md:inline">10 minutes.</span> */}
                   </span>
                   <span className="sm:mt-2 w-full max-w-none shrink-0 text-center will-change-transform md:mt-4 lg:mt-0 lg:w-max lg:whitespace-nowrap lg:text-left xl:text-center tracking-[-0.06em]">
-                    A full week of content, done.
+                  Every platform, covered.
                   </span>
                 </div>
               </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.12 }}
+                className="mt-3 max-w-[min(22rem,92vw)] px-3 text-center text-[10px] sm:text-[11px] font-extralight leading-snug text-[#898989] md:mt-4 md:max-w-md"
+              >
+                Text posts for LinkedIn, X, Threads, and Facebook, that sound like you wrote them.
+                Because you basically did.
+              </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 50 }}

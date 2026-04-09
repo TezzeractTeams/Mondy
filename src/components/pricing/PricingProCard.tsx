@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Check, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CARD_RADIUS, CARD_SHADOW, FEATURED_SHELL_GRADIENT } from "./pricing-styles";
@@ -61,9 +62,12 @@ export function PricingProCard() {
               Experience all of Mondy. Record whenever something's worth saying, and publish your posts all in one app.              </p>
 
               <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
-                <button type="button" className={cn(mondyBtn.primaryLg, "whitespace-nowrap")}>
+                <Link
+                  href="/infopage"
+                  className={cn(mondyBtn.primaryLg, "whitespace-nowrap")}
+                >
                   Get Started
-                </button>
+                </Link>
                 <div className="text-left sm:text-right">
                   <p className="text-2xl font-extrabold tracking-tight text-mondy-ink sm:text-3xl">
                     $49/mo

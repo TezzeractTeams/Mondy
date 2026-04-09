@@ -132,7 +132,7 @@ export default function Hero() {
                     {/* <span className="block md:inline">10 minutes.</span> */}
                   </span>
                   <span className="sm:mt-2 w-full max-w-none shrink-0 text-center will-change-transform md:mt-4 lg:mt-0 lg:w-max lg:whitespace-nowrap lg:text-left xl:text-center tracking-[-0.06em]">
-                  Four platforms, covered.                  </span>
+                  Get posts that feel like you.                </span>
                 </div>
               </motion.h1>
 

@@ -101,12 +101,21 @@
   }
 }
 
-/* scrollIntoView aligns to viewport top; offset so fixed nav doesn’t cover headings */
+/* Offset fixed nav (tighter on small screens where the bar is shorter) */
 #solution,
 #howitworks,
 #pricing,
 #faq {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 5rem;
+}
+
+@media (min-width: 1024px) {
+  #solution,
+  #howitworks,
+  #pricing,
+  #faq {
+    scroll-margin-top: 6rem;
+  }
 }
 
 body {

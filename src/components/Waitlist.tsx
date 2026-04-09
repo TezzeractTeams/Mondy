@@ -80,9 +80,7 @@ Be the first to use Mondy.          </motion.h2>
             transition={{ delay: 0.1 }}
             className={mondyType.waitlistSubtitle}
           >
-           We
-'
-re getting close! Join the waitlist today <br /> and get early access when we go live.
+           We're getting close! Join the waitlist today <br /> and get early access when we go live.
           </motion.p>
         </div>
 
@@ -94,13 +92,19 @@ re getting close! Join the waitlist today <br /> and get early access when we go
           className="mt-10 flex items-center gap-3"
         >
           <div className="flex -space-x-3">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="w-9 h-9 rounded-full border-2 border-mondy-surface bg-mondy-accent/10 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-mondy-accent/30 to-transparent" />
+            {[              { src: "/Ovini.png", alt: "Ovini" },
+
+              { src: "/Shanilka.png", alt: "Shanilka" },
+            ].map(({ src, alt }) => (
+              <div
+                key={src}
+                className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-mondy-surface"
+              >
+                <Image src={src} alt={alt} fill className="object-cover" sizes="36px" />
               </div>
             ))}
           </div>
-          <span className="text-mondy-ink/40 text-[11px] font-bold tracking-wider uppercase">Join 3+ others</span>
+          <span className="text-mondy-ink/40 text-[11px] font-bold tracking-wider uppercase">Join 2+ others</span>
         </motion.div>
 
         {/* Form Section */}

@@ -29,6 +29,19 @@ export const FloatingNav = ({
     navigateToSection(hash, router, pathname);
   };
 
+  /** Close first, then scroll after layout settles (open mobile menu throws off iOS / smooth scroll). */
+  const onMobileSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (pathname !== "/") {
+      navigateToSection(hash, router, pathname);
+      return;
+    }
+    window.setTimeout(() => {
+      navigateToSection(hash, router, pathname);
+    }, 220);
+  };
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -110,11 +123,8 @@ export const FloatingNav = ({
                   <a
                     key={`mobile-link=${idx}`}
                     href={`/${navItem.link}`}
-                    onClick={(e) => {
-                      onSectionClick(e, navItem.link);
-                      setIsOpen(false);
-                    }}
-                    className="flex items-center text-mondy-ink text-lg font-medium py-2"
+                    onClick={(e) => onMobileSectionClick(e, navItem.link)}
+                    className="flex min-h-[44px] items-center text-mondy-ink text-lg font-medium py-2"
                   >
                     <span>{navItem.name}</span>
                   </a>

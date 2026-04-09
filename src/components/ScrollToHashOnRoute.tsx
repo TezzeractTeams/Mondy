@@ -2,9 +2,11 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { scrollElementIntoViewSmooth } from "@/lib/scrollToSection";
 
 /**
  * After client navigation to `/#section`, scroll smoothly once the home page is mounted.
+ * Delay helps mobile browsers finish layout after route transition.
  */
 export function ScrollToHashOnRoute() {
   const pathname = usePathname();
@@ -14,15 +16,14 @@ export function ScrollToHashOnRoute() {
     const hash = window.location.hash;
     if (!hash || hash.length <= 1) return;
     const id = hash.slice(1);
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const run = () => {
       const el = document.getElementById(id);
       if (!el) return;
-      el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      scrollElementIntoViewSmooth(el);
     };
 
-    const t = window.setTimeout(run, 0);
+    const t = window.setTimeout(run, 100);
     return () => window.clearTimeout(t);
   }, [pathname]);
 

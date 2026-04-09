@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Check, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -41,15 +42,15 @@ export function PricingFreeCard() {
             Record a voice note, pick your platforms, and walk away with a few awesome non-AI slop posts.            </p>
 
             <div className="mt-8 flex flex-col gap-5 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
-              <button
-                type="button"
+              <Link
+                href="/infopage"
                 className={cn(
                   "shrink-0 rounded-full border border-mondy-ink/20 bg-white px-6 py-3 text-sm font-bold text-mondy-ink",
                   "transition-all hover:border-mondy-ink/35 hover:bg-neutral-50 active:scale-[0.98]",
                 )}
               >
                 Try Mondy
-              </button>
+              </Link>
               <div className="text-left sm:text-right">
                 <p className="text-2xl font-extrabold tracking-tight text-mondy-ink sm:text-3xl">
                 $0

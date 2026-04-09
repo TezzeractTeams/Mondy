@@ -164,19 +164,11 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
       {/* Right Column: Image Placeholder */}
       <div className="hidden min-h-dvh w-full flex-1 flex-col items-center justify-center border-l border-black/5 bg-mondy-surface p-8 md:flex md:w-1/2 md:p-12">
         {/* The Placeholder Container */}
-        <div className="w-full max-w-lg aspect-[4/5] bg-white rounded-3xl shadow-xl overflow-hidden relative border border-black/5 flex items-center justify-center">
-          
-          {/* Subtle placeholder text or graphic for the image side */}
-          <div className="opacity-40 flex flex-col items-center gap-4 text-mondy-ink">
-            <div className="w-16 h-16 border-4 border-dashed border-current rounded-full flex items-center justify-center">
-               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="w-16 h-16 border-4 border-dashed border-current rounded-full flex items-center justify-center">
+               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="black">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
-            <span className="font-semibold tracking-wide">Image Placeholder</span>
-          </div>
-
-        </div>
       </div>
     </div>
   );

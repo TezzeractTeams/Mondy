@@ -61,7 +61,7 @@ export default function HowItWorks() {
                     <div className="  w-full h-full relative z-10">
                       <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                         <Image
-                          src="/Step-2-V1.png"
+                          src="/Step-2.png"
                           alt="Mondy: review your transcript and generated posts"
                           fill
                           className="object-contain min-h-[103%] object-top -mt-10"

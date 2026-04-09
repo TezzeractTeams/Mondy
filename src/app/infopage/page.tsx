@@ -109,8 +109,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
               Get early access!
             </h1>
             <p className="text-mondy-ink/60 text-lg leading-relaxed">
-              Be one of the first to create a profile and claim a premium username.
-            </p>
+            We're getting close! Join the waitlist today  and get early access when we go live.            </p>
           </motion.div>
 
           <motion.form

@@ -1,10 +1,14 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { mondyBtn } from "@/styles/mondy";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+
+const easeOut = [0.16, 1, 0.3, 1] as const;
 
 function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
   const [firstName, setFirstName] = useState("");
@@ -45,43 +49,75 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
 
   const submitting = status === "loading";
   const done = status === "success";
+  const reduceMotion = useReducedMotion();
+
+  const { containerVariants, itemVariants } = useMemo(() => {
+    const off = !!reduceMotion;
+    return {
+      containerVariants: {
+        hidden: {},
+        show: {
+          transition: {
+            staggerChildren: off ? 0 : 0.08,
+            delayChildren: off ? 0 : 0.06,
+          },
+        },
+      },
+      itemVariants: {
+        hidden: { opacity: off ? 1 : 0, y: off ? 0 : 16 },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: off ? 0 : 0.5, ease: easeOut },
+        },
+      },
+    };
+  }, [reduceMotion]);
 
   return (
     <div className="flex min-h-dvh w-full flex-1 flex-col bg-white md:flex-row">
       {/* Left Column: Form Section */}
       <div className="relative flex w-full flex-1 items-center justify-center p-8 md:w-1/2 md:p-16 lg:p-24">
-        <div className="max-w-md w-full flex flex-col gap-8">
-          
+        <motion.div
+          className="flex w-full max-w-md flex-col gap-8"
+          initial="hidden"
+          animate="show"
+          variants={containerVariants}
+        >
           {/* Header area with Logo and Badge */}
-          <div className="flex items-center gap-4">
+          <motion.div variants={itemVariants} className="flex items-center gap-4">
             {/* Mondy Logo */}
-            <div className="flex items-center h-8">
-              <Image 
-                src="/logo.svg" 
-                alt="Mondy AI Logo" 
-                width={110} 
-                height={28} 
-                className="h-7 w-auto object-contain" 
-                priority 
+            <Link href="/" className="flex h-8 items-center">
+              <Image
+                src="/logo.svg"
+                alt="Mondy AI Logo"
+                width={110}
+                height={28}
+                className="h-7 w-auto object-contain"
+                priority
               />
-            </div>
+            </Link>
             
             {/* Coming soon chip */}
             <span className="px-3 py-1 rounded-full bg-mondy-accent/10 text-mondy-accent text-sm font-semibold tracking-wide">
               Coming soon!
             </span>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col gap-3">
+          <motion.div variants={itemVariants} className="flex flex-col gap-3">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-mondy-ink">
               Get early access!
             </h1>
             <p className="text-mondy-ink/60 text-lg leading-relaxed">
               Be one of the first to create a profile and claim a premium username.
             </p>
-          </div>
+          </motion.div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-4">
+          <motion.form
+            variants={itemVariants}
+            onSubmit={handleSubmit}
+            className="mt-4 flex flex-col gap-6"
+          >
             {/* Name fields row */}
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex flex-col gap-2 w-full">
@@ -156,20 +192,28 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
             >
               {submitting ? "Joining…" : done ? "You're in" : "Join waitlist"}
             </button>
-          </form>
-
-        </div>
+          </motion.form>
+        </motion.div>
       </div>
 
       {/* Right Column: Image Placeholder */}
-      <div className="hidden min-h-dvh w-full flex-1 flex-col items-center justify-center border-l border-black/5 bg-mondy-surface p-8 md:flex md:w-1/2 md:p-12">
+      <motion.div
+        className="hidden min-h-dvh w-full flex-1 flex-col items-center justify-center border-l border-black/5 bg-mondy-surface p-8 md:flex md:w-1/2 md:p-12"
+        initial={reduceMotion ? false : { opacity: 0, x: 28 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{
+          duration: reduceMotion ? 0 : 0.55,
+          delay: reduceMotion ? 0 : 0.14,
+          ease: easeOut,
+        }}
+      >
         {/* The Placeholder Container */}
-        <div className="w-16 h-16 border-4 border-dashed border-current rounded-full flex items-center justify-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-dashed border-current">
                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="black">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

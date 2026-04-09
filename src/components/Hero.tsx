@@ -137,16 +137,6 @@ export default function Hero() {
                 </div>
               </motion.h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.12 }}
-                className="mt-3 max-w-[min(22rem,92vw)] px-3 text-center text-[10px] sm:text-[11px] font-extralight leading-snug text-[#898989] md:mt-4 md:max-w-md"
-              >
-                Text posts for LinkedIn, X, Threads, and Facebook, that sound like you wrote them.
-                Because you basically did.
-              </motion.p>
-
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}

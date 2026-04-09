@@ -1,4 +1,5 @@
 import MondyNav from "@/components/Navbar";
+import { ScrollToHashOnRoute } from "@/components/ScrollToHashOnRoute";
 
 export default function MainLayout({
   children,
@@ -7,6 +8,7 @@ export default function MainLayout({
 }>) {
   return (
     <>
+      <ScrollToHashOnRoute />
       <MondyNav />
       {children}
     </>

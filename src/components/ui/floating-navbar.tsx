@@ -6,6 +6,8 @@ import { mondyBtn } from "@/styles/mondy";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { navigateToSection } from "@/lib/scrollToSection";
 
 export const FloatingNav = ({
   navItems,
@@ -19,6 +21,13 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const onSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    navigateToSection(hash, router, pathname);
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -56,15 +65,16 @@ export const FloatingNav = ({
           {/* Navigation Items (Desktop) */}
           <div className="hidden lg:flex items-center gap-12">
             {navItems.map((navItem: any, idx: number) => (
-              <Link
+              <a
                 key={`link=${idx}`}
-                href={navItem.link}
+                href={`/${navItem.link}`}
+                onClick={(e) => onSectionClick(e, navItem.link)}
                 className={cn(
                   "relative flex items-center gap-1 text-mondy-ink hover:text-neutral-500 transition-colors font-sans"
                 )}
               >
                 <span className="text-[18px] font-medium whitespace-nowrap">{navItem.name}</span>
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -97,14 +107,17 @@ export const FloatingNav = ({
             >
               <div className="flex flex-col gap-4 pl-1">
                 {navItems.map((navItem: any, idx: number) => (
-                  <Link
+                  <a
                     key={`mobile-link=${idx}`}
-                    href={navItem.link}
-                    onClick={() => setIsOpen(false)}
+                    href={`/${navItem.link}`}
+                    onClick={(e) => {
+                      onSectionClick(e, navItem.link);
+                      setIsOpen(false);
+                    }}
                     className="flex items-center text-mondy-ink text-lg font-medium py-2"
                   >
                     <span>{navItem.name}</span>
-                  </Link>
+                  </a>
                 ))}
               </div>
               <Link href="/infopage" onClick={() => setIsOpen(false)} className={mondyBtn.navMobile}>

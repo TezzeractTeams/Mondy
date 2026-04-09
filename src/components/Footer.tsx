@@ -1,7 +1,9 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { navigateToSection } from "@/lib/scrollToSection";
 import Image from "next/image";
 import { mondyLayout } from "@/styles/mondy";
 import { cn } from "@/lib/utils";
@@ -16,7 +18,13 @@ import {
 
 export default function Footer() {
   const pathname = usePathname();
+  const router = useRouter();
   if (pathname === "/join") return null;
+
+  const onSectionClick = (e: MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    navigateToSection(hash, router, pathname);
+  };
 
   return (
     <div className="w-full max-w-none bg-mondy-surface pt-0 ">
@@ -41,13 +49,14 @@ export default function Footer() {
                 { name: 'Pricing', link: '#pricing' },
                 { name: 'FAQ', link: '#faq' }
               ].map(item => (
-                <Link 
-                  key={item.name} 
-                  href={item.link}
+                <a
+                  key={item.name}
+                  href={`/${item.link}`}
+                  onClick={(e) => onSectionClick(e, item.link)}
                   className="text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
             </div>
  

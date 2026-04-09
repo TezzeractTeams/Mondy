@@ -76,7 +76,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
 
   return (
     <div className="flex min-h-dvh w-full flex-1 flex-col bg-white md:flex-row">
-      {/* Left Column: Form Section */}
+      {/* Form column — full width on mobile, half on md+ */}
       <div className="relative flex w-full flex-1 items-center justify-center p-8 md:w-1/2 md:p-16 lg:p-24">
         <motion.div
           className="flex w-full max-w-md flex-col gap-8"
@@ -196,11 +196,11 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
         </motion.div>
       </div>
 
-      {/* Right Column: Image Placeholder */}
+      {/* Visual column — below form on mobile, right pane on md+ */}
       <motion.div
-        className="hidden min-h-dvh w-full flex-1 flex-col items-center justify-center border-l border-black/5 bg-mondy-surface p-8 md:flex md:w-1/2 md:p-12"
-        initial={reduceMotion ? false : { opacity: 0, x: 28 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="flex w-full flex-col items-center justify-center border-t border-black/5 bg-mondy-surface px-8 py-16 md:min-h-dvh md:w-1/2 md:flex-1 md:border-l md:border-t-0 md:p-12"
+        initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: reduceMotion ? 0 : 0.55,
           delay: reduceMotion ? 0 : 0.14,

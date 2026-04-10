@@ -1,7 +1,8 @@
 "use client";
 
 import { Suspense, useMemo, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { mondyBtn } from "@/styles/mondy";
 import Image from "next/image";
@@ -10,6 +11,70 @@ import { useSearchParams } from "next/navigation";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
+type ConfirmationDetails = { email: string; firstName: string };
+
+function WaitlistConfirmationScreen({
+  details,
+  itemVariants,
+}: {
+  details: ConfirmationDetails;
+  itemVariants: Variants;
+}) {
+  const first = details.firstName.trim();
+  const headline = first.length > 0 ? `Thanks, ${first}` : "You're on the list";
+
+  return (
+    <motion.div
+      className="flex w-full max-w-md flex-col gap-8"
+      initial="hidden"
+      animate="show"
+      variants={{
+        hidden: {},
+        show: {
+          transition: { staggerChildren: 0.08, delayChildren: 0.04 },
+        },
+      }}
+      role="status"
+      aria-live="polite"
+    >
+      <motion.div variants={itemVariants} className="flex items-center gap-4">
+        <Link href="/" className="flex h-8 items-center">
+          <Image
+            src="/logo.svg"
+            alt="Mondy AI Logo"
+            width={110}
+            height={28}
+            className="h-7 w-auto object-contain"
+            priority
+          />
+        </Link>
+        <span className="rounded-full bg-mondy-accent/10 px-3 py-1 text-sm font-semibold tracking-wide text-mondy-accent">
+          Coming soon!
+        </span>
+      </motion.div>
+
+      <motion.div variants={itemVariants} className="flex flex-col items-start gap-6">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-mondy-accent/12">
+          <CheckCircle2 className="h-9 w-9 text-mondy-accent" strokeWidth={2} aria-hidden />
+        </div>
+        <div className="flex flex-col gap-3">
+          <h1 className="text-4xl font-bold tracking-tight text-mondy-ink md:text-5xl">{headline}</h1>
+          <p className="text-lg leading-relaxed text-mondy-ink/60">
+            We&apos;ve added you to the waitlist. We&apos;ll email{" "}
+            <span className="font-medium text-mondy-ink/80">{details.email}</span> when early access opens.
+          </p>
+        </div>
+      </motion.div>
+
+      <motion.div variants={itemVariants}>
+        <Link href="/" className={cn(mondyBtn.primaryLg, "inline-flex w-full justify-center sm:w-auto")}>
+          Back to home
+        </Link>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -17,6 +82,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
   const [marketingConsent, setMarketingConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [confirmation, setConfirmation] = useState<ConfirmationDetails | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,8 +108,12 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
         return;
       }
 
+      setConfirmation({
+        email: email.trim(),
+        firstName: firstName.trim(),
+      });
       setStatus("success");
-      setMessage("You're on the list. We'll be in touch soon.");
+      setMessage("");
       setFirstName("");
       setLastName("");
       setEmail("");
@@ -55,7 +125,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
   };
 
   const submitting = status === "loading";
-  const done = status === "success";
+  const done = status === "success" && confirmation !== null;
   const reduceMotion = useReducedMotion();
 
   const { containerVariants, itemVariants } = useMemo(() => {
@@ -80,6 +150,35 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
       },
     };
   }, [reduceMotion]);
+
+  if (done && confirmation) {
+    return (
+      <div className="flex min-h-dvh w-full flex-1 flex-col bg-white md:flex-row">
+        <div className="relative flex w-full flex-1 items-center justify-center p-8 md:w-1/2 md:p-16 lg:p-24">
+          <WaitlistConfirmationScreen details={confirmation} itemVariants={itemVariants} />
+        </div>
+        <motion.div
+          className="relative min-h-[min(52dvh,560px)] w-full flex-1 overflow-hidden border-t border-black/5 bg-mondy-surface md:min-h-dvh md:w-1/2 md:border-l md:border-t-0"
+          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: reduceMotion ? 0 : 0.55,
+            delay: reduceMotion ? 0 : 0.14,
+            ease: easeOut,
+          }}
+        >
+          <Image
+            src="/Mondy Waitlist Image.png"
+            alt="Mondy AI app on a smartphone — voice interface preview"
+            fill
+            className="object-cover object-[80%_center]"
+            sizes="(max-width: 767px) 100vw, 50vw"
+            priority
+          />
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-dvh w-full flex-1 flex-col bg-white md:flex-row">

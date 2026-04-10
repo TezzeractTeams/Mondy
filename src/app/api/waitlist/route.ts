@@ -36,7 +36,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { firstName, lastName, email } = body as Record<string, unknown>;
+  const { firstName, lastName, email, marketingConsent } = body as Record<string, unknown>;
+
+  if (marketingConsent !== true) {
+    return NextResponse.json(
+      { error: "Please confirm that you agree to marketing use of your details." },
+      { status: 400 },
+    );
+  }
 
   const first =
     typeof firstName === "string" ? firstName.trim().slice(0, MAX_NAME) : "";

@@ -14,6 +14,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState(initialEmail);
+  const [marketingConsent, setMarketingConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -26,7 +27,12 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, lastName, email }),
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          marketingConsent,
+        }),
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
 
@@ -41,6 +47,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
       setFirstName("");
       setLastName("");
       setEmail("");
+      setMarketingConsent(false);
     } catch {
       setStatus("error");
       setMessage("Network error. Check your connection and try again.");
@@ -165,6 +172,25 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
                 className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
                 required
               />
+            </div>
+
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="marketingConsent"
+                checked={marketingConsent}
+                onChange={(e) => setMarketingConsent(e.target.checked)}
+                disabled={submitting || done}
+                required
+                className="mt-1 h-4 w-4 shrink-0 rounded border-black/20 text-mondy-accent focus:ring-mondy-accent focus:ring-offset-0 disabled:opacity-50"
+              />
+              <label
+                htmlFor="marketingConsent"
+                className="text-sm leading-relaxed text-mondy-ink/70 cursor-pointer select-none"
+              >
+                I agree that Mondy may use my details for marketing communications (for example, product
+                updates and launch news).
+              </label>
             </div>
 
             {message ? (

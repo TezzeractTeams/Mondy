@@ -188,8 +188,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
                 htmlFor="marketingConsent"
                 className="text-sm leading-relaxed text-mondy-ink/70 cursor-pointer select-none"
               >
-                I agree that Mondy may use my details for marketing communications (for example, product
-                updates and launch news).
+               I agree to receive updates and emails from Mondy AI and accept the Privacy Policy. I can unsubscribe anytime.
               </label>
             </div>
 

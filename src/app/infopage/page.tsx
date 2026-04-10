@@ -106,8 +106,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
 
           <motion.div variants={itemVariants} className="flex flex-col gap-3">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-mondy-ink">
-              Get early access!
-            </h1>
+            Be the first to use Mondy            </h1>
             <p className="text-mondy-ink/60 text-lg leading-relaxed">
             We're getting close! Join the waitlist today  and get early access when we go live.            </p>
           </motion.div>

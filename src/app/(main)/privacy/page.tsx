@@ -4,12 +4,20 @@ import Footer from "@/components/Footer";
 const LAST_UPDATED =
   process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "April 2, 2026";
 
+const privacyDescription =
+  "How Mondy collects, uses, and protects your personal information.";
+
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description:
-    "How Mondy collects, uses, and protects your personal information.",
+  description: privacyDescription,
   openGraph: {
     url: "/privacy",
+    title: "Privacy Policy | Mondy",
+    description: privacyDescription,
+  },
+  twitter: {
+    title: "Privacy Policy | Mondy",
+    description: privacyDescription,
   },
 };
 

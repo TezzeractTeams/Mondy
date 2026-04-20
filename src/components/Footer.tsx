@@ -89,14 +89,44 @@ Terms & Conditions
               <div className="flex flex-wrap gap-2 max-w-[300px]">
                 {[
                   { handle: '@mondy', icon: <IconBrandX size={14} className="text-white" /> },
-                  { handle: '@mondy', icon: <IconBrandInstagram size={14} className="text-pink-500" /> },
-                  { handle: '@mondy', icon: <IconBrandLinkedin size={14} className="text-blue-400" /> },
-                ].map((social, i) => (
-                  <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 text-[12px] font-bold hover:bg-white/10 transition-all border border-white/10 cursor-pointer text-white">
-                    {social.icon}
-                    {social.handle}
-                  </span>
-                ))}
+                  {
+                    handle: '@mondy',
+                    icon: <IconBrandInstagram size={14} className="text-pink-500" />,
+                    href: 'https://www.instagram.com/mondy.ai/',
+                  },
+                  {
+                    handle: '@mondy',
+                    icon: <IconBrandLinkedin size={14} className="text-blue-400" />,
+                    href: 'https://www.linkedin.com/company/mondy-ai/posts/?feedView=all',
+                  },
+                ].map((social, i) => {
+                  const className =
+                    'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 text-[12px] font-bold hover:bg-white/10 transition-all border border-white/10 cursor-pointer text-white';
+                  const inner = (
+                    <>
+                      {social.icon}
+                      {social.handle}
+                    </>
+                  );
+                  if (social.href) {
+                    return (
+                      <a
+                        key={i}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={className}
+                      >
+                        {inner}
+                      </a>
+                    );
+                  }
+                  return (
+                    <span key={i} className={className}>
+                      {inner}
+                    </span>
+                  );
+                })}
               </div>
             </div>
  

@@ -39,7 +39,7 @@ export default function CookieConsentBanner() {
     <div
       role="dialog"
       aria-label="Cookie preferences"
-      className="fixed bottom-3 right-3 z-[100] w-[min(20rem,calc(100vw-1.5rem))] pointer-events-none sm:bottom-4 sm:right-4 sm:w-[min(22rem,calc(100vw-2rem))]"
+      className="fixed bottom-3 left-1/2 z-[100] w-[min(20rem,calc(100vw-1.5rem))] -translate-x-1/2 pointer-events-none sm:bottom-4 sm:left-auto sm:right-4 sm:translate-x-0 sm:w-[min(22rem,calc(100vw-2rem))]"
     >
       <div
         className={cn(

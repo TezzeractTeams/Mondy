@@ -5,9 +5,12 @@ const LAST_UPDATED =
   process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "April 2, 2026";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Mondy",
+  title: "Privacy Policy",
   description:
     "How Mondy collects, uses, and protects your personal information.",
+  openGraph: {
+    url: "/privacy",
+  },
 };
 
 export default function PrivacyPolicy() {

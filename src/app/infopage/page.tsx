@@ -1,6 +1,7 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import { Suspense, useCallback, useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,9 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
+
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? "";
+const turnstileReady = turnstileSiteKey.length > 0;
 
 type ConfirmationDetails = { email: string; firstName: string };
 
@@ -80,14 +84,46 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState(initialEmail);
   const [marketingConsent, setMarketingConsent] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [confirmation, setConfirmation] = useState<ConfirmationDetails | null>(null);
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
+
+  const resetTurnstile = useCallback(() => {
+    setCaptchaToken(null);
+    turnstileRef.current?.reset();
+  }, []);
+
+  const handleTurnstileSuccess = useCallback((token: string) => {
+    setCaptchaToken(token);
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setCaptchaToken(null);
+  }, []);
+
+  const handleTurnstileError = useCallback(() => {
+    resetTurnstile();
+  }, [resetTurnstile]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
     setMessage("");
+
+    if (!turnstileReady) {
+      setStatus("error");
+      setMessage("Waitlist signup is temporarily unavailable. Please try again later.");
+      return;
+    }
+
+    if (!captchaToken) {
+      setStatus("error");
+      setMessage("Please complete the verification challenge before joining.");
+      return;
+    }
+
+    setStatus("loading");
 
     try {
       const res = await fetch("/api/waitlist", {
@@ -98,6 +134,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
           lastName,
           email,
           marketingConsent,
+          captchaToken,
         }),
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
@@ -105,6 +142,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
       if (!res.ok) {
         setStatus("error");
         setMessage(data.error ?? "Something went wrong. Please try again.");
+        resetTurnstile();
         return;
       }
 
@@ -118,15 +156,18 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
       setLastName("");
       setEmail("");
       setMarketingConsent(false);
+      resetTurnstile();
     } catch {
       setStatus("error");
       setMessage("Network error. Check your connection and try again.");
+      resetTurnstile();
     }
   };
 
   const submitting = status === "loading";
   const done = status === "success" && confirmation !== null;
   const reduceMotion = useReducedMotion();
+  const submitBlocked = submitting || done || !turnstileReady;
 
   const { containerVariants, itemVariants } = useMemo(() => {
     const off = !!reduceMotion;
@@ -214,7 +255,8 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-mondy-ink">
             Be the first to use Mondy            </h1>
             <p className="text-mondy-ink/60 text-lg leading-relaxed">
-            We're getting close! Join the waitlist today  and get early access when we go live.            </p>
+            We&apos;re getting close! Join the waitlist today and get early access when we go live.
+            </p>
           </motion.div>
 
           <motion.form
@@ -234,7 +276,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="First name"
-                  disabled={submitting || done}
+                  disabled={submitBlocked}
                   className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
                   required
                 />
@@ -249,7 +291,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Last name"
-                  disabled={submitting || done}
+                  disabled={submitBlocked}
                   className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
                   required
                 />
@@ -267,7 +309,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                disabled={submitting || done}
+                disabled={submitBlocked}
                 className="w-full px-4 py-3 rounded-xl border border-black/10 text-mondy-ink focus:border-mondy-accent focus:ring-1 focus:ring-mondy-accent outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
                 required
               />
@@ -279,7 +321,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
                 id="marketingConsent"
                 checked={marketingConsent}
                 onChange={(e) => setMarketingConsent(e.target.checked)}
-                disabled={submitting || done}
+                disabled={submitBlocked}
                 required
                 className="mt-1 h-4 w-4 shrink-0 rounded border-black/20 text-mondy-accent focus:ring-mondy-accent focus:ring-offset-0 disabled:opacity-50"
               />
@@ -290,6 +332,23 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
                I agree to receive updates and emails from Mondy AI and accept the Privacy Policy. I can unsubscribe anytime.
               </label>
             </div>
+
+            {turnstileReady ? (
+              <div className="flex min-h-[65px] flex-col gap-2">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={turnstileSiteKey}
+                  onSuccess={handleTurnstileSuccess}
+                  onExpire={handleTurnstileExpire}
+                  onError={handleTurnstileError}
+                  options={{ theme: "auto", size: "flexible" }}
+                />
+              </div>
+            ) : (
+              <p className="text-sm font-medium text-red-600" role="status">
+                Waitlist verification is not configured. Please try again later.
+              </p>
+            )}
 
             {message ? (
               <p
@@ -306,7 +365,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={submitting || done}
+              disabled={submitBlocked}
               className={cn(
                 mondyBtn.primaryLg,
                 "w-full mt-2 flex justify-center items-center disabled:opacity-50 disabled:pointer-events-none",

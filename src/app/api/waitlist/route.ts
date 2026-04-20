@@ -2,8 +2,15 @@
  * Waitlist → Brevo contacts. Requires:
  * - BREVO_API_KEY (server-only)
  * - BREVO_WAITLIST_LIST_ID (optional; adds contact to that list)
+ * - TURNSTILE_SECRET_KEY (server-only) + NEXT_PUBLIC_TURNSTILE_SITE_KEY (client; infopage widget)
+ *
+ * Turnstile dummy keys for local testing:
+ * - NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+ * - TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+ * @see https://developers.cloudflare.com/turnstile/troubleshooting/testing/
  */
 import { NextResponse } from "next/server";
+import { verifyTurnstileToken } from "@/lib/verifyTurnstile";
 
 const BREVO_CONTACTS_URL = "https://api.brevo.com/v3/contacts";
 const MAX_NAME = 120;
@@ -13,6 +20,17 @@ function isValidEmail(email: string): boolean {
   if (email.length > MAX_EMAIL) return false;
   // Practical check; browser also enforces type="email"
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function getClientIp(request: Request): string | undefined {
+  const cf = request.headers.get("cf-connecting-ip");
+  if (cf?.trim()) return cf.trim();
+  const xff = request.headers.get("x-forwarded-for");
+  if (xff) {
+    const first = xff.split(",")[0]?.trim();
+    if (first) return first;
+  }
+  return undefined;
 }
 
 export async function POST(request: Request) {
@@ -36,7 +54,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { firstName, lastName, email, marketingConsent } = body as Record<string, unknown>;
+  const { firstName, lastName, email, marketingConsent, captchaToken } = body as Record<
+    string,
+    unknown
+  >;
 
   if (marketingConsent !== true) {
     return NextResponse.json(
@@ -54,6 +75,32 @@ export async function POST(request: Request) {
 
   if (!addr || !isValidEmail(addr)) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+  }
+
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY?.trim();
+  if (!turnstileSecret) {
+    console.error("waitlist: TURNSTILE_SECRET_KEY is not set");
+    return NextResponse.json(
+      { error: "Waitlist is temporarily unavailable. Please try again later." },
+      { status: 503 },
+    );
+  }
+
+  const token =
+    typeof captchaToken === "string" ? captchaToken.trim() : "";
+  if (!token) {
+    return NextResponse.json(
+      { error: "Please complete the verification challenge and try again." },
+      { status: 400 },
+    );
+  }
+
+  const turnstileOk = await verifyTurnstileToken(token, turnstileSecret, getClientIp(request));
+  if (!turnstileOk) {
+    return NextResponse.json(
+      { error: "Verification failed. Please refresh the page and try again." },
+      { status: 400 },
+    );
   }
 
   const listIdRaw = process.env.BREVO_WAITLIST_LIST_ID?.trim();

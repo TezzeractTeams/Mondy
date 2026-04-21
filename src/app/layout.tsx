@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     description: defaultDescription,
     images: [
       {
-        url: "/Mondy Waitlist Image.png",
+        url: "/preview.jpeg",
         alt: "Mondy — turn your voice into a week of social content",
       },
     ],
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mondy",
     description: defaultDescription,
-    images: ["/Mondy Waitlist Image.png"],
+    images: ["/preview.jpeg"],
   },
 };
 

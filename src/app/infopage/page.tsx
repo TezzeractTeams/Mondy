@@ -209,7 +209,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
           }}
         >
           <Image
-            src="/Mondy Waitlist Image.png"
+            src="/preview.jpeg"
             alt="Mondy AI app on a smartphone — voice interface preview"
             fill
             className="object-cover object-[80%_center]"
@@ -389,7 +389,7 @@ function JoinWaitlistForm({ initialEmail }: { initialEmail: string }) {
         }}
       >
         <Image
-          src="/Mondy Waitlist Image.png"
+          src="/preview.jpeg"
           alt="Mondy AI app on a smartphone — voice interface preview"
           fill
           className="object-cover object-[80%_center]"

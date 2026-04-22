@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: waitlistDescription,
     images: [
       {
-        url: "/preview.jpeg",
+        url: "/preview.jpeg?v=2",
         alt: "Mondy preview image",
       },
     ],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Waitlist | Mondy",
     description: waitlistDescription,
-    images: ["/preview.jpeg"],
+    images: ["/preview.jpeg?v=2"],
   },
 };
 

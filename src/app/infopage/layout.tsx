@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import {
+  SOCIAL_PREVIEW_HEIGHT,
+  SOCIAL_PREVIEW_PATH,
+  SOCIAL_PREVIEW_WIDTH,
+} from "@/lib/socialPreviewImage";
 
 const waitlistDescription =
   "Join the Mondy waitlist for early access—turn your voice into a week of social content.";
@@ -12,7 +17,9 @@ export const metadata: Metadata = {
     description: waitlistDescription,
     images: [
       {
-        url: "/preview.jpeg?v=3",
+        url: SOCIAL_PREVIEW_PATH,
+        width: SOCIAL_PREVIEW_WIDTH,
+        height: SOCIAL_PREVIEW_HEIGHT,
         alt: "Mondy preview image",
       },
     ],
@@ -22,7 +29,7 @@ export const metadata: Metadata = {
     title: "Waitlist | Mondy",
     description: waitlistDescription,
     images: {
-      url: "/preview.jpeg?v=3",
+      url: SOCIAL_PREVIEW_PATH,
       alt: "Mondy preview image",
     },
   },

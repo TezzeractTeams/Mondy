@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
+import {
+  SOCIAL_PREVIEW_HEIGHT,
+  SOCIAL_PREVIEW_PATH,
+  SOCIAL_PREVIEW_WIDTH,
+} from "@/lib/socialPreviewImage";
 
 const LAST_UPDATED =
   process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "April 2, 2026";
@@ -16,7 +21,9 @@ export const metadata: Metadata = {
     description: privacyDescription,
     images: [
       {
-        url: "/preview.jpeg?v=3",
+        url: SOCIAL_PREVIEW_PATH,
+        width: SOCIAL_PREVIEW_WIDTH,
+        height: SOCIAL_PREVIEW_HEIGHT,
         alt: "Mondy preview image",
       },
     ],
@@ -26,7 +33,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy | Mondy",
     description: privacyDescription,
     images: {
-      url: "/preview.jpeg?v=3",
+      url: SOCIAL_PREVIEW_PATH,
       alt: "Mondy preview image",
     },
   },

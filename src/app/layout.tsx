@@ -4,6 +4,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
 import GoogleAnalyticsConsent from "@/components/GoogleAnalyticsConsent";
+import {
+  SOCIAL_PREVIEW_HEIGHT,
+  SOCIAL_PREVIEW_PATH,
+  SOCIAL_PREVIEW_WIDTH,
+} from "@/lib/socialPreviewImage";
 import "./globals.css";
 
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
@@ -68,7 +73,9 @@ export const metadata: Metadata = {
     description: defaultDescription,
     images: [
       {
-        url: "/preview.jpeg?v=3",
+        url: SOCIAL_PREVIEW_PATH,
+        width: SOCIAL_PREVIEW_WIDTH,
+        height: SOCIAL_PREVIEW_HEIGHT,
         alt: "Mondy — turn your voice into a week of social content",
       },
     ],
@@ -78,7 +85,7 @@ export const metadata: Metadata = {
     title: "Mondy",
     description: defaultDescription,
     images: {
-      url: "/preview.jpeg?v=3",
+      url: SOCIAL_PREVIEW_PATH,
       alt: "Mondy — turn your voice into a week of social content",
     },
   },

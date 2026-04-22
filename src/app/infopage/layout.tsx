@@ -10,10 +10,18 @@ export const metadata: Metadata = {
     url: "/infopage",
     title: "Waitlist | Mondy",
     description: waitlistDescription,
+    images: [
+      {
+        url: "/preview.jpeg?v=2",
+        alt: "Mondy preview image",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Waitlist | Mondy",
     description: waitlistDescription,
+    images: ["/preview.jpeg?v=2"],
   },
 };
 

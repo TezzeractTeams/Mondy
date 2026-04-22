@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: privacyDescription,
     images: [
       {
-        url: "/preview.jpeg?v=2",
+        url: "/preview.jpeg?v=3",
         alt: "Mondy preview image",
       },
     ],
@@ -25,7 +25,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Privacy Policy | Mondy",
     description: privacyDescription,
-    images: ["/preview.jpeg?v=2"],
+    images: {
+      url: "/preview.jpeg?v=3",
+      alt: "Mondy preview image",
+    },
   },
 };
 

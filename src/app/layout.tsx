@@ -32,7 +32,11 @@ const geistMono = Geist_Mono({
 function getMetadataBase(): URL {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (fromEnv) {
-    const normalized = fromEnv.endsWith("/") ? fromEnv.slice(0, -1) : fromEnv;
+    let normalized = fromEnv.endsWith("/") ? fromEnv.slice(0, -1) : fromEnv;
+    // Crawlers (e.g. X Card) fetch absolute og/twitter image URLs; apex → www avoids an extra hop.
+    if (/^https?:\/\/mondy\.ai$/i.test(normalized)) {
+      normalized = "https://www.mondy.ai";
+    }
     return new URL(`${normalized}/`);
   }
   if (process.env.VERCEL_URL) {
@@ -64,7 +68,7 @@ export const metadata: Metadata = {
     description: defaultDescription,
     images: [
       {
-        url: "/preview.jpeg?v=2",
+        url: "/preview.jpeg?v=3",
         alt: "Mondy — turn your voice into a week of social content",
       },
     ],
@@ -73,7 +77,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mondy",
     description: defaultDescription,
-    images: ["/preview.jpeg?v=2"],
+    images: {
+      url: "/preview.jpeg?v=3",
+      alt: "Mondy — turn your voice into a week of social content",
+    },
   },
 };
 

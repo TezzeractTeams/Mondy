@@ -14,10 +14,18 @@ export const metadata: Metadata = {
     url: "/privacy",
     title: "Privacy Policy | Mondy",
     description: privacyDescription,
+    images: [
+      {
+        url: "/preview.jpeg",
+        alt: "Mondy preview image",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Privacy Policy | Mondy",
     description: privacyDescription,
+    images: ["/preview.jpeg"],
   },
 };
 

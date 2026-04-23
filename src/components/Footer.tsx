@@ -76,11 +76,11 @@ export default function Footer() {
 Terms & Conditions
               </Link>
               <Link
-              href="mailto:hello@mondy.ai"
-              className="text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight"
-            >
-              Contact Us
-            </Link>
+                href="/infopage"
+                className="text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight"
+              >
+                Contact Us
+              </Link>
             </div>
  
             {/* Say hello! */}

@@ -1,0 +1,4 @@
+Contact: mailto:hello@mondy.ai
+Preferred-Languages: en
+Canonical: https://www.mondy.ai/.well-known/security.txt
+Expires: 2027-04-23T12:00:00.000Z

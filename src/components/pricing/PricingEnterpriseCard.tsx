@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Briefcase, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -42,15 +43,15 @@ export function PricingEnterpriseCard() {
             </p>
 
             <div className="mt-8 flex flex-col gap-5 sm:mt-10  sm:flex-row sm:items-end sm:justify-between">
-              <a
-                href="mailto:hello@mondy.ai"
+              <Link
+                href="/infopage"
                 className={cn(
                   "shrink-0 rounded-full border border-mondy-ink/20 bg-white px-6 py-3 text-sm font-bold text-mondy-ink",
                   "transition-all hover:border-mondy-ink/35 hover:bg-neutral-50 active:scale-[0.98]",
                 )}
               >
                 Contact us
-              </a>
+              </Link>
               <div className="text-left sm:text-right">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-mondy-ink/40">
                   Pricing

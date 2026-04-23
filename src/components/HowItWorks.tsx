@@ -4,6 +4,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { mondyBtn, mondyGradients, mondyType } from "@/styles/mondy";
 
+/** Matches step card image column width (~90% grid); avoids 100vw so mobile srcset stays small. */
+const stepScreenshotSizes =
+  "(max-width: 640px) min(88vw, 300px), (max-width: 1024px) min(90vw, 400px), min(32vw, 440px)";
+
 export default function HowItWorks() {
   const steps = [
     {
@@ -65,7 +69,7 @@ export default function HowItWorks() {
                           alt="Mondy: review your transcript and generated posts"
                           fill
                           className="object-contain min-h-[103%] object-top -mt-10"
-                          sizes="(max-width: 1024px) 100vw, 33vw"
+                          sizes={stepScreenshotSizes}
                         />
                       </div>
                     </div>
@@ -96,7 +100,7 @@ export default function HowItWorks() {
                             alt="Mondy: record and see your transcript as you speak"
                             fill
                             className="object-contain min-h-[103%] object-bottom"
-                            sizes="(max-width: 1024px) 100vw, 33vw"
+                            sizes={stepScreenshotSizes}
                           />
                         ) : idx === 2 ? (
                           <Image
@@ -104,7 +108,7 @@ export default function HowItWorks() {
                             alt="Mondy: schedule posts across platforms with calendar and time"
                             fill
                             className="object-contain min-h-[103%] object-bottom "
-                            sizes="(max-width: 1024px) 100vw, 33vw"
+                            sizes={stepScreenshotSizes}
                           />
                         ) : (
                           <span className={mondyType.screenshotPlaceholder}>[App Screenshot]</span>

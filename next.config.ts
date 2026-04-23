@@ -55,6 +55,7 @@ const nextConfig: NextConfig = {
   /** Inlines route CSS into the HTML document to avoid an extra render-blocking stylesheet request (see `experimental.inlineCss` in Next.js). */
   experimental: {
     inlineCss: true,
+    optimizePackageImports: ["@tabler/icons-react", "lucide-react"],
   },
   async headers() {
     return [

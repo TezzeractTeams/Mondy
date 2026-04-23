@@ -149,7 +149,7 @@ export default function Hero() {
                       alt="Hand holding a smartphone"
                       width={1177}
                       height={1094}
-                      sizes="(max-width: 640px) min(160vw, 620px), (max-width: 1024px) min(70vw, 560px), min(55vw, 720px)"
+                      sizes="(max-width: 640px) min(120vw, 520px), (max-width: 1024px) min(62vw, 500px), min(50vw, 640px)"
                       className={mondyHero.handImage.img}
                       priority
                     />

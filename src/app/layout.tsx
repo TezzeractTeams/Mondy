@@ -3,7 +3,6 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
-import GoogleAnalyticsConsent from "@/components/GoogleAnalyticsConsent";
 import {
   SOCIAL_PREVIEW_HEIGHT,
   SOCIAL_PREVIEW_PATH,
@@ -117,7 +116,6 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{ __html: gtmScript }}
           />
         ) : null}
-        <GoogleAnalyticsConsent />
         {children}
         <CookieConsentBanner />
       </body>

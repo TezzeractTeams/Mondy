@@ -1,10 +1,31 @@
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import ProblemStatement from "@/components/ProblemStatement";
-import HowItWorks from "@/components/HowItWorks";
-import PricingSection from "@/components/PricingSection";
-import Waitlist from "@/components/Waitlist";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
+
+const HowItWorks = dynamic(() => import("@/components/HowItWorks"), {
+  ssr: true,
+  loading: () => null,
+});
+
+const PricingSection = dynamic(() => import("@/components/PricingSection"), {
+  ssr: true,
+  loading: () => null,
+});
+
+const Waitlist = dynamic(() => import("@/components/Waitlist"), {
+  ssr: true,
+  loading: () => null,
+});
+
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  ssr: true,
+  loading: () => null,
+});
+
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: true,
+  loading: () => null,
+});
 
 export default function Home() {
   return (

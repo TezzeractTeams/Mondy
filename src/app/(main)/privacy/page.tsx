@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 import {
   SOCIAL_PREVIEW_HEIGHT,
@@ -133,14 +134,20 @@ export default function PrivacyPolicy() {
             <section className="flex flex-col gap-4">
               <h2 className="text-2xl font-bold tracking-tight">5. Contact Us</h2>
               <p className="opacity-80">
-                If you have questions or comments about this notice, you may
-                email us at{" "}
-                <a
-                  href="mailto:hello@mondy.ai"
+                If you have questions or comments about this notice, you may{" "}
+                <Link
+                  href="/infopage"
                   className="text-blue-600 hover:underline"
                 >
-                  hello@mondy.ai
-                </a>
+                  contact us through our site
+                </Link>
+                . For security vulnerability reports, see our{" "}
+                <Link
+                  href="/.well-known/security.txt"
+                  className="text-blue-600 hover:underline"
+                >
+                  security.txt
+                </Link>
                 .
               </p>
             </section>

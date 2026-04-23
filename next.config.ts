@@ -5,6 +5,19 @@ const appDir = path.join(__dirname);
 const tailwindcssPkg = path.join(appDir, "node_modules/tailwindcss");
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+        ],
+      },
+    ];
+  },
   images: {
     qualities: [75, 92],
   },

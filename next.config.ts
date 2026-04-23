@@ -52,6 +52,10 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  /** Inlines route CSS into the HTML document to avoid an extra render-blocking stylesheet request (see `experimental.inlineCss` in Next.js). */
+  experimental: {
+    inlineCss: true,
+  },
   async headers() {
     return [
       {

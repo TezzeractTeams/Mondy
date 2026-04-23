@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
 import {
@@ -24,16 +23,6 @@ const noah = localFont({
   variable: "--font-noah-stack",
   display: "swap",
   fallback: ["system-ui", "sans-serif"],
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 /** Used for absolute Open Graph / Twitter URLs. Set in production, e.g. https://yourdomain.com */
@@ -102,7 +91,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${noah.variable} ${geistSans.variable} ${geistMono.variable}`}
+      className={noah.variable}
       suppressHydrationWarning
     >
       <body

@@ -37,9 +37,11 @@ export const FloatingNav = ({
       navigateToSection(hash, router, pathname);
       return;
     }
-    window.setTimeout(() => {
-      navigateToSection(hash, router, pathname);
-    }, 220);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        navigateToSection(hash, router, pathname);
+      });
+    });
   };
 
   return (

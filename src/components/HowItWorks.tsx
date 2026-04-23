@@ -6,7 +6,7 @@ import { mondyBtn, mondyGradients, mondyType } from "@/styles/mondy";
 
 /** Matches step card image column width (~90% grid); avoids 100vw so mobile srcset stays small. */
 const stepScreenshotSizes =
-  "(max-width: 640px) min(88vw, 300px), (max-width: 1024px) min(90vw, 400px), min(32vw, 440px)";
+  "(max-width: 640px) min(88vw, 240px), (max-width: 1024px) min(90vw, 360px), min(32vw, 400px)";
 
 export default function HowItWorks() {
   const steps = [

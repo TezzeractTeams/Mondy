@@ -152,6 +152,7 @@ export default function Hero() {
                       sizes="(max-width: 640px) min(120vw, 520px), (max-width: 1024px) min(62vw, 500px), min(50vw, 640px)"
                       className={mondyHero.handImage.img}
                       priority
+                      fetchPriority="high"
                     />
                     <div
                       className="pointer-events-none absolute inset-0 z-[1]"

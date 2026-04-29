@@ -114,12 +114,6 @@ export default function LinkedInStatisticsBlogPage() {
 
   return (
     <>
-      <a
-        href="#article-main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-24 focus:z-[6000] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg"
-      >
-        Skip to main content
-      </a>
       <ArticleShell>
         <div className="flex w-full max-w-7xl flex-col gap-8">
           <ArticleBreadcrumb

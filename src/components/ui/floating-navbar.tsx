@@ -24,22 +24,38 @@ export const FloatingNav = ({
   const pathname = usePathname();
   const router = useRouter();
 
-  const onSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+  const navHref = (link: string) => {
+    if (link === "/") return "/";
+    if (link.startsWith("http")) return link;
+    if (link.startsWith("/") && !link.startsWith("/#")) return link;
+    if (link.startsWith("#")) return `/${link}`;
+    return link;
+  };
+
+  const isPlainRouteLink = (link: string) =>
+    link === "/" || (link.startsWith("/") && !link.includes("#"));
+
+  const onSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    if (isPlainRouteLink(link)) return;
     e.preventDefault();
-    navigateToSection(hash, router, pathname);
+    navigateToSection(link, router, pathname);
   };
 
   /** Close first, then scroll after layout settles (open mobile menu throws off iOS / smooth scroll). */
-  const onMobileSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+  const onMobileSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    if (isPlainRouteLink(link)) {
+      setIsOpen(false);
+      return;
+    }
     e.preventDefault();
     setIsOpen(false);
     if (pathname !== "/") {
-      navigateToSection(hash, router, pathname);
+      navigateToSection(link, router, pathname);
       return;
     }
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        navigateToSection(hash, router, pathname);
+        navigateToSection(link, router, pathname);
       });
     });
   };
@@ -79,18 +95,30 @@ export const FloatingNav = ({
 
           {/* Navigation Items (Desktop) */}
           <div className="hidden lg:flex items-center gap-12">
-            {navItems.map((navItem: any, idx: number) => (
-              <a
-                key={`link=${idx}`}
-                href={`/${navItem.link}`}
-                onClick={(e) => onSectionClick(e, navItem.link)}
-                className={cn(
-                  "relative flex items-center gap-1 text-mondy-ink hover:text-neutral-500 transition-colors font-sans"
-                )}
-              >
-                <span className="text-[18px] font-medium whitespace-nowrap">{navItem.name}</span>
-              </a>
-            ))}
+            {navItems.map((navItem: { name: string; link: string }, idx: number) =>
+              isPlainRouteLink(navItem.link) ? (
+                <Link
+                  key={`link=${idx}`}
+                  href={navHref(navItem.link)}
+                  className={cn(
+                    "relative flex items-center gap-1 text-mondy-ink hover:text-neutral-500 transition-colors font-sans",
+                  )}
+                >
+                  <span className="text-[18px] font-medium whitespace-nowrap">{navItem.name}</span>
+                </Link>
+              ) : (
+                <a
+                  key={`link=${idx}`}
+                  href={navHref(navItem.link)}
+                  onClick={(e) => onSectionClick(e, navItem.link)}
+                  className={cn(
+                    "relative flex items-center gap-1 text-mondy-ink hover:text-neutral-500 transition-colors font-sans",
+                  )}
+                >
+                  <span className="text-[18px] font-medium whitespace-nowrap">{navItem.name}</span>
+                </a>
+              ),
+            )}
           </div>
 
           {/* Action Button (Desktop) */}
@@ -121,16 +149,27 @@ export const FloatingNav = ({
               className="relative z-10 lg:hidden flex flex-col gap-6 w-full overflow-hidden"
             >
               <div className="flex flex-col gap-4 pl-1">
-                {navItems.map((navItem: any, idx: number) => (
-                  <a
-                    key={`mobile-link=${idx}`}
-                    href={`/${navItem.link}`}
-                    onClick={(e) => onMobileSectionClick(e, navItem.link)}
-                    className="flex min-h-[44px] items-center text-mondy-ink text-lg font-medium py-2"
-                  >
-                    <span>{navItem.name}</span>
-                  </a>
-                ))}
+                {navItems.map((navItem: { name: string; link: string }, idx: number) =>
+                  isPlainRouteLink(navItem.link) ? (
+                    <Link
+                      key={`mobile-link=${idx}`}
+                      href={navHref(navItem.link)}
+                      onClick={() => setIsOpen(false)}
+                      className="flex min-h-[44px] items-center text-mondy-ink text-lg font-medium py-2"
+                    >
+                      <span>{navItem.name}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      key={`mobile-link=${idx}`}
+                      href={navHref(navItem.link)}
+                      onClick={(e) => onMobileSectionClick(e, navItem.link)}
+                      className="flex min-h-[44px] items-center text-mondy-ink text-lg font-medium py-2"
+                    >
+                      <span>{navItem.name}</span>
+                    </a>
+                  ),
+                )}
               </div>
               <Link href="/infopage" onClick={() => setIsOpen(false)} className={mondyBtn.navMobile}>
                 Join Waitlist

@@ -90,13 +90,13 @@ function useTocScrollContext(): TocContextValue {
   return ctx;
 }
 
-function TocNavList() {
+function TocNavList({ headingId }: { headingId: string }) {
   const { items, activeId, progress } = useTocScrollContext();
 
   return (
-    <div className="flex gap-3 items-stretch">
+    <div className="flex gap-3.5 items-stretch">
       <div
-        className="relative w-1.5 shrink-0 overflow-hidden rounded-full bg-neutral-60/40"
+        className="relative w-2 shrink-0 overflow-hidden rounded-full bg-neutral-60/40"
         role="progressbar"
         aria-valuenow={Math.round(progress)}
         aria-valuemin={0}
@@ -108,8 +108,8 @@ function TocNavList() {
           style={{ height: `${progress}%` }}
         />
       </div>
-      <nav aria-label="Table of contents" className="min-w-0 flex-1">
-        <ul className="flex flex-col gap-2">
+      <nav aria-labelledby={headingId} className="min-w-0 flex-1">
+        <ul className="flex flex-col gap-2.5">
           {items.map((item) => {
             const active = activeId === item.id;
             return (
@@ -118,7 +118,7 @@ function TocNavList() {
                   href={`#${item.id}`}
                   aria-current={active ? "location" : undefined}
                   className={cn(
-                    "block text-sm transition-colors",
+                    "block text-[15px] leading-snug transition-colors sm:text-base",
                     active
                       ? "font-semibold text-mondy-accent-deep"
                       : "font-normal text-neutral-80 hover:text-mondy-accent-deep hover:underline underline-offset-4",
@@ -137,24 +137,63 @@ function TocNavList() {
 
 type ArticleTOCProps = {
   className?: string;
+  /** Rendered below the TOC list (e.g. share buttons). */
+  afterToc?: ReactNode;
+  /** Main heading above the list (default: "On this page"). */
+  tocTitle?: string;
+  /** Small label under the title (default: "Table of contents"). */
+  tocSubtitle?: string;
 };
 
-export function ArticleTOC({ className }: ArticleTOCProps) {
+type ArticleTOCInlineProps = {
+  afterToc?: ReactNode;
+  tocTitle?: string;
+  tocSubtitle?: string;
+};
+
+function TocSectionHeading({ id, title, subtitle }: { id: string; title: string; subtitle: string }) {
+  return (
+    <div className="mb-1">
+      <h2 id={id} className="text-lg font-bold tracking-tight text-mondy-ink md:text-xl">
+        {title}
+      </h2>
+      <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-neutral-80">{subtitle}</p>
+    </div>
+  );
+}
+
+export function ArticleTOC({ className, afterToc, tocTitle = "On this page", tocSubtitle = "Table of contents" }: ArticleTOCProps) {
+  const headingId = "article-toc-sidebar-title";
   return (
     <aside className={className}>
-      <div className="lg:sticky lg:top-28">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-80">Table of contents</p>
-        <TocNavList />
+      <div className="flex flex-col gap-8 lg:sticky lg:top-28">
+        <div>
+          <TocSectionHeading id={headingId} title={tocTitle} subtitle={tocSubtitle} />
+          <div className="mt-4">
+            <TocNavList headingId={headingId} />
+          </div>
+        </div>
+        {afterToc}
       </div>
     </aside>
   );
 }
 
-export function ArticleTOCInline() {
+export function ArticleTOCInline({
+  afterToc,
+  tocTitle = "On this page",
+  tocSubtitle = "Table of contents",
+}: ArticleTOCInlineProps) {
+  const headingId = "article-toc-inline-title";
   return (
-    <div className="rounded-2xl border border-black/[0.06] bg-white/60 p-4 lg:hidden">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-80">Table of contents</p>
-      <TocNavList />
+    <div className="flex flex-col gap-6 lg:hidden">
+      <div className="rounded-2xl border border-black/[0.06] bg-white/60 p-5">
+        <TocSectionHeading id={headingId} title={tocTitle} subtitle={tocSubtitle} />
+        <div className="mt-4">
+          <TocNavList headingId={headingId} />
+        </div>
+      </div>
+      {afterToc}
     </div>
   );
 }

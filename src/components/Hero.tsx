@@ -6,11 +6,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import HeroWaitlistCard from "@/components/HeroWaitlistCard";
 import { NeomorphicRippleBackground } from "@/components/NeomorphicRippleBackground";
 import { cn } from "@/lib/utils";
+import { mondyHeroFloatingCards } from "@/config/heroFloatingCards";
 import { mondy, mondyHero, mondyLayout } from "@/styles/mondy";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
-  const { activePreset, presetWidths, presetSizes } = mondyHero.floatingCards;
+  const { activePreset, presetWidths, presetSizes } = mondyHeroFloatingCards;
   const floatingCardWidthClass = presetWidths[activePreset];
   const floatingCardSizes = presetSizes[activePreset];
 

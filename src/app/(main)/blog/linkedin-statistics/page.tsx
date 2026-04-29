@@ -8,6 +8,7 @@ import { ArticleFAQ } from "@/components/blog/ArticleFAQ";
 import { ArticleHeader } from "@/components/blog/ArticleHeader";
 import { ArticleHeroImage } from "@/components/blog/ArticleHeroImage";
 import { ArticleRelated, type RelatedPost } from "@/components/blog/ArticleRelated";
+import { ArticleShareRow } from "@/components/blog/ArticleShareRow";
 import { ArticleShell } from "@/components/blog/ArticleShell";
 import { ArticleTOC, ArticleTOCInline, ArticleTOCScrollProvider } from "@/components/blog/ArticleTOC";
 import { ArticleTwoColumn } from "@/components/blog/ArticleTwoColumn";
@@ -21,15 +22,24 @@ import {
 
 const PATH = "/blog/linkedin-statistics";
 
+const ARTICLE_AUTHOR = {
+  name: "Shanilka Rajapaksha",
+  avatarSrc: "/Shanilka.png",
+  avatarAlt: "Portrait of Shanilka Perera",
+} as const;
+
+const ARTICLE_TITLE =
+  "30 LinkedIn statistics that marketers should know in 2026 for modern teams";
+
 const description =
   "Thirty LinkedIn statistics on demographics, usage, ads, engagement, video, hiring, and company facts—editorial reference for your 2026 B2B strategy.";
 
 export const metadata: Metadata = {
-  title: "30 LinkedIn statistics for marketers in 2026",
+  title: ARTICLE_TITLE,
   description,
   openGraph: {
     url: PATH,
-    title: "30 LinkedIn statistics for marketers in 2026 | Mondy",
+    title: `${ARTICLE_TITLE} | Mondy`,
     description,
     type: "article",
     images: [
@@ -43,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "30 LinkedIn statistics for marketers in 2026 | Mondy",
+    title: `${ARTICLE_TITLE} | Mondy`,
     description,
     images: {
       url: SOCIAL_PREVIEW_PATH,
@@ -111,6 +121,8 @@ const RELATED: RelatedPost[] = [
 
 export default function LinkedInStatisticsBlogPage() {
   const absoluteShareUrl = `${getSiteOrigin()}${PATH}`;
+  const shareMailSubject = ARTICLE_TITLE;
+  const shareBelowToc = <ArticleShareRow absoluteShareUrl={absoluteShareUrl} mailSubject={shareMailSubject} />;
 
   return (
     <>
@@ -124,12 +136,12 @@ export default function LinkedInStatisticsBlogPage() {
             ]}
           />
           <ArticleHeader
-            title="30 LinkedIn statistics that marketers should know in 2026"
-            author="Mondy Editorial"
+            title={ARTICLE_TITLE}
+            author={ARTICLE_AUTHOR.name}
+            authorAvatarSrc={ARTICLE_AUTHOR.avatarSrc}
+            authorAvatarAlt={ARTICLE_AUTHOR.avatarAlt}
             publishedOn="March 31, 2026"
             readingTimeMinutes={9}
-            absoluteShareUrl={absoluteShareUrl}
-            shareMailSubject="30 LinkedIn statistics for marketers in 2026"
             hero={
               <ArticleHeroImage
                 src={SOCIAL_PREVIEW_PATH}
@@ -140,11 +152,11 @@ export default function LinkedInStatisticsBlogPage() {
           />
           <ArticleTOCScrollProvider items={[...TOC_ITEMS]}>
             <ArticleTwoColumn
-              sidebar={<ArticleTOC className="hidden lg:block" />}
+              sidebar={<ArticleTOC className="hidden lg:block" afterToc={shareBelowToc} />}
               rightAside={<ArticleDownloadMondy />}
             >
               <div id="article-main" className="flex flex-col gap-8">
-                <ArticleTOCInline />
+                <ArticleTOCInline afterToc={shareBelowToc} />
               <LinkedInStatisticsArticleBody />
               <ArticleFAQ id="linkedin-statistics-faqs" title="LinkedIn statistics FAQs" items={FAQ_ITEMS} />
               <div className="flex max-w-prose flex-wrap gap-2 pt-2">
@@ -159,12 +171,14 @@ export default function LinkedInStatisticsBlogPage() {
                 ))}
               </div>
               <ArticleAuthor
-                name="Mondy Editorial"
+                name={ARTICLE_AUTHOR.name}
+                avatarSrc={ARTICLE_AUTHOR.avatarSrc}
+                avatarAlt={ARTICLE_AUTHOR.avatarAlt}
                 bio={
                   <>
-                    We write practical guides on social content, voice-first workflows, and B2B distribution. This article
-                    aggregates public statistics and analyst reporting for educational purposes; always verify numbers
-                    against primary sources for business decisions.
+                    Writes about social content strategy, voice-first workflows, and B2B distribution. This piece pulls
+                    together public statistics and analyst sources for quick reference—always confirm figures with the
+                    original publishers before relying on them for decisions.
                   </>
                 }
               />

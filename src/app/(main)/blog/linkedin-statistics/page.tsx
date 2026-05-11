@@ -131,7 +131,7 @@ export default function LinkedInStatisticsBlogPage() {
           <ArticleBreadcrumb
             items={[
               { label: "Mondy", href: "/" },
-              { label: "Blog", href: PATH },
+              { label: "Blog", href: "/blog" },
               { label: "Social media marketing" },
             ]}
           />

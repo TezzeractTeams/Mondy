@@ -14,7 +14,7 @@ export default function MondyNav() {
     { name: "FAQ", link: "#faq" },
   ];
 
-  const blogItem = { name: "Blog", link: "/blog/linkedin-statistics" };
+  const blogItem = { name: "Blog", link: "/blog" };
 
   const navItems =
     pathname === "/"

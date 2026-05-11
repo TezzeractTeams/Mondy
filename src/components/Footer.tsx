@@ -58,6 +58,15 @@ export default function Footer() {
                   {item.name}
                 </a>
               ))}
+              <Link
+                href="/blog"
+                className={cn(
+                  "text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight",
+                  pathname.startsWith("/blog") && "text-white",
+                )}
+              >
+                Blog
+              </Link>
             </div>
  
             {/* General */}

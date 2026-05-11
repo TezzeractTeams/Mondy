@@ -100,8 +100,14 @@ export const FloatingNav = ({
                 <Link
                   key={`link=${idx}`}
                   href={navHref(navItem.link)}
+                  aria-current={
+                    navItem.link === "/blog" && pathname.startsWith("/blog") ? "page" : undefined
+                  }
                   className={cn(
                     "relative flex items-center gap-1 text-mondy-ink hover:text-neutral-500 transition-colors font-sans",
+                    navItem.link === "/blog" &&
+                      pathname.startsWith("/blog") &&
+                      "text-mondy-accent-deep hover:text-mondy-accent-deep",
                   )}
                 >
                   <span className="text-[18px] font-medium whitespace-nowrap">{navItem.name}</span>
@@ -155,7 +161,15 @@ export const FloatingNav = ({
                       key={`mobile-link=${idx}`}
                       href={navHref(navItem.link)}
                       onClick={() => setIsOpen(false)}
-                      className="flex min-h-[44px] items-center text-mondy-ink text-lg font-medium py-2"
+                      aria-current={
+                        navItem.link === "/blog" && pathname.startsWith("/blog") ? "page" : undefined
+                      }
+                      className={cn(
+                        "flex min-h-[44px] items-center text-mondy-ink text-lg font-medium py-2",
+                        navItem.link === "/blog" &&
+                          pathname.startsWith("/blog") &&
+                          "text-mondy-accent-deep",
+                      )}
                     >
                       <span>{navItem.name}</span>
                     </Link>

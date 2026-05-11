@@ -3,7 +3,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import { ArticleAuthor } from "@/components/blog/ArticleAuthor";
 import { ArticleBreadcrumb } from "@/components/blog/ArticleBreadcrumb";
-import { ArticleDownloadMondy } from "@/components/blog/ArticleDownloadMondy";
+import { ArticleWaitlistAside } from "@/components/blog/ArticleWaitlistAside";
 import { ArticleFAQ } from "@/components/blog/ArticleFAQ";
 import { ArticleHeader } from "@/components/blog/ArticleHeader";
 import { ArticleHeroImage } from "@/components/blog/ArticleHeroImage";
@@ -153,7 +153,7 @@ export default function LinkedInStatisticsBlogPage() {
           <ArticleTOCScrollProvider items={[...TOC_ITEMS]}>
             <ArticleTwoColumn
               sidebar={<ArticleTOC className="hidden lg:block" afterToc={shareBelowToc} />}
-              rightAside={<ArticleDownloadMondy />}
+              rightAside={<ArticleWaitlistAside />}
             >
               <div id="article-main" className="flex flex-col gap-8">
                 <ArticleTOCInline afterToc={shareBelowToc} />

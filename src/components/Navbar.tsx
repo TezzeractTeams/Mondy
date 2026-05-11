@@ -16,8 +16,9 @@ export default function MondyNav() {
 
   const blogItem = { name: "Blog", link: "/blog" };
 
+  const isBlog = pathname === "/blog" || pathname.startsWith("/blog/");
   const navItems =
-    pathname === "/"
+    pathname === "/" || isBlog
       ? [...sectionItems, blogItem]
       : [{ name: "Home", link: "/" }, ...sectionItems, blogItem];
 

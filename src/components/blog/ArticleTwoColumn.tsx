@@ -21,7 +21,15 @@ export function ArticleTwoColumn({ sidebar, children, rightAside, className }: A
       )}
     >
       {sidebar}
-      <div className="min-w-0">{children}</div>
+      <div
+        className={cn(
+          "min-w-0",
+          // Center the reading column so space is split evenly between the two side rails (uniform gutters).
+          rightAside && "mx-auto w-full max-w-prose",
+        )}
+      >
+        {children}
+      </div>
       {rightAside ?? null}
     </div>
   );

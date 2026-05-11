@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { mondyBtn } from "@/styles/mondy";
 import { ArticleCallout } from "./ArticleCallout";
 import { ArticleFigure } from "./ArticleFigure";
 import { ArticleProse } from "./ArticleProse";
@@ -389,9 +391,12 @@ export function LinkedInStatisticsArticleBody() {
         </p>
         <Link
           href="/infopage"
-          className="mt-4 inline-flex items-center justify-center rounded-full bg-mondy-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-mondy-accent-deep"
+          className={cn(
+            mondyBtn.primaryLg,
+            "mt-4 inline-flex items-center justify-center !text-white !no-underline hover:!text-white hover:!no-underline",
+          )}
         >
-          Join the waitlist
+          Join Waitlist
         </Link>
       </div>
     </ArticleProse>

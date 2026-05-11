@@ -125,8 +125,8 @@ function FeaturedSideCard({ post }: { post: BlogPostSummary }) {
           sizes="120px"
         />
       </div>
-      <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 py-3 pr-3 pl-4">
-        <h3 className="line-clamp-2 font-noah text-sm font-extrabold leading-snug tracking-[-0.03em] text-mondy-ink md:text-[0.95rem]">
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-3 py-3 pr-3 pl-4">
+        <h3 className="line-clamp-2 font-noah text-sm font-extrabold leading-snug tracking-[-0.03em] text-mondy-ink md:text-lg">
           {post.title}
         </h3>
         <PostDate dateLabel={post.dateLabel} dateIso={post.dateIso} />
@@ -259,7 +259,7 @@ export function BlogIndex() {
         <div className="w-full lg:w-[58%] lg:min-w-0 lg:flex-shrink-0">
           <FeaturedMainCard post={main} />
         </div>
-        <div className="flex w-full flex-col gap-4 lg:w-[42%] lg:justify-between">
+        <div className="flex w-full flex-col gap-10 lg:w-[42%] justify-center ">
           {side.map((post) => (
             <FeaturedSideCard key={post.slug} post={post} />
           ))}
@@ -267,7 +267,7 @@ export function BlogIndex() {
       </section>
 
       <section id="explore-articles" className="flex flex-col gap-10 scroll-mt-28">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
           <h2
             className={cn(
               "font-noah font-extrabold tracking-[-0.06em] text-mondy-ink",
@@ -289,7 +289,7 @@ export function BlogIndex() {
         </div>
 
         <div className="flex justify-center pt-4">
-          <a href="#explore-articles" className={mondyBtn.primaryMd}>
+          <a href="#explore-articles" className={cn(mondyBtn.primaryMd, "text-[16px]")}>
             View all articles
           </a>
         </div>

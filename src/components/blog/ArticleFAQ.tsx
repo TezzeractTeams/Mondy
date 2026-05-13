@@ -1,3 +1,5 @@
+import { ArticleMarkdown } from "./ArticleMarkdown";
+
 type FaqItem = { question: string; answer: string };
 
 type ArticleFAQProps = {
@@ -11,9 +13,9 @@ export function ArticleFAQ({ id, title, items }: ArticleFAQProps) {
     <section id={id} className="mt-12 flex w-full max-w-prose flex-col gap-4 scroll-mt-28">
       <h2 className="text-2xl font-bold tracking-tight text-mondy-ink">{title}</h2>
       <div className="flex flex-col gap-2">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <details
-            key={item.question}
+            key={`faq-${index}-${item.question.slice(0, 48)}`}
             className="group rounded-xl border border-black/[0.08] bg-white/70 px-4 py-1 shadow-sm open:pb-3"
           >
             <summary className="cursor-pointer list-none py-3 font-semibold text-mondy-ink outline-none marker:content-none [&::-webkit-details-marker]:hidden">
@@ -24,7 +26,9 @@ export function ArticleFAQ({ id, title, items }: ArticleFAQProps) {
                 </span>
               </span>
             </summary>
-            <p className="border-t border-black/[0.06] pt-3 text-base leading-relaxed text-mondy-ink opacity-90">{item.answer}</p>
+            <div className="border-t border-black/[0.06] pt-3 text-base leading-relaxed text-mondy-ink opacity-90 prose prose-neutral max-w-none">
+              <ArticleMarkdown markdown={item.answer} />
+            </div>
           </details>
         ))}
       </div>

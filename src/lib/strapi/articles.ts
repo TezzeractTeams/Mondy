@@ -212,11 +212,37 @@ function mapAuthor(raw: Record<string, unknown>): StrapiArticleAuthor {
   return { name, bioMarkdown, avatarUrl, avatarAlt };
 }
 
+function faqAnswerText(raw: Record<string, unknown>): string | undefined {
+  const plain =
+    pickString(raw.answer) ??
+    pickString(raw.Answer) ??
+    pickString(raw.answerText) ??
+    pickString(raw.answer_text) ??
+    pickString(raw.body);
+  if (plain) return plain;
+  const blocks = raw.answer ?? raw.Answer;
+  if (Array.isArray(blocks)) {
+    const md = blocksToMarkdown(blocks);
+    if (md) return md;
+  }
+  return undefined;
+}
+
 function mapFaqItem(raw: Record<string, unknown>): StrapiFaqItem | null {
-  const question = pickString(raw.question);
-  const answer = pickString(raw.answer);
-  if (!question || answer === undefined) return null;
+  const question = pickString(raw.question) ?? pickString(raw.Question);
+  const answer = faqAnswerText(raw);
+  if (!question || !answer) return null;
   return { question, answer };
+}
+
+/** Strapi field names for repeatable FAQ rows (camelCase or snake_case). */
+function listFaqRawEntries(raw: Record<string, unknown>): Record<string, unknown>[] {
+  const candidates = [raw.faqItems, raw.faqItem, raw.faqs, raw.faq_items, raw.FaqItems, raw.faq_item];
+  for (const c of candidates) {
+    const list = unwrapList(c);
+    if (list.length > 0) return list;
+  }
+  return [];
 }
 
 function mapBreadcrumb(raw: Record<string, unknown>): StrapiBreadcrumbItem | null {
@@ -303,7 +329,7 @@ export function normalizeStrapiArticleEntry(
       .filter((s): s is StrapiArticleSection => Boolean(s));
   }
 
-  const faqItems = unwrapList(raw.faqItems ?? raw.faqs)
+  const faqItems = listFaqRawEntries(raw)
     .map(mapFaqItem)
     .filter((f): f is StrapiFaqItem => Boolean(f));
 

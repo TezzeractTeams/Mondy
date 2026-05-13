@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import { BlogIndex } from "@/components/blog/BlogIndex";
 import { ArticleShell } from "@/components/blog/ArticleShell";
+import { getBlogArticleSummaries } from "@/lib/strapi/articles";
 
 const description =
   "Insights on voice-first content, B2B social strategy, and building consistent presence—articles from Mondy.";
@@ -22,11 +23,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getBlogArticleSummaries();
   return (
     <>
       <ArticleShell>
-        <BlogIndex />
+        <BlogIndex posts={posts} />
       </ArticleShell>
       <Footer />
     </>

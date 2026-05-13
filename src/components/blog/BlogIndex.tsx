@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 import type { BlogPostSummary } from "@/lib/blogPosts";
-import { getFeaturedPosts, getLatestGridPosts } from "@/lib/blogPosts";
 import { CARD_RADIUS, CARD_SHADOW } from "@/components/pricing/pricing-styles";
 import { cn } from "@/lib/utils";
 import { mondyBtn, mondyLayout, mondyType } from "@/styles/mondy";
@@ -225,9 +224,42 @@ function GridCard({ post }: { post: BlogPostSummary }) {
   );
 }
 
-export function BlogIndex() {
-  const { main, side } = getFeaturedPosts();
-  const gridPosts = getLatestGridPosts();
+type BlogIndexProps = {
+  posts: BlogPostSummary[];
+};
+
+export function BlogIndex({ posts }: BlogIndexProps) {
+  if (posts.length === 0) {
+    return (
+      <div className={cn(mondyLayout.contentMax, "flex w-full max-w-7xl flex-col gap-12")}>
+        <header className="flex flex-col items-center gap-6 text-center">
+          <h1
+            className={cn(
+              mondyType.sectionHeading,
+              "max-w-4xl text-balance text-4xl sm:text-5xl md:text-6xl",
+            )}
+          >
+            Our insightful <span className="text-mondy-accent">Blog</span>
+          </h1>
+          <p className={cn(mondyType.sectionLead, "mx-auto max-w-2xl text-balance text-mondy-ink/70")}>
+            No published articles yet. Check back soon, or return home to explore Mondy.
+          </p>
+          <Link href="/" className={cn(mondyBtn.primaryMd, "text-[16px]")}>
+            Back to home
+          </Link>
+        </header>
+      </div>
+    );
+  }
+
+  const main = posts[0];
+  const side = posts.slice(1, 4);
+  const usedSlugs = new Set([main.slug, ...side.map((p) => p.slug)]);
+  const gridPosts = posts.filter((p) => !usedSlugs.has(p.slug));
+  const featuredRowClass =
+    side.length > 0
+      ? "flex flex-col gap-8 lg:flex-row lg:items-stretch lg:gap-10"
+      : "flex flex-col gap-8";
 
   return (
     <div className={cn(mondyLayout.contentMax, "flex w-full max-w-7xl flex-col gap-16 lg:gap-24")}>
@@ -246,54 +278,51 @@ export function BlogIndex() {
         </p>
       </header>
 
-      <section
-        aria-labelledby="featured-heading"
-        className={cn(
-          "flex flex-col gap-8 lg:flex-row lg:items-stretch lg:gap-10",
-          "",
-        )}
-      >
+      <section aria-labelledby="featured-heading" className={featuredRowClass}>
         <h2 id="featured-heading" className="sr-only">
           Featured posts
         </h2>
-        <div className="w-full lg:w-[58%] lg:min-w-0 lg:flex-shrink-0">
+        <div
+          className={cn(
+            "w-full lg:min-w-0 lg:flex-shrink-0",
+            side.length > 0 ? "lg:w-[58%]" : "lg:w-full",
+          )}
+        >
           <FeaturedMainCard post={main} />
         </div>
-        <div className="flex w-full flex-col gap-10 lg:w-[42%] justify-center ">
-          {side.map((post) => (
-            <FeaturedSideCard key={post.slug} post={post} />
-          ))}
-        </div>
+        {side.length > 0 ? (
+          <div className="flex w-full flex-col gap-10 justify-center lg:w-[42%]">
+            {side.map((post) => (
+              <FeaturedSideCard key={post.slug} post={post} />
+            ))}
+          </div>
+        ) : null}
       </section>
 
-      <section id="explore-articles" className="flex flex-col gap-10 scroll-mt-28">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-          <h2
-            className={cn(
-              "font-noah font-extrabold tracking-[-0.06em] text-mondy-ink",
-              "max-w-xl text-balance text-left text-3xl sm:text-4xl md:text-5xl lg:max-w-lg lg:text-[2.65rem]",
-            )}
-          >
-            Explore our latest <span className="text-mondy-accent">Articles</span>
-          </h2>
-          <p className={cn(mondyType.sectionLead, "max-w-xl text-left lg:text-right")}>
-            Deep dives, reference lists, and playbooks you can put to work this quarter—whether you are a founder,
-            marketer, or operator shipping social alongside everything else.
-          </p>
-        </div>
+      {gridPosts.length > 0 ? (
+        <section id="explore-articles" className="flex flex-col gap-10 scroll-mt-28">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+            <h2
+              className={cn(
+                "font-noah font-extrabold tracking-[-0.06em] text-mondy-ink",
+                "max-w-xl text-balance text-left text-3xl sm:text-4xl md:text-5xl lg:max-w-lg lg:text-[2.65rem]",
+              )}
+            >
+              Explore our latest <span className="text-mondy-accent">Articles</span>
+            </h2>
+            <p className={cn(mondyType.sectionLead, "max-w-xl text-left lg:text-right")}>
+              Deep dives, reference lists, and playbooks you can put to work this quarter—whether you are a founder,
+              marketer, or operator shipping social alongside everything else.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 items-stretch gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {gridPosts.map((post) => (
-            <GridCard key={post.slug} post={post} />
-          ))}
-        </div>
-
-        <div className="flex justify-center pt-4">
-          <a href="#explore-articles" className={cn(mondyBtn.primaryMd, "text-[16px]")}>
-            View all articles
-          </a>
-        </div>
-      </section>
+          <div className="grid grid-cols-1 items-stretch gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {gridPosts.map((post) => (
+              <GridCard key={post.slug} post={post} />
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }

@@ -50,6 +50,26 @@ const contentSecurityPolicy = [
   "upgrade-insecure-requests",
 ].join("; ");
 
+function strapiUploadsRemotePatterns(): NonNullable<NonNullable<NextConfig["images"]>["remotePatterns"]> {
+  const raw = process.env.STRAPI_URL?.trim();
+  if (!raw) return [];
+  try {
+    const u = new URL(raw);
+    return [
+      {
+        protocol: u.protocol === "http:" ? "http" : "https",
+        hostname: u.hostname,
+        ...(u.port ? { port: u.port } : {}),
+        pathname: "/uploads/**",
+      },
+    ];
+  } catch {
+    return [];
+  }
+}
+
+const strapiRemotePatterns = strapiUploadsRemotePatterns();
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   /** Inlines route CSS into the HTML document to avoid an extra render-blocking stylesheet request (see `experimental.inlineCss` in Next.js). */
@@ -80,6 +100,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     qualities: [75, 92],
+    ...(strapiRemotePatterns.length ? { remotePatterns: strapiRemotePatterns } : {}),
   },
   // Use this app as tracing root when a parent folder has another lockfile (avoids wrong bundle roots).
   outputFileTracingRoot: appDir,

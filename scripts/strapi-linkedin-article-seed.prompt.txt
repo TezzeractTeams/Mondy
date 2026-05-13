@@ -1,0 +1,70 @@
+================================================================================
+PASTE EVERYTHING BELOW THIS LINE INTO STRAPI CHAT (or use as manual checklist)
+================================================================================
+
+You are configuring Strapi for the Mondy marketing site. Do the following in order:
+
+1) If collection types Author, Category, Article and the shared components are not already defined, create them per the Mondy blog schema. Article needs: slug (UID), draft/publish, title, description (or excerpt), introMarkdown (optional lead before first h2), readingTimeMinutes, publishedAt, hero/cover image + alt + heroCaption, relation to Author, many relation to Categories, repeatable faqItems (question, answer), breadcrumbItems (label, href), relatedLinks (href, title, meta, tags). Main content: repeatable `sections`, each with h2Title, h2Id (optional), h2IntroMarkdown (optional), and nested repeatable `subsections` with h3Title and bodyMarkdown (h3 description). The Next app maps these fields to the page; field API names should be camelCase as listed. Optional legacy: rich text or long-text `body` for HTML/Markdown paste instead of structured sections.
+
+2) Ensure an Author exists (or create one):
+   - name: Shanilka Rajapaksha
+   - slug: shanilka-rajapaksha
+   - avatarAlt: Portrait of Shanilka Perera
+   - bio (plain text is fine): Writes about social content strategy, voice-first workflows, and B2B distribution. This piece pulls together public statistics and analyst sources for quick reference—always confirm figures with the original publishers before relying on them for decisions.
+   (User uploads avatar image /Shanilka.png equivalent in Media Library and attaches to author.)
+
+3) Create or match Categories (names only; slugify): LinkedIn, Social media marketing, Social media trends
+
+4) Create ONE Article entry (or update if slug `linkedin-statistics` already exists). Set:
+   - title: 30 LinkedIn statistics that marketers should know in 2026 for modern teams
+   - slug: linkedin-statistics
+   - excerpt: Thirty LinkedIn statistics on demographics, usage, ads, engagement, video, hiring, and company facts—editorial reference for your 2026 B2B strategy.
+   - publishedAt: 2026-03-31T12:00:00.000Z (or March 31, 2026)
+   - readingTimeMinutes: 9
+   - coverImageAlt: B2B creators planning content with voice and social workflows
+   - heroCaption: Voice-first workflows help teams ship consistent LinkedIn presence without the blank-page grind.
+   - faqTitle: LinkedIn statistics FAQs
+   - faqSectionId: linkedin-statistics-faqs
+   - seoTitle: (same as title or leave default)
+   - seoDescription: (same as excerpt)
+   - Link author, categories, cover image, hero image (user: upload /preview.jpeg or site hero asset for both if separate fields not used)
+
+5) Populate repeatable components EXACTLY as follows.
+
+--- breadcrumbItems (order matters) ---
+label: Mondy | href: /
+label: Blog | href: /blog
+label: Social media marketing | href: (empty)
+
+--- tocItems (anchorId, label) ---
+top-linkedin-statistics | Top LinkedIn statistics you should know
+linkedin-demographics | LinkedIn demographics
+linkedin-usage-statistics | LinkedIn usage statistics
+linkedin-advertising-marketing | LinkedIn advertising and marketing statistics
+linkedin-engagement-statistics | LinkedIn engagement statistics
+linkedin-video-statistics | LinkedIn video statistics
+linkedin-recruiting-job | LinkedIn recruiting and job statistics
+linkedin-company-statistics | LinkedIn company statistics
+linkedin-stats-guide-strategy | Letting LinkedIn stats guide your 2026 strategy
+linkedin-statistics-faqs | LinkedIn statistics FAQs
+
+--- faqItems (question, answer) ---
+How many users does LinkedIn have? | LinkedIn has 1.3 billion members.
+How many people use LinkedIn? | There are 1.3 billion registered members using LinkedIn.
+What types of content perform best on LinkedIn? | Text-based posts, user-generated content, and short-form video are the top-performing content types on LinkedIn.
+How effective is LinkedIn for B2B lead generation? | 40% of B2B marketers say LinkedIn is the most effective platform for B2B lead generation.
+How much does LinkedIn advertising cost and is it worth it? | LinkedIn ads often cost around $2 to $3 per click or $0.26 to $0.50 per send—typically higher than some consumer platforms. Many teams still find the cost worthwhile because you reach B2B audiences and higher-value purchase cycles.
+How does LinkedIn compare to other social platforms for marketing? | LinkedIn is one of the most effective social media platforms for marketing to a B2B audience. Companies often pair it with lead nurturing because B2B marketing involves longer buying cycles.
+
+--- relatedLinks (href, title, meta, tags as one string "Tag1 · Tag2" or your schema) ---
+/ | Mondy — turn your voice into a week of social content | Product overview · Reading time 5 min | Mondy · Product
+/privacy | Privacy Policy | Legal · Last updated April 2, 2026 | Legal
+/infopage | Join the Mondy waitlist | Early access · Quick signup | Waitlist
+
+6) Set the Article `body` field to the FULL text in the file `scripts/strapi-linkedin-article.body.md` in this repository (open that file and paste its entire contents into the rich text / markdown / long-text body field). If your Strapi uses Blocks only, convert headings and paragraphs into block nodes equivalent to that Markdown/HTML, preserving every link URL and every heading id attribute exactly so the table of contents anchors still work.
+
+7) After saving, confirm Public role can `find`/`findOne` articles with populate for nested media and components.
+
+================================================================================
+END OF PROMPT — body text lives in: scripts/strapi-linkedin-article.body.md
+================================================================================

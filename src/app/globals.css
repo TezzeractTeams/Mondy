@@ -123,3 +123,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-noah);
 }
+
+/**
+ * Apple SF Pro / San Francisco — matches Figma “SF Pro” on iOS/macOS; sensible fallbacks elsewhere.
+ */
+.font-sf-pro {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+}

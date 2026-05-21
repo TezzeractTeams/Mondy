@@ -131,8 +131,82 @@ export default function PrivacyPolicy() {
               </p>
             </section>
 
+            <section
+              id="data-deletion"
+              className="flex flex-col gap-4 scroll-mt-32"
+            >
+              <h2 className="text-2xl font-bold tracking-tight">
+                5. Data Deletion
+              </h2>
+              <p className="opacity-80">
+                If you connect Facebook or Threads to Mondy, we store data
+                needed to provide the service. This section explains what we
+                keep and how you can delete it.
+              </p>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                What data Mondy stores
+              </h3>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>
+                  <strong>Connection tokens:</strong> OAuth tokens for
+                  Facebook and Threads so Mondy can publish and manage content
+                  on your behalf.
+                </li>
+                <li>
+                  <strong>Posts and drafts:</strong> Content you create or
+                  schedule through Mondy, including captions and media
+                  associated with your connected accounts.
+                </li>
+                <li>
+                  <strong>Account information:</strong> Your Mondy account
+                  details (such as email and profile information) and basic
+                  metadata from connected social accounts (for example,
+                  account IDs and display names).
+                </li>
+              </ul>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                How to delete your data
+              </h3>
+              <p className="opacity-80">
+                You can remove platform-specific data in the app or request
+                full account deletion by email.
+              </p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>
+                  <strong>In the app:</strong> Go to{" "}
+                  <strong>Settings → Connected accounts</strong> and disconnect
+                  Facebook or Threads. Disconnecting a platform removes the
+                  stored connection tokens for that platform from our systems.
+                </li>
+                <li>
+                  <strong>By email:</strong> Send a deletion request to{" "}
+                  <a
+                    href="mailto:support@mondy.ai"
+                    className="text-blue-600 hover:underline"
+                  >
+                    support@mondy.ai
+                  </a>{" "}
+                  from the email address associated with your Mondy account.
+                  Include your account email and whether you want to delete
+                  data for a specific platform or your entire Mondy account.
+                </li>
+              </ul>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                Response timeframe
+              </h3>
+              <p className="opacity-80">
+                In-app disconnects take effect immediately for connection
+                tokens. Email requests are processed within{" "}
+                <strong>30 days</strong> of receipt. We may contact you to
+                confirm your identity before completing deletion.
+              </p>
+            </section>
+
             <section className="flex flex-col gap-4">
-              <h2 className="text-2xl font-bold tracking-tight">5. Contact Us</h2>
+              <h2 className="text-2xl font-bold tracking-tight">6. Contact Us</h2>
               <p className="opacity-80">
                 If you have questions or comments about this notice, you may{" "}
                 <Link

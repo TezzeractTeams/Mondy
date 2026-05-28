@@ -1,5 +1,6 @@
 import type { RelatedPost } from "@/components/blog/ArticleRelated";
 import type { BlogPostSummary } from "@/lib/blogPosts";
+import { normalizeCmsMarkdown } from "@/lib/markdown/normalizeCmsMarkdown";
 import { SOCIAL_PREVIEW_PATH } from "@/lib/socialPreviewImage";
 import { getStrapiUrl, isStrapiConfigured, strapiArticleFetchHeaders } from "./config";
 import { strapiMediaUrl } from "./media";
@@ -136,7 +137,19 @@ function blocksToMarkdown(blocks: unknown): string | null {
     const t = b.type;
     if (t === "paragraph") {
       const line = inlineMarkdownFromBlockChildren(b.children).trim();
-      if (line) parts.push(line);
+      if (line) {
+        const last = parts[parts.length - 1];
+        if (last?.endsWith("  \n")) {
+          parts[parts.length - 1] = last + line;
+        } else {
+          parts.push(line);
+        }
+      } else if (parts.length > 0) {
+        const last = parts[parts.length - 1];
+        if (!last.endsWith("  \n")) {
+          parts[parts.length - 1] = `${last}  \n`;
+        }
+      }
     } else if (t === "heading") {
       const level = typeof b.level === "number" ? Math.min(Math.max(b.level, 1), 6) : 2;
       const hashes = "#".repeat(level);
@@ -155,7 +168,7 @@ function blocksToMarkdown(blocks: unknown): string | null {
       }
     }
   }
-  const s = parts.join("\n\n").trim();
+  const s = normalizeCmsMarkdown(parts.join("\n\n")).trim();
   return s || null;
 }
 
@@ -178,7 +191,7 @@ function mapBodyContentRow(raw: Record<string, unknown>): StrapiArticleSection |
     h2Title,
     h2Id,
     h2IntroMarkdown: null,
-    subsections: [{ h3Title: null, bodyMarkdown: bodyMarkdown.trim() }],
+    subsections: [{ h3Title: null, bodyMarkdown: normalizeCmsMarkdown(bodyMarkdown).trim() }],
   };
 }
 
@@ -187,14 +200,18 @@ function mapSubsection(raw: Record<string, unknown>): StrapiArticleSubsection | 
     pickString(raw.bodyMarkdown) ?? pickString(raw.body) ?? pickString(raw.descriptionText) ?? "";
   const h3Title = pickString(raw.h3Title) ?? pickString(raw.title);
   if (!h3Title && !bodyMarkdown) return null;
-  return { h3Title: h3Title ?? null, bodyMarkdown };
+  return {
+    h3Title: h3Title ?? null,
+    bodyMarkdown: bodyMarkdown ? normalizeCmsMarkdown(bodyMarkdown) : "",
+  };
 }
 
 function mapSection(raw: Record<string, unknown>): StrapiArticleSection | null {
   const h2Title = pickString(raw.h2Title) ?? pickString(raw.title);
   if (!h2Title) return null;
   const h2Id = pickString(raw.h2Id) ?? pickString(raw.anchorId) ?? slugifyHeading(h2Title);
-  const h2IntroMarkdown = pickString(raw.h2IntroMarkdown) ?? pickString(raw.introMarkdown);
+  const h2IntroRaw = pickString(raw.h2IntroMarkdown) ?? pickString(raw.introMarkdown);
+  const h2IntroMarkdown = h2IntroRaw ? normalizeCmsMarkdown(h2IntroRaw) : null;
   const subsSource = raw.subsections ?? raw.h3Blocks ?? raw.items;
   const subsections = unwrapList(subsSource)
     .map(mapSubsection)
@@ -204,8 +221,9 @@ function mapSection(raw: Record<string, unknown>): StrapiArticleSection | null {
 
 function mapAuthor(raw: Record<string, unknown>): StrapiArticleAuthor {
   const name = pickString(raw.name) ?? "Author";
-  const bioMarkdown =
+  const bioRaw =
     pickString(raw.bioMarkdown) ?? pickString(raw.bio) ?? pickString(raw.description) ?? "";
+  const bioMarkdown = bioRaw ? normalizeCmsMarkdown(bioRaw) : "";
   const avatar = raw.avatar ?? raw.photo ?? raw.image;
   const avatarUrl = mediaUrl(avatar);
   const avatarAlt = mediaAlt(avatar) ?? pickString(raw.avatarAlt) ?? null;
@@ -232,7 +250,7 @@ function mapFaqItem(raw: Record<string, unknown>): StrapiFaqItem | null {
   const question = pickString(raw.question) ?? pickString(raw.Question);
   const answer = faqAnswerText(raw);
   if (!question || !answer) return null;
-  return { question, answer };
+  return { question, answer: normalizeCmsMarkdown(answer) };
 }
 
 /** Strapi field names for repeatable FAQ rows (camelCase or snake_case). */
@@ -296,10 +314,13 @@ export function normalizeStrapiArticleEntry(
     pickString(raw.publishedAt) ?? pickString(raw.published_at) ?? new Date().toISOString();
   const publishedOnLabel = formatPublishedLabel(publishedAtIso);
 
-  const introMarkdown =
-    pickString(raw.introMarkdown) ??
-    pickString(raw.leadMarkdown) ??
-    (raw.body ? blocksToMarkdown(raw.body) : null);
+  const introFromFields =
+    pickString(raw.introMarkdown) ?? pickString(raw.leadMarkdown);
+  const introMarkdown = introFromFields
+    ? normalizeCmsMarkdown(introFromFields)
+    : raw.body
+      ? blocksToMarkdown(raw.body)
+      : null;
 
   const cover = raw.coverImage ?? raw.heroImage ?? raw.image ?? raw.cover ?? raw.ogImage;
   const heroImageUrl = strapiMediaUrl(mediaUrl(cover)) ?? SOCIAL_PREVIEW_PATH;
@@ -344,7 +365,8 @@ export function normalizeStrapiArticleEntry(
     .map(mapRelated)
     .filter((r): r is RelatedPost => Boolean(r));
 
-  const disclaimerMarkdown = pickString(raw.disclaimerMarkdown) ?? pickString(raw.disclaimer);
+  const disclaimerRaw = pickString(raw.disclaimerMarkdown) ?? pickString(raw.disclaimer);
+  const disclaimerMarkdown = disclaimerRaw ? normalizeCmsMarkdown(disclaimerRaw) : undefined;
 
   return {
     slug,

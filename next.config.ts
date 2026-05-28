@@ -50,7 +50,23 @@ const contentSecurityPolicy = [
   "upgrade-insecure-requests",
 ].join("; ");
 
-function strapiUploadsRemotePatterns(): NonNullable<NonNullable<NextConfig["images"]>["remotePatterns"]> {
+type ImageRemotePattern = NonNullable<NonNullable<NextConfig["images"]>["remotePatterns"]>[number];
+
+function patternKey(p: ImageRemotePattern): string {
+  return `${p.protocol ?? "*"}|${p.hostname}|${p.port ?? ""}|${p.pathname ?? "/**"}`;
+}
+
+function dedupeRemotePatterns(patterns: ImageRemotePattern[]): ImageRemotePattern[] {
+  const seen = new Set<string>();
+  return patterns.filter((p) => {
+    const key = patternKey(p);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function strapiUploadsRemotePatterns(): ImageRemotePattern[] {
   const raw = process.env.STRAPI_URL?.trim();
   if (!raw) return [];
   try {
@@ -68,7 +84,47 @@ function strapiUploadsRemotePatterns(): NonNullable<NonNullable<NextConfig["imag
   }
 }
 
-const strapiRemotePatterns = strapiUploadsRemotePatterns();
+/** Strapi media may be absolute URLs on Cloudflare R2 (not only `/uploads` on STRAPI_URL). */
+function blogImageRemotePatterns(): ImageRemotePattern[] {
+  const patterns: ImageRemotePattern[] = [
+    ...strapiUploadsRemotePatterns(),
+    {
+      protocol: "https",
+      hostname: "**.r2.cloudflarestorage.com",
+      pathname: "/**",
+    },
+  ];
+
+  for (const key of ["STRAPI_MEDIA_URL", "STRAPI_CDN_URL"] as const) {
+    const raw = process.env[key]?.trim();
+    if (!raw) continue;
+    try {
+      const u = new URL(raw);
+      patterns.push({
+        protocol: u.protocol === "http:" ? "http" : "https",
+        hostname: u.hostname,
+        ...(u.port ? { port: u.port } : {}),
+        pathname: "/**",
+      });
+    } catch {
+      /* ignore invalid URL */
+    }
+  }
+
+  for (const hostname of (process.env.STRAPI_IMAGE_HOSTS ?? "").split(",")) {
+    const h = hostname.trim();
+    if (!h) continue;
+    patterns.push({
+      protocol: "https",
+      hostname: h,
+      pathname: "/**",
+    });
+  }
+
+  return dedupeRemotePatterns(patterns);
+}
+
+const imageRemotePatterns = blogImageRemotePatterns();
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -100,7 +156,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     qualities: [75, 92],
-    ...(strapiRemotePatterns.length ? { remotePatterns: strapiRemotePatterns } : {}),
+    ...(imageRemotePatterns.length ? { remotePatterns: imageRemotePatterns } : {}),
   },
   // Use this app as tracing root when a parent folder has another lockfile (avoids wrong bundle roots).
   outputFileTracingRoot: appDir,

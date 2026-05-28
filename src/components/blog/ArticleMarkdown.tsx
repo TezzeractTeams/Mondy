@@ -14,10 +14,11 @@ export function ArticleMarkdown({ markdown, className }: ArticleMarkdownProps) {
   return (
     <div
       className={cn(
-        "[&>p:not(:last-child)]:mb-6 [&>p]:opacity-90",
-        "[&>ul:not(:last-child)]:mb-6 [&>ol:not(:last-child)]:mb-6",
-        "[&>blockquote:not(:last-child)]:mb-6",
-        "[&>h4:not(:first-child)]:mt-6",
+        "[&>p:not(:last-child)]:mb-4 [&>p]:opacity-90",
+        "[&_strong]:font-bold [&_b]:font-bold",
+        "[&>ul:not(:last-child)]:mb-4 [&>ol:not(:last-child)]:mb-4",
+        "[&>blockquote:not(:last-child)]:mb-4",
+        "[&>h4:not(:first-child)]:mt-4",
         className,
       )}
     >

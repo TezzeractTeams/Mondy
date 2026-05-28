@@ -1,6 +1,7 @@
 import type { RelatedPost } from "@/components/blog/ArticleRelated";
 import type { BlogPostSummary } from "@/lib/blogPosts";
 import { normalizeCmsMarkdown } from "@/lib/markdown/normalizeCmsMarkdown";
+import { strapiInlineChildrenToMarkdown } from "@/lib/markdown/strapiInlineMarkdown";
 import { SOCIAL_PREVIEW_PATH } from "@/lib/socialPreviewImage";
 import { getStrapiUrl, isStrapiConfigured, strapiArticleFetchHeaders } from "./config";
 import { strapiMediaUrl } from "./media";
@@ -108,24 +109,13 @@ function normalizeTags(raw: unknown): string[] | undefined {
 
 /** Strapi Blocks (richtext) — paragraph / heading text for intro + card excerpt fallbacks. */
 function inlineMarkdownFromBlockChildren(children: unknown): string {
-  if (!Array.isArray(children)) return "";
-  let out = "";
-  for (const c of children) {
-    if (!c || typeof c !== "object") continue;
-    const ch = c as Record<string, unknown>;
-    if (ch.type === "text") {
-      let t = pickString(ch.text) ?? "";
-      if (ch.bold) t = t ? `**${t}**` : "";
-      else if (ch.italic) t = t ? `*${t}*` : t;
-      out += t;
-    } else if (ch.type === "link" && typeof ch.url === "string") {
-      const inner = inlineMarkdownFromBlockChildren(ch.children);
-      out += inner ? `[${inner}](${ch.url})` : pickString(ch.url) ?? "";
-    } else if (Array.isArray(ch.children)) {
-      out += inlineMarkdownFromBlockChildren(ch.children);
-    }
-  }
-  return out;
+  return strapiInlineChildrenToMarkdown(children);
+}
+
+function markdownFromCmsField(raw: unknown): string {
+  if (typeof raw === "string") return normalizeCmsMarkdown(raw);
+  if (Array.isArray(raw)) return blocksToMarkdown(raw) ?? "";
+  return "";
 }
 
 function blocksToMarkdown(blocks: unknown): string | null {
@@ -136,7 +126,7 @@ function blocksToMarkdown(blocks: unknown): string | null {
     const b = block as Record<string, unknown>;
     const t = b.type;
     if (t === "paragraph") {
-      const line = inlineMarkdownFromBlockChildren(b.children).trim();
+      const line = inlineMarkdownFromBlockChildren(b.children).trimEnd();
       if (line) {
         const last = parts[parts.length - 1];
         if (last?.endsWith("  \n")) {
@@ -153,7 +143,7 @@ function blocksToMarkdown(blocks: unknown): string | null {
     } else if (t === "heading") {
       const level = typeof b.level === "number" ? Math.min(Math.max(b.level, 1), 6) : 2;
       const hashes = "#".repeat(level);
-      const line = inlineMarkdownFromBlockChildren(b.children).trim();
+      const line = inlineMarkdownFromBlockChildren(b.children).trimEnd();
       if (line) parts.push(`${hashes} ${line}`);
     } else if (t === "list") {
       const ordered = b.format === "ordered";
@@ -184,7 +174,9 @@ function mapBodyContentRow(raw: Record<string, unknown>): StrapiArticleSection |
   const h2Title =
     pickString(raw.SubTitle) ?? pickString(raw.subTitle) ?? pickString(raw.h2Title) ?? pickString(raw.title);
   const bodyMarkdown =
-    pickString(raw.bodyData) ?? pickString(raw.body_data) ?? pickString(raw.bodyMarkdown) ?? "";
+    markdownFromCmsField(raw.bodyData) ||
+    markdownFromCmsField(raw.body_data) ||
+    markdownFromCmsField(raw.bodyMarkdown);
   if (!h2Title || !bodyMarkdown.trim()) return null;
   const h2Id = pickString(raw.h2Id) ?? pickString(raw.anchorId) ?? slugifyHeading(h2Title);
   return {
@@ -197,7 +189,9 @@ function mapBodyContentRow(raw: Record<string, unknown>): StrapiArticleSection |
 
 function mapSubsection(raw: Record<string, unknown>): StrapiArticleSubsection | null {
   const bodyMarkdown =
-    pickString(raw.bodyMarkdown) ?? pickString(raw.body) ?? pickString(raw.descriptionText) ?? "";
+    markdownFromCmsField(raw.bodyMarkdown) ||
+    markdownFromCmsField(raw.body) ||
+    markdownFromCmsField(raw.descriptionText);
   const h3Title = pickString(raw.h3Title) ?? pickString(raw.title);
   if (!h3Title && !bodyMarkdown) return null;
   return {

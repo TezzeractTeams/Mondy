@@ -7,11 +7,6 @@ const HowItWorks = dynamic(() => import("@/components/HowItWorks"), {
   loading: () => null,
 });
 
-const WhatItLooksLike = dynamic(() => import("@/components/WhatItLooksLike"), {
-  ssr: true,
-  loading: () => null,
-});
-
 const PricingSection = dynamic(() => import("@/components/PricingSection"), {
   ssr: true,
   loading: () => null,
@@ -39,7 +34,6 @@ export default function Home() {
         <Hero />
         <ProblemStatement />
         <HowItWorks />
-        <WhatItLooksLike />
         <PricingSection />
         <Waitlist />
         <FAQ />

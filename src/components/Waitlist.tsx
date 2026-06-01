@@ -104,7 +104,7 @@ Be the first to use Mondy.          </motion.h2>
               </div>
             ))}
           </div>
-          <span className="text-mondy-ink/40 text-[11px] font-bold tracking-wider uppercase">Join 2+ others</span>
+          <span className="text-mondy-ink/40 text-[11px] font-bold tracking-wider uppercase">Join 563+ others</span>
         </motion.div>
 
         {/* Form Section */}

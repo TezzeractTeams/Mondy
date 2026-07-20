@@ -67,8 +67,8 @@ export default function PrivacyPolicy() {
               <p className="opacity-80">
                 Welcome to Mondy.ai (&quot;Mondy&quot;, &quot;we&quot;,
                 &quot;our&quot;, or &quot;us&quot;). Mondy is developed and
-                operated by [Your Full Name], an independent developer based in
-                [Country].
+                operated by Rumeth Dasanayake, an independent developer based in
+                Sri Lanka.
               </p>
               <p className="opacity-80">
                 We are committed to protecting your privacy and handling your

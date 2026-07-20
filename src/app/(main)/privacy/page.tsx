@@ -8,7 +8,7 @@ import {
 } from "@/lib/socialPreviewImage";
 
 const LAST_UPDATED =
-  process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "April 2, 2026";
+  process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "July 17, 2026";
 
 const privacyDescription =
   "How Mondy collects, uses, and protects your personal information.";
@@ -65,15 +65,21 @@ export default function PrivacyPolicy() {
                 1. Introduction
               </h2>
               <p className="opacity-80">
-                Welcome to Mondy.ai (&quot;The Curated Sanctuary&quot;). We are
-                committed to protecting your personal information and your right
-                to privacy. This Privacy Policy explains how we collect, use,
-                disclose, and safeguard your information when you visit our
-                website and use our services.
+                Welcome to Mondy.ai (&quot;Mondy&quot;, &quot;we&quot;,
+                &quot;our&quot;, or &quot;us&quot;). Mondy is developed and
+                operated by [Your Full Name], an independent developer based in
+                [Country].
               </p>
               <p className="opacity-80">
-                Please read this privacy notice carefully as it will help you
-                understand what we do with the information that we collect.
+                We are committed to protecting your privacy and handling your
+                personal information responsibly. This Privacy Policy explains
+                how we collect, use, disclose, store, and protect your
+                information when you use our website, mobile applications, and
+                related services (collectively, the &quot;Services&quot;).
+              </p>
+              <p className="opacity-80">
+                By using Mondy, you agree to the collection and use of
+                information in accordance with this Privacy Policy.
               </p>
             </section>
 
@@ -82,52 +88,243 @@ export default function PrivacyPolicy() {
                 2. Information We Collect
               </h2>
               <p className="opacity-80">
-                We collect personal information that you voluntarily provide to
-                us when you register on the website, express an interest in
-                obtaining information about us or our products and services, or
-                otherwise when you contact us.
+                We collect only the information necessary to provide, maintain,
+                improve, and secure our Services.
+              </p>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                Personal Information
+              </h3>
+              <p className="opacity-80">
+                When you create an account or communicate with us, we may
+                collect:
               </p>
               <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Name</li>
+                <li>Email address</li>
+                <li>Phone number</li>
+                <li>Mailing address (where applicable)</li>
+                <li>Profile information you choose to provide</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                Voice Recordings and Transcripts
+              </h3>
+              <p className="opacity-80">
+                If you use Mondy&apos;s voice features, we may collect and
+                store:
+              </p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Voice recordings</li>
+                <li>Voice transcripts</li>
+                <li>AI prompts and generated outputs</li>
+              </ul>
+              <p className="opacity-80">
+                These are used to provide transcription, AI-assisted content
+                generation, and related functionality.
+              </p>
+              <p className="opacity-80">
+                Where practical, voice recordings, transcripts, and AI content
+                are stored separately from your account&apos;s personally
+                identifiable information and associated using internal
+                identifiers rather than direct personal identifiers.
+              </p>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                User Content
+              </h3>
+              <p className="opacity-80">
+                We collect content you create or upload, including:
+              </p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Posts</li>
+                <li>Drafts</li>
+                <li>Captions</li>
+                <li>Images</li>
+                <li>Videos</li>
+                <li>Scheduled content</li>
+                <li>Other media submitted through the Service</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                Connected Platform Information
+              </h3>
+              <p className="opacity-80">
+                When you connect third-party platforms such as Facebook or
+                Threads, we collect:
+              </p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Secure authorization (OAuth) tokens</li>
+                <li>Account identifiers</li>
+                <li>Display names</li>
                 <li>
-                  <strong>Personal Info Provided by You:</strong> Names, phone
-                  numbers, email addresses, mailing addresses, and similar
-                  content.
-                </li>
-                <li>
-                  <strong>Payment Data:</strong> All payment data is stored by
-                  our payment processor and you should review its privacy
-                  policies and contact the payment processor directly to respond
-                  to your questions.
+                  Basic account metadata required to operate the Service
                 </li>
               </ul>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                Device and Usage Information
+              </h3>
+              <p className="opacity-80">
+                We may automatically collect technical information including:
+              </p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Device type</li>
+                <li>Operating system</li>
+                <li>App version</li>
+                <li>Language preferences</li>
+                <li>IP address</li>
+                <li>Diagnostic information</li>
+                <li>Crash reports</li>
+                <li>Performance data</li>
+                <li>Feature usage information</li>
+              </ul>
+              <p className="opacity-80">
+                This information helps us improve reliability, security, and
+                performance.
+              </p>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                Payment Information
+              </h3>
+              <p className="opacity-80">
+                Payments are securely processed by our third-party payment
+                providers. Mondy does not store your payment card information
+                on its own servers.
+              </p>
             </section>
 
             <section className="flex flex-col gap-4">
               <h2 className="text-2xl font-bold tracking-tight">
                 3. How We Use Your Information
               </h2>
+              <p className="opacity-80">We use your information to:</p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Create and manage your account</li>
+                <li>Authenticate your identity</li>
+                <li>
+                  Publish and manage content on connected social media
+                  platforms
+                </li>
+                <li>Generate AI-assisted content</li>
+                <li>Transcribe voice recordings</li>
+                <li>Provide customer support</li>
+                <li>
+                  Improve the quality, accuracy, reliability, and performance of
+                  Mondy&apos;s Services and AI capabilities
+                </li>
+                <li>Detect fraud, abuse, and unauthorized access</li>
+                <li>Maintain security and platform integrity</li>
+                <li>Comply with applicable legal obligations</li>
+              </ul>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">
+                4. AI Processing and Service Improvement
+              </h2>
               <p className="opacity-80">
-                We use personal information collected via our website for a
-                variety of business purposes described below. We process your
-                personal information for these purposes in reliance on our
-                legitimate business interests, in order to enter into or perform
-                a contract with you, with your consent, and/or for compliance
-                with our legal obligations.
+                Mondy uses artificial intelligence to generate content, process
+                voice recordings, and provide intelligent recommendations.
+              </p>
+              <p className="opacity-80">
+                To improve the quality, accuracy, reliability, and performance
+                of our Services, we may use voice recordings, transcripts,
+                prompts, generated content, and other user-submitted content for
+                research, testing, quality assurance, and machine learning.
+              </p>
+              <p className="opacity-80">
+                Where practical, this information is processed in a
+                de-identified or pseudonymized form and separated from directly
+                identifying personal information.
+              </p>
+              <p className="opacity-80">
+                We do not sell your voice recordings, transcripts, or AI
+                inputs.
               </p>
             </section>
 
             <section className="flex flex-col gap-4">
-              <h2 className="text-2xl font-bold tracking-tight">4. Cookies</h2>
+              <h2 className="text-2xl font-bold tracking-tight">
+                5. Data Sharing and Third Parties
+              </h2>
               <p className="opacity-80">
-                We use a small first-party cookie (
+                We do not sell your personal information.
+              </p>
+              <p className="opacity-80">
+                We use trusted third-party service providers to operate and
+                improve Mondy. Depending on the features you use, these
+                providers may process limited information on our behalf.
+              </p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>
+                  <strong>Cloud Hosting:</strong> Google Cloud Platform (GCP) –
+                  Secure hosting, storage, networking, and infrastructure.
+                </li>
+                <li>
+                  <strong>Artificial Intelligence &amp; Language Models:</strong>{" "}
+                  Google Gemini, Anthropic Claude, OpenAI ChatGPT, and xAI Grok
+                  – Used to generate, transform, summarize, and enhance content
+                  based on your inputs.
+                </li>
+                <li>
+                  <strong>Authentication:</strong> Clerk and OAuth providers –
+                  Used to securely authenticate users and manage account access.
+                </li>
+                <li>
+                  <strong>Payment Processing:</strong> RevenueCat – Used to
+                  manage subscriptions, purchases, and billing. Payment
+                  information is processed by Apple, Google, and RevenueCat;
+                  Mondy does not store your payment card details.
+                </li>
+                <li>
+                  <strong>Speech-to-Text / Transcription:</strong> AssemblyAI,
+                  Google Speech-to-Text, and Deepgram – Used to transcribe voice
+                  recordings into text for processing.
+                </li>
+                <li>
+                  <strong>Analytics:</strong> Mixpanel, Google Analytics, and
+                  Firebase Analytics – Used to understand app performance,
+                  feature usage, diagnose issues, and improve the user
+                  experience.
+                </li>
+              </ul>
+              <p className="opacity-80">
+                These providers only receive the information necessary to
+                perform the services we request and are contractually or legally
+                required to protect your data.
+              </p>
+              <p className="opacity-80">
+                We also share information with social media platforms only when
+                you explicitly authorize Mondy to publish or manage content on
+                your behalf.
+              </p>
+              <p className="opacity-80">
+                We may disclose information where required by applicable law or
+                to protect the safety, rights, or property of Mondy, our users,
+                or others.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">
+                6. Cookies and Tracking Technologies
+              </h2>
+              <p className="opacity-80">
+                Our website uses a small first-party cookie (
                 <code className="text-sm bg-black/5 px-1.5 py-0.5 rounded">
                   mondy_cookie_consent
                 </code>
-                ) to remember your cookie choices (for example, essential-only
-                versus accepting optional cookies). This cookie does not track
-                you across other sites. You can change your mind by clearing
-                site data for this domain; the cookie banner will appear again
-                on your next visit.
+                ) to remember your cookie preferences.
+              </p>
+              <p className="opacity-80">
+                This cookie does not track you across other websites.
+              </p>
+              <p className="opacity-80">
+                Mondy does not use cross-app or cross-site tracking for
+                advertising purposes without obtaining your permission through
+                Apple&apos;s App Tracking Transparency (ATT) framework where
+                required.
               </p>
             </section>
 
@@ -136,79 +333,211 @@ export default function PrivacyPolicy() {
               className="flex flex-col gap-4 scroll-mt-32"
             >
               <h2 className="text-2xl font-bold tracking-tight">
-                5. Data Deletion
+                7. Data Retention and Account Deletion
               </h2>
               <p className="opacity-80">
-                If you connect Facebook or Threads to Mondy, we store data
-                needed to provide the service. This section explains what we
-                keep and how you can delete it.
+                We retain your information only for as long as necessary to:
               </p>
-
-              <h3 className="text-xl font-semibold tracking-tight">
-                What data Mondy stores
-              </h3>
               <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
-                <li>
-                  <strong>Connection tokens:</strong> OAuth tokens for
-                  Facebook and Threads so Mondy can publish and manage content
-                  on your behalf.
-                </li>
-                <li>
-                  <strong>Posts and drafts:</strong> Content you create or
-                  schedule through Mondy, including captions and media
-                  associated with your connected accounts.
-                </li>
-                <li>
-                  <strong>Account information:</strong> Your Mondy account
-                  details (such as email and profile information) and basic
-                  metadata from connected social accounts (for example,
-                  account IDs and display names).
-                </li>
+                <li>Provide the Services</li>
+                <li>Improve and maintain our platform</li>
+                <li>Resolve disputes</li>
+                <li>Enforce our agreements</li>
+                <li>Comply with applicable legal obligations</li>
               </ul>
 
               <h3 className="text-xl font-semibold tracking-tight">
-                How to delete your data
+                Disconnect Connected Platforms
               </h3>
+              <p className="opacity-80">Within the App, navigate to:</p>
               <p className="opacity-80">
-                You can remove platform-specific data in the app or request
-                full account deletion by email.
+                <strong>Settings → Connected Accounts</strong>
               </p>
-              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
-                <li>
-                  <strong>In the app:</strong> Go to{" "}
-                  <strong>Settings → Connected accounts</strong> and disconnect
-                  Facebook or Threads. Disconnecting a platform removes the
-                  stored connection tokens for that platform from our systems.
-                </li>
-                <li>
-                  <strong>By email:</strong> Send a deletion request to{" "}
-                  <a
-                    href="mailto:support@mondy.ai"
-                    className="text-blue-600 hover:underline"
-                  >
-                    support@mondy.ai
-                  </a>{" "}
-                  from the email address associated with your Mondy account.
-                  Include your account email and whether you want to delete
-                  data for a specific platform or your entire Mondy account.
-                </li>
-              </ul>
+              <p className="opacity-80">
+                Disconnecting a platform immediately revokes and deletes the
+                stored authorization tokens associated with that platform from
+                our active systems.
+              </p>
 
               <h3 className="text-xl font-semibold tracking-tight">
-                Response timeframe
+                Delete Your Account
               </h3>
               <p className="opacity-80">
-                In-app disconnects take effect immediately for connection
-                tokens. Email requests are processed within{" "}
-                <strong>30 days</strong> of receipt. We may contact you to
-                confirm your identity before completing deletion.
+                You may permanently delete your Mondy account directly within
+                the iOS application:
+              </p>
+              <p className="opacity-80">
+                <strong>Profile → Edit Profile → Delete Account</strong>
+              </p>
+              <p className="opacity-80">
+                Alternatively, you may submit a deletion request by emailing:{" "}
+                <a
+                  href="mailto:support@mondy.ai"
+                  className="text-blue-600 hover:underline"
+                >
+                  support@mondy.ai
+                </a>
+              </p>
+
+              <h3 className="text-xl font-semibold tracking-tight">
+                After Deletion
+              </h3>
+              <p className="opacity-80">When you delete your account:</p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>
+                  Personal information is removed from our active systems.
+                </li>
+                <li>
+                  Connected platform authorization tokens are revoked and
+                  deleted.
+                </li>
+                <li>
+                  Voice recordings, transcripts, posts, drafts, and uploaded
+                  content are removed from our active systems.
+                </li>
+                <li>
+                  Secure backups are permanently deleted within 30 days.
+                </li>
+              </ul>
+              <p className="opacity-80">
+                Certain information may be retained where required by law,
+                including records necessary for fraud prevention, dispute
+                resolution, tax, accounting, or regulatory compliance.
               </p>
             </section>
 
             <section className="flex flex-col gap-4">
-              <h2 className="text-2xl font-bold tracking-tight">6. Contact Us</h2>
+              <h2 className="text-2xl font-bold tracking-tight">
+                8. International Data Transfers
+              </h2>
               <p className="opacity-80">
-                If you have questions or comments about this notice, you may{" "}
+                Your information may be processed and stored in countries other
+                than your own.
+              </p>
+              <p className="opacity-80">
+                Where required by applicable law, we implement appropriate
+                safeguards to protect personal information during international
+                transfers.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">9. Security</h2>
+              <p className="opacity-80">
+                We implement appropriate technical and organizational safeguards
+                to protect your information, including:
+              </p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Encrypted data transmission (TLS/HTTPS)</li>
+                <li>Secure storage of authorization credentials</li>
+                <li>Access controls and authentication</li>
+                <li>
+                  Continuous monitoring and security practices designed to
+                  protect against unauthorized access, disclosure, alteration,
+                  or destruction of data
+                </li>
+              </ul>
+              <p className="opacity-80">
+                While no method of transmission or storage is completely secure,
+                we continually work to protect your information using
+                industry-standard practices.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">
+                10. Your Privacy Rights
+              </h2>
+              <p className="opacity-80">
+                Depending on your location, you may have rights including:
+              </p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Access your personal information</li>
+                <li>Correct inaccurate information</li>
+                <li>Request deletion of your information</li>
+                <li>Withdraw consent where applicable</li>
+                <li>
+                  Object to or restrict certain processing activities
+                </li>
+                <li>
+                  Request a copy of your personal data where required by law
+                </li>
+              </ul>
+              <p className="opacity-80">
+                To exercise your rights, contact:{" "}
+                <a
+                  href="mailto:support@mondy.ai"
+                  className="text-blue-600 hover:underline"
+                >
+                  support@mondy.ai
+                </a>
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">
+                11. Children&apos;s Privacy
+              </h2>
+              <p className="opacity-80">
+                Mondy is not intended for children under the age of 13, or the
+                minimum legal age required in your jurisdiction.
+              </p>
+              <p className="opacity-80">
+                We do not knowingly collect personal information from children.
+                If we become aware that such information has been collected, we
+                will promptly delete it.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">
+                12. Changes to this Privacy Policy
+              </h2>
+              <p className="opacity-80">
+                We may update this Privacy Policy from time to time.
+              </p>
+              <p className="opacity-80">
+                When we make material changes, we will update the &quot;Last
+                updated&quot; date and, where appropriate, notify you through
+                the App or by other reasonable means.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">
+                13. Contact Us
+              </h2>
+              <p className="opacity-80">
+                If you have questions about this Privacy Policy or wish to
+                exercise your privacy rights, please contact us:
+              </p>
+              <ul className="list-none opacity-80 pl-0 flex flex-col gap-2">
+                <li>
+                  <strong>Mondy.ai</strong>
+                </li>
+                <li>
+                  Email:{" "}
+                  <a
+                    href="mailto:hello@mondy.ai"
+                    className="text-blue-600 hover:underline"
+                  >
+                    hello@mondy.ai
+                  </a>
+                </li>
+                <li>
+                  Website:{" "}
+                  <a
+                    href="https://mondy.ai"
+                    className="text-blue-600 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://mondy.ai
+                  </a>
+                </li>
+              </ul>
+              <p className="opacity-80">
+                You can also{" "}
                 <Link
                   href="/infopage"
                   className="text-blue-600 hover:underline"

@@ -60,14 +60,14 @@ export default function Hero() {
           transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
         >
           <div className="relative isolate w-full rounded-2xl shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)] sm:rounded-[24px]">
-            <div className="relative isolate flex aspect-[1132/1520] w-full items-center justify-center overflow-hidden rounded-2xl sm:rounded-[28px] lg:rounded-[32px]">
+            <div className="relative isolate flex aspect-[284/364] w-full items-center justify-center overflow-hidden rounded-2xl sm:rounded-[28px] lg:rounded-[32px]">
               <div
                 className="pointer-events-none absolute inset-0 z-0 border-2 border-white/60 bg-white/10"
                 style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
                 aria-hidden
               />
               <Image
-                src="/micheal.png"
+                src="/NewPostCardMichel.png"
                 alt="Social post preview"
                 fill
                 className="z-10 object-contain"
@@ -97,14 +97,14 @@ export default function Hero() {
           transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
         >
           <div className="relative isolate w-full rounded-2xl shadow-[0_12px_40px_-14px_rgba(28,26,23,0.5)] sm:rounded-[24px]">
-            <div className="relative isolate flex aspect-[566/568] w-full items-center justify-center overflow-hidden rounded-2xl sm:rounded-[28px] lg:rounded-[32px]">
+            <div className="relative isolate flex aspect-[284/364] w-full items-center justify-center overflow-hidden rounded-2xl sm:rounded-[28px] lg:rounded-[32px]">
               <div
                 className="pointer-events-none absolute inset-0 z-0 border-2 border-white/60 bg-white/10"
                 style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
                 aria-hidden
               />
               <Image
-                src="/bruce.png"
+                src="/NewPostCardBruce.png"
                 alt="Social post preview"
                 fill
                 className="z-10 object-contain"

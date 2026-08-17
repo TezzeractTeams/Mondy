@@ -8,7 +8,7 @@ import {
 } from "@/lib/socialPreviewImage";
 
 const LAST_UPDATED =
-  process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "July 17, 2026";
+  process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "August 6, 2026";
 
 const privacyDescription =
   "How Mondy collects, uses, and protects your personal information.";
@@ -111,14 +111,16 @@ export default function PrivacyPolicy() {
                 Voice Recordings and Transcripts
               </h3>
               <p className="opacity-80">
-                If you use Mondy&apos;s voice features, we may collect and
-                store:
+                When you record in the app, Mondy captures your microphone
+                audio. Depending on the feature, this audio may be streamed in
+                real time to a speech-to-text provider, or uploaded after
+                recording, to generate a transcript. Once a transcript exists,
+                it — along with related content such as prompts and profile
+                notes — is sent to Mondy&apos;s servers and AI providers when
+                you generate posts, plans, or other content. Profile notes,
+                tags, and similar inputs are sent to our servers when you save
+                them.
               </p>
-              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
-                <li>Voice recordings</li>
-                <li>Voice transcripts</li>
-                <li>AI prompts and generated outputs</li>
-              </ul>
               <p className="opacity-80">
                 These are used to provide transcription, AI-assisted content
                 generation, and related functionality.
@@ -254,7 +256,10 @@ export default function PrivacyPolicy() {
               <p className="opacity-80">
                 We use trusted third-party service providers to operate and
                 improve Mondy. Depending on the features you use, these
-                providers may process limited information on our behalf.
+                providers may process limited information on our behalf. Third
+                parties that receive user data on our behalf are required to
+                provide the same or equal protection of that data as described
+                in this Privacy Policy and as required by applicable law.
               </p>
               <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
                 <li>
@@ -303,6 +308,28 @@ export default function PrivacyPolicy() {
                 We may disclose information where required by applicable law or
                 to protect the safety, rights, or property of Mondy, our users,
                 or others.
+              </p>
+            </section>
+
+            <section className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold tracking-tight">
+                5a. Your Consent for AI and Speech-to-Text Sharing
+              </h2>
+              <p className="opacity-80">
+                Before Mondy shares your microphone audio with a speech-to-text
+                provider, or your transcripts and related content with an AI
+                provider, we ask for your explicit permission in the app.
+                Features that require this sharing — including voice recording,
+                transcription, and AI content generation — are unavailable until
+                you grant this permission.
+              </p>
+              <p className="opacity-80">
+                You can withdraw this permission at any time in{" "}
+                <strong>Profile → AI data sharing</strong>. Once withdrawn,
+                Mondy will not send new audio, transcripts, or related content
+                to these AI or speech-to-text providers until you opt in again.
+                This is separate from account deletion, which is available at{" "}
+                <strong>Profile → Edit Profile → Delete Account</strong>.
               </p>
             </section>
 

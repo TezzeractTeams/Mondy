@@ -93,6 +93,11 @@ function blogImageRemotePatterns(): ImageRemotePattern[] {
       hostname: "**.r2.cloudflarestorage.com",
       pathname: "/**",
     },
+    {
+      protocol: "https",
+      hostname: "mondy-strapi.onrender.com",
+      pathname: "/**",
+    },
   ];
 
   for (const key of ["STRAPI_MEDIA_URL", "STRAPI_CDN_URL"] as const) {

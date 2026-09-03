@@ -92,6 +92,29 @@ Terms & Conditions
               </Link>
             </div>
  
+            {/* Tools */}
+            <div className="flex flex-col gap-3">
+              <h4 className="text-[13px] font-bold mb-4 uppercase tracking-tighter opacity-50">Tools</h4>
+              <Link
+                href="/tools/linkedin-bold-text-generator"
+                className={cn(
+                  "text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight",
+                  pathname.startsWith("/tools/linkedin-bold-text-generator") && "text-white",
+                )}
+              >
+                LinkedIn Bold Text Generator
+              </Link>
+              <Link
+                href="/tools/linkedin-post-mockup-generator"
+                className={cn(
+                  "text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight",
+                  pathname.startsWith("/tools/linkedin-post-mockup-generator") && "text-white",
+                )}
+              >
+                LinkedIn Post Mockup Generator
+              </Link>
+            </div>
+
             {/* Say hello! */}
             <div className="flex flex-col gap-4">
               <h4 className="text-[13px] font-bold mb-4 uppercase tracking-tighter opacity-50">Say hello!</h4>

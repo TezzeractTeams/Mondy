@@ -123,3 +123,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-noah);
 }
+
+/* LinkedIn feed mock — beat inherited Noah tracking/family */
+.linkedin-preview-type,
+.linkedin-preview-type * {
+  font-family: var(--font-source-sans), "Source Sans Pro", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  letter-spacing: 0;
+  font-synthesis: none;
+}

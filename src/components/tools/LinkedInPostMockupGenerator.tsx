@@ -83,7 +83,6 @@ export default function LinkedInPostMockupGenerator() {
   const onDownload = async () => {
     const node = cardRef.current;
     if (!node || downloading) return;
-    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     setDownloading(true);
     setDownloadError(null);
     setDownloaded(false);
@@ -92,18 +91,6 @@ export default function LinkedInPostMockupGenerator() {
         pixelRatio: 2,
         cacheBust: true,
         backgroundColor: theme === "dark" ? "#1b1f23" : "#ffffff",
-        onclone: (_doc, cloned) => {
-          const textarea = cloned.querySelector("textarea");
-          if (!textarea) return;
-          const p = cloned.ownerDocument.createElement("p");
-          p.textContent = textarea.value;
-          p.className = textarea.className;
-          p.style.cssText = textarea.style.cssText;
-          p.style.whiteSpace = "pre-wrap";
-          p.style.overflow = "visible";
-          p.style.height = "auto";
-          textarea.replaceWith(p);
-        },
       });
       const link = document.createElement("a");
       link.download = "linkedin-post-mockup.png";
@@ -174,6 +161,19 @@ export default function LinkedInPostMockupGenerator() {
           />
         </label>
 
+        <label className="flex flex-col gap-1.5">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-mondy-ink/40">
+            Post content
+          </span>
+          <textarea
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            rows={10}
+            placeholder="Write your post here..."
+            className={cn(inputClass, "mondy-scrollbar resize-y leading-relaxed")}
+          />
+        </label>
+
         <div className="flex flex-col gap-2">
           <span className="text-[11px] font-bold uppercase tracking-wider text-mondy-ink/40">
             Engagement
@@ -207,7 +207,7 @@ export default function LinkedInPostMockupGenerator() {
         </div>
       </section>
 
-      <aside className="flex flex-col gap-4 rounded-[2rem] border border-black/[0.05] bg-white p-5 shadow-[0_20px_50px_-20px_rgba(28,26,23,0.14)] md:p-7">
+      <aside className="flex flex-col gap-4 rounded-[2rem] border border-black/[0.05] bg-white p-5 shadow-[0_20px_50px_-20px_rgba(28,26,23,0.14)] md:p-7 lg:sticky lg:top-24">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-lg font-extrabold tracking-[-0.04em] text-mondy-ink">Live preview</h2>
           <div className="flex flex-wrap items-center gap-2">
@@ -276,8 +276,6 @@ export default function LinkedInPostMockupGenerator() {
             reposts={parseCount(reposts)}
             timestamp="Just now"
             showYou
-            emptyPlaceholder="Write your post here..."
-            onBodyChange={setBody}
           />
         </div>
 
@@ -304,8 +302,8 @@ export default function LinkedInPostMockupGenerator() {
           <p className="text-xs font-medium tracking-tight text-mondy-coral">{downloadError}</p>
         ) : (
           <p className="text-xs font-medium tracking-tight text-mondy-ink/45">
-            Click the post to type. Exports at 2× for slides and portfolios. Remote photos may be
-            missing in the PNG unless you upload the file.
+            Exports at 2× for slides and portfolios. Remote photos may be missing in the PNG unless
+            you upload the file.
           </p>
         )}
       </aside>

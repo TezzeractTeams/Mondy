@@ -113,6 +113,15 @@ Terms & Conditions
               >
                 LinkedIn Post Mockup Generator
               </Link>
+              <Link
+                href="/tools/fake-tweet-generator"
+                className={cn(
+                  "text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight",
+                  pathname.startsWith("/tools/fake-tweet-generator") && "text-white",
+                )}
+              >
+                Fake Tweet Generator
+              </Link>
             </div>
 
             {/* Say hello! */}

@@ -44,7 +44,7 @@ export default function StylePreviewGrid({ text }: StylePreviewGridProps) {
           Style previews
         </h2>
         <p className="text-base font-medium tracking-tight text-mondy-ink/55">
-          Copy the whole post in one Unicode style. Use the editor above to mix styles on individual
+          Copy the whole post in one Unicode style. Use the preview above to mix styles on individual
           words.
         </p>
       </div>

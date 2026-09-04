@@ -114,7 +114,7 @@ export default function LinkedInPostMockupGeneratorPage() {
               </h2>
               <ol className="flex list-decimal flex-col gap-3 pl-5 text-lg font-medium leading-relaxed text-mondy-ink/70">
                 <li>Add a name, headline, and optional photo (URL or upload).</li>
-                <li>Paste the post. Switch light/dark and mobile/desktop to check wrapping.</li>
+                <li>Click the preview and type the post. Switch light/dark and mobile/desktop to check wrapping.</li>
                 <li>Set likes, comments, and reposts — or leave them at zero.</li>
                 <li>Download the PNG and drop it into a slide, portfolio, or approval thread.</li>
               </ol>

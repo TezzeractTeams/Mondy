@@ -83,6 +83,7 @@ export default function LinkedInPostMockupGenerator() {
   const onDownload = async () => {
     const node = cardRef.current;
     if (!node || downloading) return;
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     setDownloading(true);
     setDownloadError(null);
     setDownloaded(false);
@@ -91,6 +92,18 @@ export default function LinkedInPostMockupGenerator() {
         pixelRatio: 2,
         cacheBust: true,
         backgroundColor: theme === "dark" ? "#1b1f23" : "#ffffff",
+        onclone: (_doc, cloned) => {
+          const textarea = cloned.querySelector("textarea");
+          if (!textarea) return;
+          const p = cloned.ownerDocument.createElement("p");
+          p.textContent = textarea.value;
+          p.className = textarea.className;
+          p.style.cssText = textarea.style.cssText;
+          p.style.whiteSpace = "pre-wrap";
+          p.style.overflow = "visible";
+          p.style.height = "auto";
+          textarea.replaceWith(p);
+        },
       });
       const link = document.createElement("a");
       link.download = "linkedin-post-mockup.png";
@@ -158,19 +171,6 @@ export default function LinkedInPostMockupGenerator() {
             onChange={(e) => setHeadline(e.target.value)}
             placeholder="Founder · sharing what actually works"
             className={inputClass}
-          />
-        </label>
-
-        <label className="flex flex-col gap-1.5">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-mondy-ink/40">
-            Post content
-          </span>
-          <textarea
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-            rows={10}
-            placeholder="Write your post here..."
-            className={cn(inputClass, "resize-y leading-relaxed")}
           />
         </label>
 
@@ -276,6 +276,8 @@ export default function LinkedInPostMockupGenerator() {
             reposts={parseCount(reposts)}
             timestamp="Just now"
             showYou
+            emptyPlaceholder="Write your post here..."
+            onBodyChange={setBody}
           />
         </div>
 
@@ -302,8 +304,8 @@ export default function LinkedInPostMockupGenerator() {
           <p className="text-xs font-medium tracking-tight text-mondy-coral">{downloadError}</p>
         ) : (
           <p className="text-xs font-medium tracking-tight text-mondy-ink/45">
-            Exports at 2× for slides and portfolios. Remote photos may be missing in the PNG unless
-            you upload the file.
+            Click the post to type. Exports at 2× for slides and portfolios. Remote photos may be
+            missing in the PNG unless you upload the file.
           </p>
         )}
       </aside>

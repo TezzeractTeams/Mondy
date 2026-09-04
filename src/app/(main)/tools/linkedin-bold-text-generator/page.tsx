@@ -115,12 +115,12 @@ export default function LinkedInBoldTextGeneratorPage() {
                 How to bold text on LinkedIn
               </h2>
               <ol className="flex list-decimal flex-col gap-3 pl-5 text-lg font-medium leading-relaxed text-mondy-ink/70">
-                <li>Type or paste your post into the editor. The live preview updates as you go.</li>
+                <li>Type or paste your post into the live preview. Select text, then pick a style.</li>
                 <li>
                   Highlight only the phrase you want to emphasize, then pick a style. Click the same
                   style again to remove it.
                 </li>
-                <li>Copy the finished post, or copy a single style from the cards below the editor.</li>
+                <li>Copy the finished post, or copy a single style from the cards below the preview.</li>
                 <li>Paste into LinkedIn and publish. The Unicode characters carry over intact.</li>
               </ol>
             </section>

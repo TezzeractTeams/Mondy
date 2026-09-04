@@ -161,7 +161,7 @@ const LinkedInPostPreview = forwardRef<HTMLElement, LinkedInPostPreviewProps>(
               rows={3}
               aria-label="LinkedIn post text"
               className={cn(
-                "w-full resize-none overflow-hidden bg-transparent p-0 text-[14px] font-normal leading-[1.42857] outline-none",
+                "w-full cursor-text resize-none overflow-hidden bg-transparent p-0 text-[14px] font-normal leading-[1.42857] outline-none",
                 dark
                   ? "text-[#ffffffe6] placeholder:text-[#ffffff66]"
                   : "text-[#000000e6] placeholder:text-[#00000066]",

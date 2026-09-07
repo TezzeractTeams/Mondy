@@ -96,6 +96,15 @@ Terms & Conditions
             <div className="flex flex-col gap-3">
               <h4 className="text-[13px] font-bold mb-4 uppercase tracking-tighter opacity-50">Tools</h4>
               <Link
+                href="/tools/linkedin-headline-generator"
+                className={cn(
+                  "text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight",
+                  pathname.startsWith("/tools/linkedin-headline-generator") && "text-white",
+                )}
+              >
+                LinkedIn Headline Generator
+              </Link>
+              <Link
                 href="/tools/linkedin-bold-text-generator"
                 className={cn(
                   "text-white/60 text-[16px] font-medium hover:text-white transition-colors tracking-tight",

@@ -145,7 +145,14 @@ export default function LinkedInBoldTextGeneratorPage() {
             <ArticleFAQ title="Frequently asked questions" items={faqItems} />
 
             <p className="text-lg font-medium leading-relaxed text-mondy-ink/70">
-              Want a PNG of the feed card for a deck or portfolio? Use the{" "}
+              Writing the line under your name first? Use the{" "}
+              <Link
+                href="/tools/linkedin-headline-generator"
+                className="font-semibold text-mondy-accent-deep underline decoration-mondy-accent/30 underline-offset-4 hover:decoration-mondy-accent"
+              >
+                LinkedIn Headline Generator
+              </Link>
+              . Want a PNG of the feed card for a deck or portfolio? Use the{" "}
               <Link
                 href="/tools/linkedin-post-mockup-generator"
                 className="font-semibold text-mondy-accent-deep underline decoration-mondy-accent/30 underline-offset-4 hover:decoration-mondy-accent"

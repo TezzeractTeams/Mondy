@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import { Check, Copy, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { mondyBtn } from "@/styles/mondy";
 import {
@@ -9,7 +9,6 @@ import {
   DEFAULT_HEADLINE_INPUT,
   HEADLINE_MAX,
   HEADLINE_PROFILE_OPTIONS,
-  composeHeadline,
   type HeadlineProfile,
 } from "@/lib/linkedinHeadline";
 import LinkedInHeadlinePreviews from "./LinkedInHeadlinePreviews";
@@ -34,6 +33,10 @@ export default function LinkedInHeadlineGenerator() {
   const [headline, setHeadline] = useState(DEFAULT_HEADLINE);
   const [copied, setCopied] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+  const [generating, setGenerating] = useState(false);
+  const [done, setDone] = useState(false);
+  const doneTimerRef = useRef<number | null>(null);
+  const resultRef = useRef<HTMLDivElement | null>(null);
 
   const count = headline.length;
   const overLimit = count > HEADLINE_MAX;
@@ -45,20 +48,46 @@ export default function LinkedInHeadlineGenerator() {
     return Boolean(whoYouHelp.trim() || whatYouDo.trim());
   }, [profile, whatYouDo, whoYouHelp, whatYouWant]);
 
-  const onGenerate = () => {
+  const onGenerate = async () => {
     if (!canGenerate) {
       setFormError("Fill in at least what you do, or who you help.");
       return;
     }
     setFormError(null);
-    setHeadline(
-      composeHeadline({
-        whatYouDo,
-        whoYouHelp,
-        whatYouWant,
-        profile,
-      }),
-    );
+    setDone(false);
+    if (doneTimerRef.current) window.clearTimeout(doneTimerRef.current);
+    setGenerating(true);
+    try {
+      const response = await fetch("/api/linkedin-headline", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          whatYouDo,
+          whoYouHelp,
+          whatYouWant,
+          profile,
+        }),
+      });
+      const payload = (await response.json()) as { headline?: string; error?: string };
+      if (!response.ok) {
+        setFormError(payload.error ?? "Couldn’t write that headline. Try again.");
+        return;
+      }
+      if (!payload.headline) {
+        setFormError("Couldn’t write that headline. Try again.");
+        return;
+      }
+      setHeadline(payload.headline);
+      setDone(true);
+      doneTimerRef.current = window.setTimeout(() => setDone(false), 1600);
+      window.requestAnimationFrame(() => {
+        resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    } catch {
+      setFormError("Couldn’t write that headline. Check your connection and try again.");
+    } finally {
+      setGenerating(false);
+    }
   };
 
   const onCopy = async () => {
@@ -146,22 +175,47 @@ export default function LinkedInHeadlineGenerator() {
 
         <button
           type="button"
-          onClick={onGenerate}
-          className={cn(mondyBtn.primaryLg, "inline-flex w-full items-center justify-center sm:w-auto")}
+          onClick={() => void onGenerate()}
+          disabled={generating}
+          className={cn(
+            mondyBtn.primaryLg,
+            "inline-flex w-full items-center justify-center gap-2 sm:w-auto",
+            generating && "pointer-events-none opacity-70",
+            done && "!bg-emerald-600 shadow-emerald-600/25 hover:!brightness-110",
+          )}
         >
-          Write my headline
+          {generating ? (
+            <Loader2 className="size-4 animate-spin" />
+          ) : done ? (
+            <Check className="size-4" strokeWidth={2.5} />
+          ) : null}
+          {generating ? "Writing" : done ? "Done" : "Write my headline"}
         </button>
 
-        <div className="flex flex-col gap-2 border-t border-black/[0.06] pt-5">
+        <div
+          ref={resultRef}
+          id="generated-headline"
+          className={cn(
+            "flex flex-col gap-3 rounded-[1.75rem] border p-4 transition-[border-color,box-shadow,background-color] duration-500 md:p-5",
+            done
+              ? "border-mondy-accent bg-mondy-accent/15 ring-4 ring-mondy-accent/30"
+              : "border-mondy-accent/40 bg-mondy-accent/10",
+          )}
+        >
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <p
-              className={cn(
-                "text-sm font-semibold tracking-tight",
-                overLimit ? "text-mondy-coral" : nearLimit ? "text-mondy-ink/70" : "text-mondy-ink/50",
-              )}
-            >
-              {count} / {HEADLINE_MAX} characters
-            </p>
+            <div className="flex flex-col gap-0.5">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-mondy-accent-deep">
+                Your headline
+              </p>
+              <p
+                className={cn(
+                  "text-sm font-semibold tracking-tight",
+                  overLimit ? "text-mondy-coral" : nearLimit ? "text-mondy-ink/70" : "text-mondy-ink/50",
+                )}
+              >
+                {count} / {HEADLINE_MAX} characters
+              </p>
+            </div>
             <button
               type="button"
               onClick={() => void onCopy()}
@@ -181,11 +235,15 @@ export default function LinkedInHeadlineGenerator() {
             onChange={(e) => setHeadline(e.target.value.slice(0, HEADLINE_MAX))}
             maxLength={HEADLINE_MAX}
             rows={4}
-            aria-label="LinkedIn headline"
+            aria-label="Your generated LinkedIn headline"
             placeholder="Your headline will land here."
-            className={cn(inputClass, "mondy-scrollbar min-h-[6.5rem] resize-y leading-relaxed")}
+            className={cn(
+              inputClass,
+              "mondy-scrollbar min-h-[6.5rem] resize-y bg-white text-base font-semibold leading-relaxed",
+              done ? "border-mondy-accent ring-2 ring-mondy-accent/25" : "border-mondy-accent/20",
+            )}
           />
-          <p className="text-xs font-medium tracking-tight text-mondy-ink/40">
+          <p className="text-xs font-medium tracking-tight text-mondy-ink/45">
             Edit the line after it writes. The first ~70 characters are what search, comments, and
             invitations show.
           </p>

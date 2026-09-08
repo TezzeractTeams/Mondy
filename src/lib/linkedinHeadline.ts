@@ -1,5 +1,6 @@
 export const HEADLINE_MAX = 220;
 export const HEADLINE_CUT = 70;
+export const HEADLINE_FIELD_MAX = 400;
 
 export const HEADLINE_PROFILES = [
   "founder",
@@ -23,6 +24,35 @@ export type HeadlineInput = {
   whatYouWant: string;
   profile: HeadlineProfile;
 };
+
+export function isHeadlineProfile(value: string): value is HeadlineProfile {
+  return (HEADLINE_PROFILES as readonly string[]).includes(value);
+}
+
+function readField(value: unknown): string {
+  if (typeof value !== "string") return "";
+  return value.replace(/\s+/g, " ").trim().slice(0, HEADLINE_FIELD_MAX);
+}
+
+export function parseHeadlineInput(body: unknown): HeadlineInput | null {
+  if (!body || typeof body !== "object") return null;
+  const rec = body as Record<string, unknown>;
+  const profile = typeof rec.profile === "string" ? rec.profile : "";
+  if (!isHeadlineProfile(profile)) return null;
+  const whatYouDo = readField(rec.whatYouDo);
+  const whoYouHelp = readField(rec.whoYouHelp);
+  const whatYouWant = readField(rec.whatYouWant);
+  if (!whatYouDo && !whoYouHelp && !whatYouWant) return null;
+  return { whatYouDo, whoYouHelp, whatYouWant, profile };
+}
+
+export function cleanGeneratedHeadline(raw: string): string {
+  const line = raw
+    .replace(/^[\s"'“”‘’`]+|[\s"'“”‘’`]+$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return truncateHeadline(line, HEADLINE_MAX);
+}
 
 const ROLE_LABEL: Record<HeadlineProfile, string> = {
   founder: "Founder",
@@ -50,10 +80,7 @@ function pushUnique(parts: string[], next: string): void {
   parts.push(value);
 }
 
-/**
- * Local headline composer. Swap this for an API / model call later:
- * same `HeadlineInput` in, one string out, capped at `HEADLINE_MAX`.
- */
+/** Fallback if the model is unavailable. Prefer POST /api/linkedin-headline. */
 export function composeHeadline(input: HeadlineInput): string {
   const whatYouDo = collapse(input.whatYouDo);
   const whoYouHelp = collapse(input.whoYouHelp);

@@ -82,8 +82,8 @@ export default function LinkedInHeadlinePreviews({
             </p>
             <p
               className={cn(
-                "mt-0.5 text-[14px] font-normal leading-[1.333]",
-                empty ? "text-[#00000066]" : "text-[#000000e6]",
+                "mt-0.5 rounded-md px-1 py-0.5 text-[14px] font-normal leading-[1.333]",
+                empty ? "bg-mondy-accent/10 text-[#00000066]" : "bg-mondy-accent/18 text-[#000000e6]",
               )}
             >
               {empty ? (
@@ -118,7 +118,12 @@ export default function LinkedInHeadlinePreviews({
             <p className="truncate text-[16px] font-semibold leading-[1.25]" style={{ color: LINKEDIN_BLUE }}>
               {displayName}
             </p>
-            <p className="mt-px truncate text-[13px] leading-[1.333] text-[#00000099]">
+            <p
+              className={cn(
+                "mt-px truncate rounded-md px-1 py-0.5 text-[13px] leading-[1.333]",
+                empty ? "bg-mondy-accent/10 text-[#00000066]" : "bg-mondy-accent/18 text-[#00000099]",
+              )}
+            >
               {empty ? "Your headline" : truncated}
             </p>
             <p className="mt-px text-[12px] leading-[1.333] text-[#00000099]">2nd degree connection</p>
@@ -138,7 +143,12 @@ export default function LinkedInHeadlinePreviews({
           <Avatar name={displayName} size="sm" />
           <div className="min-w-0 flex-1 rounded-2xl bg-[#f3f2ef] px-3 py-2">
             <p className="text-[14px] font-semibold leading-[1.333] text-[#000000e6]">{displayName}</p>
-            <p className="truncate text-[12px] leading-[1.333] text-[#00000099]">
+            <p
+              className={cn(
+                "truncate rounded-md px-1 py-0.5 text-[12px] leading-[1.333]",
+                empty ? "bg-mondy-accent/10 text-[#00000066]" : "bg-mondy-accent/18 text-[#00000099]",
+              )}
+            >
               {empty ? "Your headline" : truncated}
             </p>
             <p className="mt-1.5 text-[14px] leading-[1.42857] text-[#000000e6]">

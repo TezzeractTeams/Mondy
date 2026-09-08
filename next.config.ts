@@ -6,6 +6,10 @@ const tailwindcssPkg = path.join(appDir, "node_modules/tailwindcss");
 
 const isDev = process.env.NODE_ENV === "development";
 
+// Referenced so Next loads this server env from .env.local. Do not add it to
+// `env:` in this config — that inlines the value into the browser bundle.
+void process.env.GEMINI_API_KEY;
+
 /** Tight enough for common tags; GTM may still require additions if new third parties load. */
 const contentSecurityPolicy = [
   "default-src 'self'",

@@ -18,10 +18,6 @@ export default function MondyNav() {
       link: "#howitworks",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
-    },
-    {
       name: "FAQ",
       link: "#faq",
     },

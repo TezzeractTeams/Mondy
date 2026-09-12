@@ -46,7 +46,6 @@ export default function Footer() {
               {[
                 { name: 'Solution', link: '#solution' },
                 { name: 'How it works', link: '#howitworks' },
-                { name: 'Pricing', link: '#pricing' },
                 { name: 'FAQ', link: '#faq' }
               ].map(item => (
                 <a

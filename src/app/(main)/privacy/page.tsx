@@ -8,7 +8,7 @@ import {
 } from "@/lib/socialPreviewImage";
 
 const LAST_UPDATED =
-  process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "August 6, 2026";
+  process.env.NEXT_PUBLIC_PRIVACY_LAST_UPDATED ?? "September 12, 2026";
 
 const privacyDescription =
   "How Mondy collects, uses, and protects your personal information.";
@@ -115,15 +115,17 @@ export default function PrivacyPolicy() {
                 audio. Depending on the feature, this audio may be streamed in
                 real time to a speech-to-text provider, or uploaded after
                 recording, to generate a transcript. Once a transcript exists,
-                it — along with related content such as prompts and profile
-                notes — is sent to Mondy&apos;s servers and AI providers when
-                you generate posts, plans, or other content. Profile notes,
-                tags, and similar inputs are sent to our servers when you save
-                them.
+                it — along with related content such as your questions and
+                prompts, text or content you submit to the AI feature, profile
+                notes, and other information required to generate the response
+                — is sent to Mondy&apos;s servers and to a third-party AI
+                service when you generate posts, plans, or other content.
+                Profile notes, tags, and similar inputs are sent to our servers
+                when you save them.
               </p>
               <p className="opacity-80">
-                These are used to provide transcription, AI-assisted content
-                generation, and related functionality.
+                These are used to provide transcription, generate AI-powered
+                responses, and related functionality.
               </p>
               <p className="opacity-80">
                 Where practical, voice recordings, transcripts, and AI content
@@ -208,7 +210,7 @@ export default function PrivacyPolicy() {
                   Publish and manage content on connected social media
                   platforms
                 </li>
-                <li>Generate AI-assisted content</li>
+                <li>Generate AI-powered responses and AI-assisted content</li>
                 <li>Transcribe voice recordings</li>
                 <li>Provide customer support</li>
                 <li>
@@ -226,13 +228,15 @@ export default function PrivacyPolicy() {
                 4. AI Processing and Service Improvement
               </h2>
               <p className="opacity-80">
-                Mondy uses artificial intelligence to generate content, process
-                voice recordings, and provide intelligent recommendations.
+                Mondy uses a third-party AI service to generate AI-powered
+                responses, process voice recordings, and provide intelligent
+                recommendations.
               </p>
               <p className="opacity-80">
                 To improve the quality, accuracy, reliability, and performance
-                of our Services, we may use voice recordings, transcripts,
-                prompts, generated content, and other user-submitted content for
+                of our Services, we may use voice recordings, transcripts, your
+                questions and prompts, text or content submitted to the AI
+                feature, generated content, and other user-submitted content for
                 research, testing, quality assurance, and machine learning.
               </p>
               <p className="opacity-80">
@@ -268,9 +272,10 @@ export default function PrivacyPolicy() {
                 </li>
                 <li>
                   <strong>Artificial Intelligence &amp; Language Models:</strong>{" "}
-                  Google Gemini, Anthropic Claude, OpenAI ChatGPT, and xAI Grok
-                  – Used to generate, transform, summarize, and enhance content
-                  based on your inputs.
+                  Google Gemini (provided by Google LLC), Anthropic Claude,
+                  OpenAI ChatGPT, and xAI Grok – Used to generate AI-powered
+                  responses and to generate, transform, summarize, and enhance
+                  content based on your inputs.
                 </li>
                 <li>
                   <strong>Authentication:</strong> Clerk and OAuth providers –
@@ -316,12 +321,37 @@ export default function PrivacyPolicy() {
                 5a. Your Consent for AI and Speech-to-Text Sharing
               </h2>
               <p className="opacity-80">
+                Before you continue using Mondy&apos;s AI features, we ask you
+                to choose whether to Allow or Don&apos;t Allow sharing with the
+                third-party AI service. Features that require this sharing —
+                including voice recording, transcription, and AI content
+                generation — are unavailable until you tap Allow.
+              </p>
+              <p className="opacity-80">
+                To generate AI-powered responses, information you provide to
+                this feature will be sent to Google Gemini, provided by Google
+                LLC, and may also be sent to other AI providers listed in
+                Section 5 when those providers are used.
+              </p>
+              <p className="opacity-80">Data sent may include:</p>
+              <ul className="list-disc list-inside opacity-80 pl-2 flex flex-col gap-2">
+                <li>Your questions and prompts</li>
+                <li>Text/content submitted to the AI feature</li>
+                <li>Information required to generate the response</li>
+              </ul>
+              <p className="opacity-80">
+                <strong>Purpose:</strong> To generate AI-powered responses.
+              </p>
+              <p className="opacity-80">
+                Please choose whether you allow this information to be shared
+                with the third-party AI service. If you select Don&apos;t Allow,
+                Mondy will not send this information to the third-party AI
+                service.
+              </p>
+              <p className="opacity-80">
                 Before Mondy shares your microphone audio with a speech-to-text
                 provider, or your transcripts and related content with an AI
-                provider, we ask for your explicit permission in the app.
-                Features that require this sharing — including voice recording,
-                transcription, and AI content generation — are unavailable until
-                you grant this permission.
+                provider, we also ask for your explicit permission in the app.
               </p>
               <p className="opacity-80">
                 You can withdraw this permission at any time in{" "}
